@@ -16,11 +16,6 @@ public final class Filter {
 	
 	private Op op;
 	
-	private abstract class Rule {
-		public abstract Boolean apply(ForecastData data);
-		public abstract void showUI(); // Placeholder for showing UI, needs some paramaters
-	}
-	
 	private List<Rule> rules;
 	public void AddRequirements(ForecastRequirements r){
 		
@@ -28,6 +23,7 @@ public final class Filter {
 	public List<Notification> Apply(ForecastDataRange data){
 		List<Notification> notifications=new ArrayList<Notification>();
 		
+		// TODO
 		
 		return notifications;
 	}
