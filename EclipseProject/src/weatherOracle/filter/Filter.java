@@ -1,8 +1,13 @@
-package weatherOracle.app;
+package weatherOracle.filter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
+import weatherOracle.app.Notification;
+import weatherOracle.forcastData.ForcastData;
+import weatherOracle.forcastData.ForcastDataRange;
+import weatherOracle.forcastData.ForecastRequirements;
+
 
 public final class Filter {
 	private enum Op {
@@ -12,7 +17,7 @@ public final class Filter {
 	private Op op;
 	
 	private abstract class Rule {
-		public abstract Set<TimeRange> apply(TimeRange t);
+		public abstract Boolean apply(ForcastData data);
 		public abstract void showUI(); // Placeholder for showing UI, needs some paramaters
 	}
 	
@@ -20,7 +25,7 @@ public final class Filter {
 	public void AddRequirements(ForecastRequirements r){
 		
 	}
-	public List<Notification> Apply(ForcastData data){
+	public List<Notification> Apply(ForcastDataRange data){
 		List<Notification> notifications=new ArrayList<Notification>();
 		
 		
