@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import weatherOracle.app.Notification;
-import weatherOracle.forcastData.ForcastData;
-import weatherOracle.forcastData.ForcastDataRange;
-import weatherOracle.forcastData.ForecastRequirements;
+import weatherOracle.forecastData.ForecastData;
+import weatherOracle.forecastData.ForecastDataRange;
+import weatherOracle.forecastData.ForecastRequirements;
 
 
 public final class Filter {
@@ -17,7 +17,7 @@ public final class Filter {
 	private Op op;
 	
 	private abstract class Rule {
-		public abstract Boolean apply(ForcastData data);
+		public abstract Boolean apply(ForecastData data);
 		public abstract void showUI(); // Placeholder for showing UI, needs some paramaters
 	}
 	
@@ -25,7 +25,7 @@ public final class Filter {
 	public void AddRequirements(ForecastRequirements r){
 		
 	}
-	public List<Notification> Apply(ForcastDataRange data){
+	public List<Notification> Apply(ForecastDataRange data){
 		List<Notification> notifications=new ArrayList<Notification>();
 		
 		
