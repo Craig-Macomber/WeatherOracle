@@ -1,4 +1,4 @@
-package weatherOracle.forcastData;
+package weatherOracle.forecastData;
 
 import weatherOracle.app.TimeRange;
 

@@ -1,8 +1,8 @@
 package weatherOracle.filter;
 
-import weatherOracle.forcastData.ForcastData;
+import weatherOracle.forecastData.ForecastData;
 
 abstract class Rule {
-		public abstract Boolean apply(ForcastData data);
+		public abstract Boolean apply(ForecastData data);
 		public abstract void showUI(); // Placeholder for showing UI, needs some paramaters
 }
