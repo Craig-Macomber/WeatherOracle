@@ -9,9 +9,6 @@ public class WeatherOracleActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.main);
-        TextView tv = new TextView(this);
-        tv.setText("This is WeatherOracle, it works I think");
-        setContentView(tv);
+        setContentView(R.layout.main);
     }
 }
