@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import weatherOracle.app.Location;
-import weatherOracle.app.Notification;
 import weatherOracle.forecastData.ForecastData;
 import weatherOracle.forecastData.ForecastDataRange;
 import weatherOracle.forecastData.ForecastRequirements;
+import weatherOracle.notification.Notification;
 
 
 public final class Filter {
