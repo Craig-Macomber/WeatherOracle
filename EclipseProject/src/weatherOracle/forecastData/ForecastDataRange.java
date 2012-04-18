@@ -1,11 +1,12 @@
 package weatherOracle.forecastData;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import weatherOracle.app.TimeRange;
 
-public class ForecastDataRange {
+public class ForecastDataRange implements Iterable<ForecastData>{
 	private final TimeRange timeRange;
 	private final List<ForecastData> data;
 	public ForecastDataRange(ForecastRequirements req){
@@ -17,5 +18,8 @@ public class ForecastDataRange {
 	}
 	public int getCount(){
 		return timeRange.getCount();
+	}
+	public Iterator<ForecastData> iterator() {
+		return data.iterator();
 	}
 }
