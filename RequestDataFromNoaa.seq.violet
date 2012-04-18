@@ -210,6 +210,9 @@
     <void property="implicitParameter"> 
      <object idref="LifelineNode6"/> 
     </void> 
+    <void property="openBottom"> 
+     <boolean>true</boolean> 
+    </void> 
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
