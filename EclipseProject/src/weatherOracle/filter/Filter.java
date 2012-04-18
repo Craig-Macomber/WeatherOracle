@@ -1,5 +1,6 @@
 package weatherOracle.filter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,11 @@ import weatherOracle.forecastData.ForecastRequirements;
 import weatherOracle.notification.Notification;
 
 
-public final class Filter {
+public final class Filter implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1153920572465553775L;
 	private enum Op {
 		ALL, ANY
 	}
@@ -22,8 +27,13 @@ public final class Filter {
 	private Location loc;
 	
 	public void AddRequirements(ForecastRequirements r){
-		
+		// TODO
 	}
+	
+	public Location getLocation(){
+		return loc;
+	}
+	
 	public List<Notification> Apply(ForecastDataRange data){
 		List<Notification> notifications=new ArrayList<Notification>();
 		
