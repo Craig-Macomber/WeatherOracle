@@ -478,7 +478,8 @@
     </void> 
     <void property="name"> 
      <void property="text"> 
-      <string>Reader</string> 
+      <string>«interface»
+Reader</string> 
      </void> 
     </void> 
    </object> 
