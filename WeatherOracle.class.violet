@@ -26,15 +26,15 @@
         <void method="set">
          <object idref="Point2D$Double0">
           <void method="setLocation">
-           <double>758.3517636450626</double>
-           <double>203.89140789492652</double>
+           <double>720.3517636450626</double>
+           <double>217.8914078949265</double>
           </void>
          </object>
-         <double>203.89140789492652</double>
+         <double>217.8914078949265</double>
         </void>
        </void>
       </object>
-      <double>758.3517636450626</double>
+      <double>720.3517636450626</double>
      </void>
     </void>
    </object>
@@ -69,15 +69,15 @@
         <void method="set">
          <object idref="Point2D$Double1">
           <void method="setLocation">
-           <double>401.0</double>
-           <double>94.0</double>
+           <double>396.0</double>
+           <double>108.0</double>
           </void>
          </object>
-         <double>94.0</double>
+         <double>108.0</double>
         </void>
        </void>
       </object>
-      <double>401.0</double>
+      <double>396.0</double>
      </void>
     </void>
    </object>
@@ -114,15 +114,15 @@
         <void method="set">
          <object idref="Point2D$Double2">
           <void method="setLocation">
-           <double>352.8374434699401</double>
-           <double>336.73017787506797</double>
+           <double>393.8374434699401</double>
+           <double>353.73017787506797</double>
           </void>
          </object>
-         <double>336.73017787506797</double>
+         <double>353.73017787506797</double>
         </void>
        </void>
       </object>
-      <double>352.8374434699401</double>
+      <double>393.8374434699401</double>
      </void>
     </void>
    </object>
@@ -189,15 +189,15 @@
         <void method="set">
          <object idref="Point2D$Double4">
           <void method="setLocation">
-           <double>383.0</double>
-           <double>195.00000000000003</double>
+           <double>473.0</double>
+           <double>225.00000000000003</double>
           </void>
          </object>
-         <double>195.00000000000003</double>
+         <double>225.00000000000003</double>
         </void>
        </void>
       </object>
-      <double>383.0</double>
+      <double>473.0</double>
      </void>
     </void>
    </object>
@@ -853,15 +853,15 @@ Reader</string>
         <void method="set">
          <object idref="Point2D$Double23">
           <void method="setLocation">
-           <double>1001.8933976602286</double>
-           <double>199.43237865499182</double>
+           <double>916.8933976602286</double>
+           <double>188.43237865499182</double>
           </void>
          </object>
-         <double>199.43237865499182</double>
+         <double>188.43237865499182</double>
         </void>
        </void>
       </object>
-      <double>1001.8933976602286</double>
+      <double>916.8933976602286</double>
      </void>
     </void>
    </object>
@@ -1021,10 +1021,10 @@ temp:double
          <object idref="Point2D$Double28">
           <void method="setLocation">
            <double>-1.0</double>
-           <double>415.0</double>
+           <double>406.0</double>
           </void>
          </object>
-         <double>415.0</double>
+         <double>406.0</double>
         </void>
        </void>
       </object>
@@ -1143,9 +1143,6 @@ temp:double
   </void>
   <void method="connect">
    <object class="com.horstmann.violet.ClassRelationshipEdge">
-    <void property="endArrowHead">
-     <object class="com.horstmann.violet.ArrowHead" field="V"/>
-    </void>
     <void property="lineStyle">
      <object class="com.horstmann.violet.LineStyle" field="DOTTED"/>
     </void>
@@ -1155,30 +1152,6 @@ temp:double
    </object>
    <object idref="ClassNode1"/>
    <object idref="ClassNode8"/>
-  </void>
-  <void method="connect">
-   <object class="com.horstmann.violet.ClassRelationshipEdge">
-    <void property="endArrowHead">
-     <object class="com.horstmann.violet.ArrowHead" field="V"/>
-    </void>
-    <void property="lineStyle">
-     <object class="com.horstmann.violet.LineStyle" field="DOTTED"/>
-    </void>
-   </object>
-   <object idref="ClassNode1"/>
-   <object idref="ClassNode9"/>
-  </void>
-  <void method="connect">
-   <object class="com.horstmann.violet.ClassRelationshipEdge">
-    <void property="endArrowHead">
-     <object class="com.horstmann.violet.ArrowHead" field="V"/>
-    </void>
-    <void property="lineStyle">
-     <object class="com.horstmann.violet.LineStyle" field="DOTTED"/>
-    </void>
-   </object>
-   <object idref="ClassNode1"/>
-   <object idref="ClassNode10"/>
   </void>
   <void method="connect">
    <object class="com.horstmann.violet.ClassRelationshipEdge">
