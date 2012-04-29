@@ -1,5 +1,6 @@
 package weatherOracle.app;
 
+// Stores an location by lat and lon
 public class Location{
 	public double lat;
 	public double lon;
