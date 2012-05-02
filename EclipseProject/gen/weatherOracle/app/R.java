@@ -14,17 +14,59 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
+        public static final int Button01=0x7f050018;
+        public static final int Button02=0x7f050017;
+        public static final int Button03=0x7f050019;
+        public static final int Button04=0x7f05001a;
+        public static final int Button05=0x7f05001b;
+        public static final int Button06=0x7f05001c;
         public static final int button1=0x7f050001;
+        public static final int button2=0x7f050002;
+        public static final int button3=0x7f050003;
+        public static final int button4=0x7f050004;
+        public static final int button5=0x7f050005;
+        public static final int button6=0x7f050006;
+        public static final int checkBox1=0x7f050010;
+        public static final int checkBox2=0x7f050011;
+        public static final int checkBox3=0x7f050013;
+        public static final int checkBox4=0x7f050014;
+        public static final int checkBox5=0x7f050016;
+        public static final int checkBox6=0x7f050012;
+        public static final int checkBox7=0x7f050015;
+        public static final int editText1=0x7f05001f;
+        public static final int spinner1=0x7f050008;
+        public static final int spinner2=0x7f05000e;
+        public static final int spinner3=0x7f05000c;
+        public static final int textView1=0x7f050009;
+        public static final int textView2=0x7f05000a;
+        public static final int textView3=0x7f05000b;
+        public static final int textView4=0x7f05000d;
+        public static final int timePicker1=0x7f05001d;
+        public static final int timePicker2=0x7f05001e;
         public static final int widget40=0x7f050000;
+        public static final int widget43=0x7f050007;
+        public static final int widget44=0x7f05000f;
     }
     public static final class layout {
-        public static final int addnotification=0x7f030000;
-        public static final int editnotification=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int secretimfeelingluckyscreen=0x7f030003;
+        public static final int edit_condition_screen=0x7f030000;
+        public static final int edit_rule_screen=0x7f030001;
+        public static final int edit_time_screen=0x7f030002;
+        public static final int edit_timerange_screen=0x7f030003;
+        public static final int edit_util_screen=0x7f030004;
+        public static final int home_screen=0x7f030005;
+        public static final int secretimfeelingluckyscreen=0x7f030006;
+        public static final int view_filter_screen=0x7f030007;
     }
     public static final class string {
+        public static final int add_filter=0x7f040003;
         public static final int app_name=0x7f040001;
+        public static final int cancel=0x7f040006;
+        public static final int condition=0x7f040008;
+        public static final int confirm=0x7f040005;
+        public static final int filters=0x7f040002;
         public static final int hello=0x7f040000;
+        public static final int home=0x7f040004;
+        public static final int name=0x7f040007;
+        public static final int range_=0x7f040009;
     }
 }
