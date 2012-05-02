@@ -1,12 +1,12 @@
 package weatherOracle.app.test;
 
-import weatherOracle.app.WeatherOracleActivity;
+import weatherOracle.activity.HomeScreenActivity;
 import android.test.ActivityInstrumentationTestCase2;
 
 public class WeatherOracleActivityTest extends
-		ActivityInstrumentationTestCase2<WeatherOracleActivity> {
+		ActivityInstrumentationTestCase2<HomeScreenActivity> {
 	public WeatherOracleActivityTest() {
-		super("weatherOracle.app.WeatherOracleActivity", WeatherOracleActivity.class);
+		super("weatherOracle.app.WeatherOracleActivity", HomeScreenActivity.class);
 	}
 	
 	@Override
