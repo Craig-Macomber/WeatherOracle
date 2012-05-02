@@ -3,5 +3,17 @@
 
     <string name="hello">Hello World, WeatherOracleActivity!</string>
     <string name="app_name">WeatherOracle</string>
+    <string name="filters">Filters</string>
+    <string name="add_filter">Add A Filter</string>
+    <string name="home">home</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="name">Name:</string>
+    <string name="condition">Condition:</string>
+    <string name="range:">Range:</string>
+    
+    
+    
+    
 
 </resources>
