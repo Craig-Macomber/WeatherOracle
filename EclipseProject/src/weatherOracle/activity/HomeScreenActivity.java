@@ -16,4 +16,46 @@ public class HomeScreenActivity extends Activity {
         setContentView(R.layout.home_screen);    
     }
     
+    public void goToHomeScreen(View v) {
+    	setContentView(R.layout.home_screen);
+    }
+    
+    public void goToViewFilterScreen(View v) {
+    	setContentView(R.layout.view_filter_screen);
+    }
+    
+    public void goToEditConditionScreen(View v) {
+    	setContentView(R.layout.edit_condition_screen);
+    }
+    
+    public void goToEditUtilScreen(View v) {
+    	setContentView(R.layout.edit_util_screen);
+    }
+    
+    public void goToEditTimeScreen(View v) {
+    	setContentView(R.layout.edit_time_screen);
+    }
+    
+    public void goToEditTimerangeScreen(View v) {
+    	setContentView(R.layout.edit_timerange_screen);
+    }
+    
+    public void goToEditRuleScreen(View v) {
+    	setContentView(R.layout.edit_rule_screen);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
