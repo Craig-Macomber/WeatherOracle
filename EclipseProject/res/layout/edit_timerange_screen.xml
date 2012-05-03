@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:onClick="goToEditNotification"
+        android:onClick="goToEditTimeScreen"
         android:text="@string/cancel" />
 
     <Button
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:onClick="goToEditNotification"
+        android:onClick="goToEditTimeScreen"
         android:text="@string/confirm" />
 
     <TimePicker

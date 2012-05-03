@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:onClick="goToEditConditionScreen"
         android:text="Conditions" />
 
     <Button
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="goToEditTimeScreen"
         android:text="Time" />
 
     <Button
@@ -34,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:onClick="goToViewFilterScreen"
         android:text="Cancel" />
 
     <Button
@@ -42,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="goToViewFilterScreen"
         android:text="Confirm" />
 
     <TextView
