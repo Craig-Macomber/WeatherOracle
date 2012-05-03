@@ -33,12 +33,12 @@ class UpdateTask implements Runnable {
 		int filterVersionNumber = pair.second;
 		ForecastRequirements req = new ForecastRequirements();
 		for (Filter f : pair.first) {
-			f.AddRequirements(req);
+			f.addRequirements(req);
 		}
 		Map<Location, ForecastDataRange> m = reader.getData(req);
 		List<Notification> notifications = new ArrayList<Notification>();
 		for (Filter f : pair.first) {
-			notifications.addAll(f.Apply(m.get(f.getLocation())));
+			notifications.addAll(f.apply(m.get(f.getLocation())));
 		}
 		NotificationStore.update(notifications, filterVersionNumber);
 	}
