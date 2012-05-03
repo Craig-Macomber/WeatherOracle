@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="goToEditTimeScreen"
         android:text="Time" />
 
     <Button
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:onClick="goToEditUtilScreen"
         android:text="Etc." />
 
 
@@ -36,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:onClick="goToViewFilterScreen"
         android:text="Cancel" />
 
 
@@ -45,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="goToViewFilterScreen"
         android:text="Confirm" />
 
 
@@ -55,6 +59,7 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/button5"
         android:layout_toRightOf="@+id/button4"
+        android:onClick="goToEditRuleScreen"
         android:text="Add A Condition" />
 
 </RelativeLayout>
