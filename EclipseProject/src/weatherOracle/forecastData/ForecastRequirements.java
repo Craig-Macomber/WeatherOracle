@@ -6,7 +6,7 @@ import java.util.Map;
 import weatherOracle.app.Location;
 import weatherOracle.app.TimeRange;
 
-
+// Represents a set of required ForecastData points needed by a set of filters
 public class ForecastRequirements {
 	Map<Location,TimeRange> data;
 	public void addTimeRange(Location loc, TimeRange t){

@@ -18,6 +18,7 @@ import weatherOracle.forecastData.ForecastRequirements;
 import weatherOracle.forecastData.ForecastDataRange;
 import weatherOracle.app.Location;
 
+// The main implementation of Reader for reading with real forecast data off the NOAA site.
 public class NoaaReader implements Reader {
 	public Map<Location, ForecastDataRange> getData(ForecastRequirements r) {
 		Map<Location, ForecastDataRange> m = new HashMap<Location, ForecastDataRange>();

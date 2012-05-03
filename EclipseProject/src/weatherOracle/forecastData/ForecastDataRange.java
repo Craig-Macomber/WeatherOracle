@@ -6,6 +6,7 @@ import java.util.List;
 
 import weatherOracle.app.TimeRange;
 
+// A set of ForecastData objects over a span of time at a given location
 public class ForecastDataRange implements Iterable<ForecastData>{
 	private final TimeRange timeRange;
 	private final List<ForecastData> data;

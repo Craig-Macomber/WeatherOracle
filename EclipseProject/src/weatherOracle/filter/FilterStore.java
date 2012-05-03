@@ -13,6 +13,11 @@ import weatherOracle.control.MainControl;
 
 import android.util.Pair;
 
+// keeps a single up to data copy of the filters on disk, and can update and provide it on demand
+// Any version requested gets a version number that is
+// larger than all previous differing version returned since launch
+// (The version number may increase without changes, and may reset on launch)
+// This is all fully thread safe! All combinations of calls from differing threads are allowed.
 public abstract class FilterStore {
 	private static int versionNumber = 0;
 	private static byte[] data;

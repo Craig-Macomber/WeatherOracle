@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.util.Log;
 
+// A static (not instanced) store of the newest Notifications available.
 public abstract class NotificationStore {
 
 	private static int filterVersionNumber = -1;

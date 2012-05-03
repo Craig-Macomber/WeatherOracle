@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import android.view.View;
 
-
+// Main Android Activity, shown on launch
 public class HomeScreenActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
