@@ -11,7 +11,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="goToHomeScreen"
-        android:text="@string/home" />
+        android:text="Notifications" />
 
 
     <Button

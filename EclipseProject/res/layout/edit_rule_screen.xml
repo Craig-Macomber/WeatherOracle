@@ -63,44 +63,7 @@
         android:text="Condition:"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="33px" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/spinner1"
-        android:layout_toLeftOf="@+id/spinner3"
-        android:text="From:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/spinner1" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_below="@+id/spinner3"
-        android:text="To:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spinner3"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView4" />
-
+
     <TextView
         android:id="@+id/widget44"
         android:layout_width="125px"
@@ -111,5 +74,43 @@
         android:layout_toLeftOf="@+id/spinner1"
         android:text="@string/name"
         android:textSize="50px" />
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="14dp"
+        android:layout_toLeftOf="@+id/button1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/spinner3"
+        android:layout_alignBottom="@+id/spinner3"
+        android:layout_alignParentLeft="true"
+        android:text="Min:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/spinner3"
+        android:layout_alignBottom="@+id/spinner3"
+        android:layout_alignLeft="@+id/button1"
+        android:text="Max:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>
