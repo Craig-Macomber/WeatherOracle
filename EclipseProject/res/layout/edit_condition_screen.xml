@@ -60,6 +60,6 @@
         android:layout_toLeftOf="@+id/button5"
         android:layout_toRightOf="@+id/button4"
         android:onClick="goToEditRuleScreen"
-        android:text="Add A Condition" />
+        android:text="Add Condition" />
 
 </RelativeLayout>
