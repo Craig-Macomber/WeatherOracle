@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/widget43"
+        android:entries="@array/condition"
         android:layout_toRightOf="@+id/textView1" />
 
     <TextView
@@ -81,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="14dp"
+        android:entries="@array/range"
         android:layout_toLeftOf="@+id/button1" />
 
     <TextView
@@ -99,6 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/spinner3"
+        android:entries="@array/range"
         android:layout_below="@+id/spinner3" />
 
     <TextView
