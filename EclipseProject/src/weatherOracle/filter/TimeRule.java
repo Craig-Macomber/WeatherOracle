@@ -5,6 +5,11 @@ import weatherOracle.forecastData.ForecastData;
 public class TimeRule implements Rule {
 	// NEED SOME FIELDS HERE
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public TimeRule() {
 		
 	}
