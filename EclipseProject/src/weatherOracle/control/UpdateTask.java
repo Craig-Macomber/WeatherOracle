@@ -1,13 +1,15 @@
 package weatherOracle.control;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import weatherOracle.app.Location;
 import weatherOracle.filter.Filter;
 import weatherOracle.filter.FilterStore;
-import weatherOracle.forecastData.ForecastDataRange;
+import weatherOracle.forecastData.ForecastData;
 import weatherOracle.forecastData.ForecastRequirements;
 import weatherOracle.notification.Notification;
 import weatherOracle.notification.NotificationStore;
@@ -35,11 +37,22 @@ class UpdateTask implements Runnable {
 		for (Filter f : pair.first) {
 			f.addRequirements(req);
 		}
-		Map<Location, ForecastDataRange> m = reader.getData(req);
+		Map<Location, List<ForecastData>> m = reader.getData(req);
+		
 		List<Notification> notifications = new ArrayList<Notification>();
+		
+		
 		for (Filter f : pair.first) {
-			notifications.addAll(f.apply(m.get(f.getLocation())));
+			List<ForecastData> passed=new ArrayList<ForecastData>();
+			for (ForecastData d:m.get(f.getLocation())){
+				if (f.apply(d)){
+					passed.add(d);
+				}
+			}
+			notifications.add(Notification.make(passed,f));
 		}
+		
+		
 		NotificationStore.update(notifications, filterVersionNumber);
 	}
 }

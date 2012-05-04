@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,17 +16,17 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+import weatherOracle.forecastData.ForecastData;
 import weatherOracle.forecastData.ForecastRequirements;
-import weatherOracle.forecastData.ForecastDataRange;
 import weatherOracle.app.Location;
 
 // The main implementation of Reader for reading with real forecast data off the NOAA site.
 public class NoaaReader implements Reader {
-	public Map<Location, ForecastDataRange> getData(ForecastRequirements r) {
-		Map<Location, ForecastDataRange> m = new HashMap<Location, ForecastDataRange>();
+	public Map<Location, List<ForecastData>> getData(ForecastRequirements r) {
+		Map<Location, List<ForecastData>> m = new HashMap<Location, List<ForecastData>>();
 
 		// http://forecast.weather.gov/MapClick.php?lat=47.66076&lon=-122.29508&FcstType=digitalDWML
-		for (Location loc : r.getData().keySet()) {
+		for (Location loc : r.getData()) {
 			URL url;
 			try {
 				url = new URL("http://forecast.weather.gov/MapClick.php?lat="
@@ -69,8 +71,11 @@ public class NoaaReader implements Reader {
 				return null;
 			}
 
-			ForecastDataRange d = new ForecastDataRange(r);
-			m.put(loc, d);
+			List<ForecastData> dataList=new ArrayList<ForecastData>();
+			
+			// TODO : Fill dataList with ForecastData from dom
+			
+			m.put(loc, dataList);
 		}
 		return m;
 	}
