@@ -92,7 +92,7 @@
         android:layout_alignParentLeft="true"
         android:text="Min:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="14" />
+        android:textSize="14px" />
 
     <TextView
         android:id="@+id/textView4"
@@ -103,7 +103,7 @@
         android:layout_alignLeft="@+id/button1"
         android:text="Max:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="14" />
+        android:textSize="14px" />
 
     <Spinner
         android:id="@+id/spinner2"
