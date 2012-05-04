@@ -6,6 +6,11 @@ public class ConditionRule implements Rule {
 	// NEED SOME FIELDS HERE
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ConditionRule() {
 		
 	}
