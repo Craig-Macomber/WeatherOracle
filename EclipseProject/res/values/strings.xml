@@ -12,8 +12,17 @@
     <string name="condition">Condition:</string>
     <string name="range:">Range:</string>
     
+    <string-array name="range">
+		<item>None</item>
+		<item>Light</item>
+		<item>Heavy</item>
+	</string-array>
     
-    
-    
+    <string-array name="condition">
+		<item>Rainy</item>
+		<item>Cloudy</item>
+		<item>Stormy</item>
+		<item>Sunny</item>
+	</string-array>
 
 </resources>
