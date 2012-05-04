@@ -1,14 +1,12 @@
 package weatherOracle.filter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import weatherOracle.app.Location;
 import weatherOracle.forecastData.ForecastData;
 import weatherOracle.forecastData.ForecastRequirements;
-import weatherOracle.notification.Notification;
 
 // Requests forecast data at a given location and set of times,
 // and can produce a set of notifications for the user using its rules and this data.
@@ -51,7 +49,7 @@ public final class Filter implements Serializable {
 	 *            the Rule to add
 	 */
 	public void addRule(Rule newRule) {
-
+		// TODO
 	}
 
 	/**
@@ -60,7 +58,7 @@ public final class Filter implements Serializable {
 	 *            the Rule to remove
 	 */
 	public void removeRule(Rule rule) {
-
+		// TODO
 	}
 
 	/**
@@ -71,11 +69,7 @@ public final class Filter implements Serializable {
 		return Collections.unmodifiableList(rules);
 	}
 
-	// takes in ForecastDataRange, and filters it, producing a set of
-	// notifications
-	// TODO : API subject to changer here
-	// perhaps just taking in a ForecastData and returning Boolean would be
-	// better
+	// ForecastData, and filters it, producing a pass/fail boolean
 	public boolean apply(ForecastData data) {
 
 		boolean all = op == Op.ALL;
