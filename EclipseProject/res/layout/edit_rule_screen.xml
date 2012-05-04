@@ -92,25 +92,23 @@
         android:layout_alignParentLeft="true"
         android:text="Min:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="14px" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/spinner3"
-        android:layout_alignBottom="@+id/spinner3"
-        android:layout_alignLeft="@+id/button1"
-        android:text="Max:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="14px" />
+        android:textSize="20px" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignParentRight="true" />
+        android:layout_alignLeft="@+id/spinner3"
+        android:layout_below="@+id/spinner3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/spinner2"
+        android:text="Max:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20px" />
 
 </RelativeLayout>
