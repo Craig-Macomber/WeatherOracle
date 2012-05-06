@@ -14,8 +14,8 @@ public class FilterMenuActivity extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View v = (TabHost) findViewById(R.layout.main);
-        v.setVisibility(View.GONE);
+  //      View v = (TabHost) findViewById(R.layout.main);
+  //      v.setVisibility(View.GONE);
         setContentView(R.layout.filter_menu_activity);
 
         Resources res = getResources(); // Resource object to get Drawables
@@ -27,14 +27,14 @@ public class FilterMenuActivity extends TabActivity {
         intent = new Intent().setClass(this, ConditionRuleViewerActivity.class);
 
         // Initialize a TabSpec for each tab and add it to the TabHost
-        spec = tabHost.newTabSpec("notifications").setIndicator("Notifications",
+        spec = tabHost.newTabSpec("weather").setIndicator("Weather",
                           res.getDrawable(R.drawable.ic_tab_weather))
                       .setContent(intent);
         tabHost.addTab(spec);
 
         // Do the same for the other tabs
         intent = new Intent().setClass(this, TimeRuleViewerActivity.class);
-        spec = tabHost.newTabSpec("filters").setIndicator("Filters",
+        spec = tabHost.newTabSpec("clock").setIndicator("Clock",
                           res.getDrawable(R.drawable.ic_tab_clock))
                       .setContent(intent);
         tabHost.addTab(spec);

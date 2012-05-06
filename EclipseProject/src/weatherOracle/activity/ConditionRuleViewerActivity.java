@@ -1,3 +1,5 @@
+// tim is the best
+
 package weatherOracle.activity;
 
 import android.app.Activity;
