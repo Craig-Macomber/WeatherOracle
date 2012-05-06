@@ -28,9 +28,7 @@ public class FiltersActivity extends Activity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
                 startActivity(myIntent);
-                finish();
                 
-                //startActivityForResult(myIntent, 0);
                 
             }	
         });

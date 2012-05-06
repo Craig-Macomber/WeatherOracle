@@ -14,8 +14,7 @@ public class FilterMenuActivity extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-  //      View v = (TabHost) findViewById(R.layout.main);
-  //      v.setVisibility(View.GONE);
+
         setContentView(R.layout.filter_menu_activity);
 
         Resources res = getResources(); // Resource object to get Drawables
