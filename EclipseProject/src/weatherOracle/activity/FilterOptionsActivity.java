@@ -9,7 +9,7 @@ public class FilterOptionsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	
+	    setContentView(R.layout.filter_options_activity);
 	    // TODO Auto-generated method stub
 	}
 

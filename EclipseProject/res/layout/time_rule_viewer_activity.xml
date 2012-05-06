@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
 
-</ListView>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" 
+        android:background="#CCCCCC">
+
+        <Button
+            android:id="@+id/buttonFilterCancel"
+            android:layout_width="150px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            
+            android:layout_marginBottom="-4dp"
+            android:text="Cancel" />
+		<Button
+            android:id="@+id/buttonFilterConfirm"
+            android:layout_width="150px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-4dp"
+            android:text="Save" />
+    </RelativeLayout>
+    
+</RelativeLayout> 
