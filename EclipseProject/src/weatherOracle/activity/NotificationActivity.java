@@ -3,6 +3,7 @@ package weatherOracle.activity;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NotificationActivity extends Activity {
@@ -10,11 +11,12 @@ public class NotificationActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TextView textview = new TextView(this);
-        textview.setText("Whole shit load of notifications!!");
-        setContentView(textview);
-
+      //  TextView textview = new TextView(this);
+      //  textview.setText("Whole shit load of notifications!!");
+        setContentView(R.layout.notification_activity);
+     //   LinearLayout linear = findViewById(R.Id.)
+     //   scroll.addView(yourTableView);
         
-    //    setContentView(R.layout.main);
+        
     }
 }
