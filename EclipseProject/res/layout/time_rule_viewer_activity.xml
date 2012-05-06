@@ -4,11 +4,12 @@
     android:layout_height="match_parent" >
 
     <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" 
-        android:background="#CCCCCC">
+        android:layout_alignParentTop="true"
+        android:background="#CCCCCC" >
 
         <Button
             android:id="@+id/buttonFilterCancel"
@@ -16,10 +17,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            
             android:layout_marginBottom="-4dp"
             android:text="Cancel" />
-		<Button
+
+        <Button
             android:id="@+id/buttonFilterConfirm"
             android:layout_width="150px"
             android:layout_height="wrap_content"
@@ -28,5 +29,64 @@
             android:layout_marginBottom="-4dp"
             android:text="Save" />
     </RelativeLayout>
+
+    
+    
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical"
+        android:layout_below="@+id/relativeLayout1" >
+
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monday:" />
+    
+       <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tuesday:" />
+    
+       <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wednesday:" />
+       
+       <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thursday:" />
+       
+       <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friday:" />
+       
+       <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saturday:" />
+       
+       <CheckBox
+            android:id="@+id/checkBox7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday:" />
+       
+        
+    </LinearLayout>
+
+    
+        
+
     
 </RelativeLayout> 
