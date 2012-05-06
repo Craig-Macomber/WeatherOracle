@@ -22,6 +22,10 @@ public abstract class FilterStore {
 	private static int versionNumber = 0;
 	private static byte[] data;
 	
+	/**
+	 * 
+	 * @param filters
+	 */
 	public synchronized static void setFilters(List<Filter> filters) {
 
 		ByteArrayOutputStream fbos = new ByteArrayOutputStream();
@@ -53,6 +57,10 @@ public abstract class FilterStore {
 		//TODO
 	}
 	
+	/**
+	 * Retrieves the filters from persistent memory
+	 * @return A Pair containing a list of Filters and a version number
+	 */
 	public synchronized static Pair<List<Filter>,Integer> getFilters(){
 		if (data==null){ // no data set or read in yet
 			readIn();
