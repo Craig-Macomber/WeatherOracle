@@ -12,7 +12,8 @@ public class ConditionRuleViewerActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.filter_menu_activity);
+	    setContentView(R.layout.condition_rule_viewer_activity);
+	    
 	    // TODO Auto-generated method stub
 	}
 
