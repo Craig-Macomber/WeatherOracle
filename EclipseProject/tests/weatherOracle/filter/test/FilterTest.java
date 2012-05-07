@@ -20,7 +20,7 @@ public class FilterTest extends AndroidTestCase {
 		f.addRule(tR);
 		f.addRule(cR);
 		
-		List<Rule> ruleList = f.getRules();
+		Set<Rule> ruleList = f.getRules();
 		assertEquals(ruleList.size(), 2);
 	}
 	
