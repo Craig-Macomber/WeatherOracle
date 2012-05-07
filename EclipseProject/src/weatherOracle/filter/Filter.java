@@ -2,7 +2,7 @@ package weatherOracle.filter;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 import weatherOracle.app.Location;
 import weatherOracle.forecastData.ForecastData;
@@ -24,7 +24,7 @@ public final class Filter implements Serializable {
 	private Op op;
 
 	// The rules that make up this filter
-	private List<Rule> rules;
+	private Set<Rule> rules;
 
 	// the filters name, as specified by and shown to the user
 	private String name;
@@ -45,28 +45,26 @@ public final class Filter implements Serializable {
 
 	/**
 	 * 
-	 * @param newRule
-	 *            the Rule to add
+	 * @param newRule the Rule to add
 	 */
 	public void addRule(Rule newRule) {
-		// TODO
+		rules.add(newRule);
 	}
 
 	/**
 	 * 
-	 * @param rule
-	 *            the Rule to remove
+	 * @param rule the Rule to remove
 	 */
-	public void removeRule(Rule rule) {
-		// TODO
+	public boolean removeRule(Rule rule) {
+		return rules.remove(rule);
 	}
 
 	/**
 	 * 
 	 * @return a List of Rules
 	 */
-	public List<Rule> getRules() {
-		return Collections.unmodifiableList(rules);
+	public Set<Rule> getRules() {
+		return Collections.unmodifiableSet(rules);
 	}
 
 	// ForecastData, and filters it, producing a pass/fail boolean
