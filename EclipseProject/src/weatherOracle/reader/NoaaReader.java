@@ -21,11 +21,11 @@ import weatherOracle.forecastData.ForecastRequirements;
 import weatherOracle.app.Location;
 
 /**
- *  The main implementation of Reader for reading with real forecast data off the NOAA site.
- *
+ * The main implementation of Reader for reading with real forecast data off the
+ * NOAA site.
+ * 
  */
 public class NoaaReader implements Reader {
-
 
 	public Map<Location, List<ForecastData>> getData(ForecastRequirements r) {
 		Map<Location, List<ForecastData>> m = new HashMap<Location, List<ForecastData>>();

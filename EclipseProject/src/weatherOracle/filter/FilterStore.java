@@ -13,18 +13,25 @@ import weatherOracle.control.MainControl;
 
 import android.util.Pair;
 
-// keeps a single up to data copy of the filters on disk, and can update and provide it on demand
-// Any version requested gets a version number that is
-// larger than all previous differing version returned since launch
-// (The version number may increase without changes, and may reset on launch)
-// This is all fully thread safe! All combinations of calls from differing threads are allowed.
+/**
+ * keeps a single up to data copy of the filters on disk, and can update and
+ * provide it on demand. Any version requested gets a version number that is
+ * larger than all previous differing version returned since launch (The version
+ * number may increase without changes, and may reset on launch). This is all
+ * fully thread safe! All combinations of calls from differing threads are
+ * allowed.
+ * 
+ */
 public abstract class FilterStore {
 	private static int versionNumber = 0;
 	private static byte[] data;
-	
+
 	/**
+	 * Replace the currently saved version, and increment the filter version
+	 * number.
 	 * 
 	 * @param filters
+	 *            A list of filter to be saved.
 	 */
 	public synchronized static void setFilters(List<Filter> filters) {
 
@@ -39,41 +46,42 @@ public abstract class FilterStore {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		data=fbos.toByteArray();
+
+		data = fbos.toByteArray();
 		modified();
 		versionNumber++;
 		writeOut();
 	}
-	
+
 	// save data to file
-	private synchronized static void writeOut(){
-		//TODO
+	private synchronized static void writeOut() {
+		// TODO
 	}
-	
+
 	// read data from file, if there is a file
-	private synchronized static void readIn(){
-		//TODO
+	private synchronized static void readIn() {
+		// TODO
 	}
-	
+
 	/**
 	 * Retrieves the filters from persistent memory
+	 * 
 	 * @return A Pair containing a list of Filters and a version number
 	 */
-	public synchronized static Pair<List<Filter>,Integer> getFilters(){
-		if (data==null){ // no data set or read in yet
+	public synchronized static Pair<List<Filter>, Integer> getFilters() {
+		if (data == null) { // no data set or read in yet
 			readIn();
-			if (data==null){ // nothing to read/read failed
-				return new Pair<List<Filter>,Integer>(new ArrayList<Filter>(),versionNumber);
+			if (data == null) { // nothing to read/read failed
+				return new Pair<List<Filter>, Integer>(new ArrayList<Filter>(),
+						versionNumber);
 			}
 		}
-		
+
 		ObjectInputStream in;
 		try {
 			in = new ObjectInputStream(new ByteArrayInputStream(data));
-			List<Filter> copy=(List<Filter>)in.readObject();
-			return new Pair<List<Filter>,Integer>(copy,versionNumber);
+			List<Filter> copy = (List<Filter>) in.readObject();
+			return new Pair<List<Filter>, Integer>(copy, versionNumber);
 		} catch (StreamCorruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,12 +92,12 @@ public abstract class FilterStore {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		assert(false);
+
+		assert (false);
 		return null;
 	}
-	
-	private static void modified(){
+
+	private static void modified() {
 		MainControl.startUpdate();
 	}
 }
