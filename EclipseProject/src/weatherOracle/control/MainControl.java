@@ -10,7 +10,7 @@ import weatherOracle.reader.Reader;
 
 // built using http://www.javapractices.com/topic/TopicAction.do?Id=54 as an example
 // should use http://developer.android.com/guide/topics/fundamentals/services.html
-/*
+/**
  * Provides functions for managing and running updates of notifications.
  */
 public abstract class MainControl {
@@ -23,23 +23,32 @@ public abstract class MainControl {
 	private static final long fDelayBetweenRuns = 10;
 	private static ScheduledFuture<?> updateFuture;
 
-	// Schedule an update of notifications
+	/**
+	 * Schedule an update of notifications
+	 */
 	public synchronized static void startUpdate() {
 		fScheduler.schedule(new UpdateTask(reader), 0, TimeUnit.SECONDS);
 	}
-	
-	// Start automatic updates, and do any other startup duties
-	public synchronized static void start(){
+
+	/**
+	 * Start automatic updates, and do any other startup duties
+	 */
+	public synchronized static void start() {
 		startAutoUpdate();
 	}
 
-	// Stop timed auto updates
-	private synchronized static void stopAutoUpdate() {
+	/**
+	 * Stop timed auto updates
+	 */
+	public synchronized static void stopAutoUpdate() {
 		updateFuture.cancel(DONT_INTERRUPT_IF_RUNNING);
 		updateFuture = null;
 	}
-	
-	// Start timed auto updates, or do nothing if already started
+
+	/**
+	 * Start timed auto updates, or do nothing if already started. Next update
+	 * will be scheduled to run immediately if starting.
+	 */
 	private synchronized static void startAutoUpdate() {
 		if (updateFuture == null) {
 			Runnable task = new UpdateTask(reader);

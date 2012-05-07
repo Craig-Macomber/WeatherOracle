@@ -8,8 +8,10 @@ import weatherOracle.app.Location;
 import weatherOracle.forecastData.ForecastData;
 import weatherOracle.forecastData.ForecastRequirements;
 
-// Requests forecast data at a given location and set of times,
-// and can produce a set of notifications for the user using its rules and this data.
+/**
+ * Requests ForecastDatas at a given location, and filters them using its rules.
+ * 
+ */
 public final class Filter implements Serializable {
 	/**
 	 * 
@@ -32,20 +34,32 @@ public final class Filter implements Serializable {
 	// the location this filter uses forecast data from
 	private Location loc;
 
-	// registers with the ForecastRequirements object what ForecastDatas this
-	// instance needs
+	/**
+	 * registers with the ForecastRequirements object what ForecastDatas this
+	 * instance needs. This makes sure all the needed data is fetched by the
+	 * Reader that is producing ForecastDatas. This architecture is mainly to
+	 * allow future changes. Perhaps more than just the location will be needed
+	 * at some point.
+	 * 
+	 * @param r
+	 *            the ForecastRequirements to registers with
+	 */
 	public void addRequirements(ForecastRequirements r) {
 		r.addLoc(loc);
 	}
 
-	// location accessor
+	/**
+	 * 
+	 * @return the location associated with this filter
+	 */
 	public Location getLocation() {
 		return loc;
 	}
 
 	/**
 	 * 
-	 * @param newRule the Rule to add
+	 * @param newRule
+	 *            the Rule to add
 	 */
 	public void addRule(Rule newRule) {
 		rules.add(newRule);
@@ -53,7 +67,8 @@ public final class Filter implements Serializable {
 
 	/**
 	 * 
-	 * @param rule the Rule to remove
+	 * @param rule
+	 *            the Rule to remove
 	 */
 	public boolean removeRule(Rule rule) {
 		return rules.remove(rule);
@@ -67,7 +82,13 @@ public final class Filter implements Serializable {
 		return Collections.unmodifiableSet(rules);
 	}
 
-	// ForecastData, and filters it, producing a pass/fail boolean
+	/**
+	 * filters ForecastData, producing a pass/fail boolean.
+	 * 
+	 * @param data
+	 *            the ForecastData to be filtered
+	 * @return did data pass this filter? true=pass, false=fail
+	 */
 	public boolean apply(ForecastData data) {
 
 		boolean all = op == Op.ALL;

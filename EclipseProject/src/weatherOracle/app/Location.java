@@ -1,6 +1,11 @@
 package weatherOracle.app;
 
-// Stores an location by lat and lon
+/**
+ * Stores an location by lat and lon.
+ * <p>
+ * Has a proper hash and equals so it can be use in set and map keys.
+ *
+ */
 public class Location {
 	public double lat;
 	public double lon;

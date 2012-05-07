@@ -15,8 +15,9 @@ import weatherOracle.reader.Reader;
 import android.util.Log;
 import android.util.Pair;
 
-/*
- * Generates a set of notifications for the current filters, and send them to the NotificationStore
+/**
+ * Generates a set of notifications for the current filters, and sends them to
+ * the NotificationStore
  */
 class UpdateTask implements Runnable {
 	private Reader reader;
@@ -27,8 +28,8 @@ class UpdateTask implements Runnable {
 	}
 
 	public void run() {
-		Log.d("UpdateTask","run");
-		
+		Log.d("UpdateTask", "run");
+
 		Pair<List<Filter>, Integer> pair = FilterStore.getFilters();
 		int filterVersionNumber = pair.second;
 		ForecastRequirements req = new ForecastRequirements();
@@ -36,21 +37,19 @@ class UpdateTask implements Runnable {
 			f.addRequirements(req);
 		}
 		Map<Location, List<ForecastData>> m = reader.getData(req);
-		
+
 		List<Notification> notifications = new ArrayList<Notification>();
-		
-		
+
 		for (Filter f : pair.first) {
-			List<ForecastData> passed=new ArrayList<ForecastData>();
-			for (ForecastData d:m.get(f.getLocation())){
-				if (f.apply(d)){
+			List<ForecastData> passed = new ArrayList<ForecastData>();
+			for (ForecastData d : m.get(f.getLocation())) {
+				if (f.apply(d)) {
 					passed.add(d);
 				}
 			}
-			notifications.add(Notification.make(passed,f));
+			notifications.add(Notification.make(passed, f));
 		}
-		
-		
+
 		NotificationStore.update(notifications, filterVersionNumber);
 	}
 }
