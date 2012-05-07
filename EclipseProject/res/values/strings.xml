@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, WeatherOracleActivity!</string>
-    <string name="app_name">WeatherOracle</string>
+    <string name="app_name">Weather Oracle</string>
     <string name="filters">Filters</string>
     <string name="add_filter">Add Filter</string>
     <string name="home">Home</string>
