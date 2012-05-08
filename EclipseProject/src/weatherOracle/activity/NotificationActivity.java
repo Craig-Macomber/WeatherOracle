@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.TabActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -29,10 +30,24 @@ public class NotificationActivity extends Activity {
         
         for (int i = 0;i<20;i++) {
         	TextView textview =new TextView(getApplicationContext());
-            textview.setText("Filter " + i);
+        	final RelativeLayout rl = new RelativeLayout(this); 
+            textview.setText("Notification " + i);
             textview.setTextSize(2,30);
-            layout.addView(textview);
-            
+            rl.addView(textview);
+            Button button = new Button(this);
+            button.setText("X");
+            button.setOnClickListener(new View.OnClickListener()
+            {
+            	public void onClick(View v)
+                {
+                	rl.removeAllViews();
+                }
+            });
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.FILL_PARENT);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            rl.addView(button, 1, lp);
+            layout.addView(rl);
         }
         
         
