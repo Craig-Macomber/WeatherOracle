@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class FiltersActivity extends Activity {
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ScrollView mainView = new ScrollView(this);
@@ -20,11 +21,7 @@ public class FiltersActivity extends Activity {
         layout.setOrientation(LinearLayout.VERTICAL);
         mainView.addView(layout);
         
-        // here there needs to be a call to FilterStore.getFilters()
-        // 
-        // iterate over every filter in the list/array
-        // retrieve name and create view element with that name on every iteration
-        
+
         for (int i = 0;i<20;i++) {
         	TextView textview =new TextView(getApplicationContext());
             textview.setText("Filter " + i);
@@ -32,10 +29,7 @@ public class FiltersActivity extends Activity {
             layout.addView(textview);
             textview.setOnClickListener(new View.OnClickListener()
             {
-            // attach an onclick listener to each textview that will cause FilterMenuActivity
-            // to be launched when any filter is clicked ... the specific filter that was clicked
-            // will be passed in the intent so that FilterMenuActivity will display the appropriate
-            // data
+
             	public void onClick(View v)
                 {
                 	Intent myIntent = new Intent(v.getContext(), FilterMenuActivity.class);
@@ -46,36 +40,24 @@ public class FiltersActivity extends Activity {
             
         }
         
-        
+		Button filter = new Button(this);
+		filter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
+                startActivity(myIntent);
+                
+                
+            }	
+        });
+		layout.addView(filter);
+        filter.setText("Add filter");
     }
 	
 	
 	
 	
-//	/** Called when the activity is first created. */
-//	@Override
-//	public void onCreate(Bundle savedInstanceState) {
-//	    super.onCreate(savedInstanceState);
-//	    TextView textview = new TextView(this);
-//        textview.setText("Whole shit load of filters!!");
-//        setContentView(R.layout.filters_activity);
-//        createAddFilterButton();
-//	    // TODO Auto-generated method stub
-//	}
-//	
-//	
-//	private void createAddFilterButton() {
-//		Button filter = (Button) findViewById(R.id.ok);
-//		filter.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
-//                startActivity(myIntent);
-//                
-//                
-//            }	
-//        });
-//		
-//    }
+
+
 	
 	
 	
