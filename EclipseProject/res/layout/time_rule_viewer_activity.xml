@@ -50,14 +50,7 @@
 	            android:layout_height="wrap_content"
 	            android:text="Monday:" />
         	
-        	<Button
-            android:id="@+id/buttonFilterConfirm"
-            android:layout_width="150px"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="-4dp"
-            android:text="Save" />
+        	
         </LinearLayout>
         
     
