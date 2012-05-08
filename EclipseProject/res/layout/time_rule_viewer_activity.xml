@@ -18,7 +18,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="-4dp"
-            android:text="Cancel" />
+            android:text="Back" />
 
         <Button
             android:id="@+id/buttonFilterConfirm"
@@ -39,12 +39,27 @@
         android:layout_alignParentLeft="true"
         android:orientation="vertical"
         android:layout_below="@+id/relativeLayout1" >
-
-        <CheckBox
-            android:id="@+id/checkBox1"
-            android:layout_width="wrap_content"
+		
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        	<CheckBox
+	            android:id="@+id/checkBox1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Monday:" />
+        	
+        	<Button
+            android:id="@+id/buttonFilterConfirm"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
-            android:text="Monday:" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-4dp"
+            android:text="Save" />
+        </LinearLayout>
+        
     
        <CheckBox
             android:id="@+id/checkBox2"
