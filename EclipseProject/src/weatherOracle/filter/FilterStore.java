@@ -41,10 +41,10 @@ public abstract class FilterStore {
 	 * @param filters
 	 *            A list of filter to be saved.
 	 */
-	public synchronized static void setFilters(Activity activity, List<Filter> filters) {
+	public synchronized static void setFilters(List<Filter> filters) {
 		// TODO not sure if this is good style
 		if (ctx == null) {
-			ctx = activity.getApplicationContext();
+			//ctx = activity.getApplicationContext();
 		}
 		
 		ByteArrayOutputStream fbos = new ByteArrayOutputStream();
