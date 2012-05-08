@@ -2,15 +2,20 @@ package weatherOracle.filter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import weatherOracle.control.MainControl;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Pair;
 
 /**
@@ -23,6 +28,9 @@ import android.util.Pair;
  * 
  */
 public abstract class FilterStore {
+	private static String fileName = "filterFile";
+	private static Context ctx;
+	
 	private static int versionNumber = 0;
 	private static byte[] data;
 
@@ -33,8 +41,12 @@ public abstract class FilterStore {
 	 * @param filters
 	 *            A list of filter to be saved.
 	 */
-	public synchronized static void setFilters(List<Filter> filters) {
-
+	public synchronized static void setFilters(Activity activity, List<Filter> filters) {
+		// TODO not sure if this is good style
+		if (ctx == null) {
+			ctx = activity.getApplicationContext();
+		}
+		
 		ByteArrayOutputStream fbos = new ByteArrayOutputStream();
 		ObjectOutputStream out;
 		try {
@@ -55,12 +67,33 @@ public abstract class FilterStore {
 
 	// save data to file
 	private synchronized static void writeOut() {
-		// TODO
+		try {
+			FileOutputStream fos = ctx.openFileOutput(fileName, Context.MODE_PRIVATE);
+			fos.write(data);
+			fos.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	// read data from file, if there is a file
 	private synchronized static void readIn() {
-		// TODO
+		try {
+			FileInputStream fis = ctx.openFileInput(fileName);
+			List<Byte> byteList = new ArrayList<Byte>();
+			int b;
+			while ((b = fis.read()) != -1) {
+				byteList.add(new Byte((byte)b));
+			}
+			byte[] array = new byte[byteList.size()];
+			
+			for (int i = 0; i < array.length; i++) {
+				array[i] = byteList.get(i).byteValue();
+			}
+			data = array;
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	/**
