@@ -25,6 +25,13 @@ public class NotificationActivity extends Activity {
         setContentView(R.layout.notification_activity);
         final LinearLayout mainView = (LinearLayout)findViewById(R.id.linear);
         
+// 		will be implementing the following:
+//
+// 		List<Notification> notificationList = NotificationStore.getNotifications()
+//      int numberOfNotifications = notificationList.size();
+//      for (int i = 0; i < numberOfNotifications; i++){
+//      	// copy much of the code below
+//      }
         
         
         for (int i = 0;i<20;i++) {
@@ -32,9 +39,12 @@ public class NotificationActivity extends Activity {
         	final RelativeLayout rl = new RelativeLayout(this); 
             textview.setText("Notification " + i);
             textview.setTextSize(2,30);
+            // set relative layout background to rounded rectangle with grey -> white gradient
             rl.setBackgroundResource(R.drawable.main_view_element);
-           // textview.getBackground().setAlpha(95);
+      //      rl.setBackgroundColor(Color.WHITE);
+            //textview.getBackground().setAlpha(95);
             
+            // create a layout params object to create margins for the relative layouts
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
             	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -42,20 +52,22 @@ public class NotificationActivity extends Activity {
 
             
             rl.addView(textview);
-            Button button = new Button(this);
-            button.setText("X");
-            button.setOnClickListener(new View.OnClickListener()
-            {
-            	public void onClick(View v)
-                {
-                	mainView.removeView(rl);
-                }
-            });
+   //         ImageView alertImage = new ImageView(this);
+   //         alertImage.setImageResource(R.drawable.alert_icon);
+   //         rl.addView(alertImage);
+//            Button button = new Button(this);
+//            button.setText("X");
+//            button.setOnClickListener(new View.OnClickListener()
+//            {
+//            	public void onClick(View v)
+//                {
+//                	mainView.removeView(rl);
+//                }
+//            });
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.FILL_PARENT);
             lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            rl.addView(button, 1, lp);
-         //   rl.setPadding(8, 8, 8, 8);
+//            rl.addView(button, 1, lp);
             mainView.addView(rl, layoutParams);
         }
         
