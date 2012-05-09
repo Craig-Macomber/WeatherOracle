@@ -6,10 +6,12 @@ import java.util.List;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -20,11 +22,8 @@ public class NotificationActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ScrollView mainView = new ScrollView(this);
-        setContentView(mainView);
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        mainView.addView(layout);
+        setContentView(R.layout.notification_activity);
+        LinearLayout mainView = (LinearLayout)findViewById(R.id.linear);
         
         
         
@@ -33,7 +32,16 @@ public class NotificationActivity extends Activity {
         	final RelativeLayout rl = new RelativeLayout(this); 
             textview.setText("Notification " + i);
             textview.setTextSize(2,30);
-            rl.addView(textview);
+            textview.setBackgroundResource(R.color.black);
+            textview.getBackground().setAlpha(95);
+            
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+            	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            	layoutParams.setMargins(8, 8, 8, 8);
+
+            
+            rl.addView(textview, layoutParams);
             Button button = new Button(this);
             button.setText("X");
             button.setOnClickListener(new View.OnClickListener()
@@ -47,7 +55,7 @@ public class NotificationActivity extends Activity {
                     RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.FILL_PARENT);
             lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             rl.addView(button, 1, lp);
-            layout.addView(rl);
+            mainView.addView(rl);
         }
         
         

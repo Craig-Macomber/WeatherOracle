@@ -3,7 +3,6 @@ package weatherOracle.notification;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import android.util.Log;
 
 /**
