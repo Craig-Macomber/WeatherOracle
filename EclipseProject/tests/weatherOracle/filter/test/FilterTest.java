@@ -15,7 +15,7 @@ public class FilterTest extends AndroidTestCase {
 	public void testAddRule() {
 		Filter f = new Filter();
 		Rule tR = new TimeRule();
-		Rule cR = new ConditionRule();
+		Rule cR = new ConditionRule(ConditionRule.conditions[0], 0, 5);
 		
 		f.addRule(tR);
 		f.addRule(cR);
