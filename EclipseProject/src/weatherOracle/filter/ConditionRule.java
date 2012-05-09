@@ -82,4 +82,5 @@ public class ConditionRule implements Rule {
 			return false;
 		return true;
 	}
+
 }
