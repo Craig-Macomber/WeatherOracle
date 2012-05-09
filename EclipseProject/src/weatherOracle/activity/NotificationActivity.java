@@ -23,7 +23,7 @@ public class NotificationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
-        LinearLayout mainView = (LinearLayout)findViewById(R.id.linear);
+        final LinearLayout mainView = (LinearLayout)findViewById(R.id.linear);
         
         
         
@@ -32,8 +32,8 @@ public class NotificationActivity extends Activity {
         	final RelativeLayout rl = new RelativeLayout(this); 
             textview.setText("Notification " + i);
             textview.setTextSize(2,30);
-            textview.setBackgroundResource(R.color.black);
-            textview.getBackground().setAlpha(95);
+            rl.setBackgroundResource(R.drawable.main_view_element);
+           // textview.getBackground().setAlpha(95);
             
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
             	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -41,21 +41,22 @@ public class NotificationActivity extends Activity {
             	layoutParams.setMargins(8, 8, 8, 8);
 
             
-            rl.addView(textview, layoutParams);
+            rl.addView(textview);
             Button button = new Button(this);
             button.setText("X");
             button.setOnClickListener(new View.OnClickListener()
             {
             	public void onClick(View v)
                 {
-                	rl.removeAllViews();
+                	mainView.removeView(rl);
                 }
             });
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.FILL_PARENT);
             lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             rl.addView(button, 1, lp);
-            mainView.addView(rl);
+         //   rl.setPadding(8, 8, 8, 8);
+            mainView.addView(rl, layoutParams);
         }
         
         
