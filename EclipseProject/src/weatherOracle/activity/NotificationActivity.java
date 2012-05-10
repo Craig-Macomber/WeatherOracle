@@ -23,7 +23,7 @@ public class NotificationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
-        final LinearLayout mainView = (LinearLayout)findViewById(R.id.linear);
+        final LinearLayout mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
         
 // 		will be implementing the following:
 //
@@ -31,7 +31,7 @@ public class NotificationActivity extends Activity {
 //      int numberOfNotifications = notificationList.size();
 //      for (int i = 0; i < numberOfNotifications; i++){
 //      	// copy much of the code below
-//      }
+// /      }
         
         
         for (int i = 0;i<20;i++) {
@@ -48,7 +48,7 @@ public class NotificationActivity extends Activity {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
             	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-            	layoutParams.setMargins(8, 8, 8, 8);
+            	layoutParams.setMargins(8, 4, 8, 4);
 
             
             rl.addView(textview);
