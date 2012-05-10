@@ -34,7 +34,7 @@ public class NotificationActivity extends Activity {
 // /      }
         
         
-        for (int i = 0;i<20;i++) {
+        for (int i = 0;i<3;i++) {
         	TextView textview =new TextView(getApplicationContext());
         	final RelativeLayout rl = new RelativeLayout(this); 
             textview.setText("Notification " + i);

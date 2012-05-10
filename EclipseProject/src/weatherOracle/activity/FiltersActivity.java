@@ -1,6 +1,7 @@
 package weatherOracle.activity;
 
 
+import weatherOracle.filter.Filter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +14,16 @@ import android.widget.TextView;
 
 public class FiltersActivity extends Activity {
 	
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
         final LinearLayout mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
+        
+        
+        
         
 // 		will be implementing the following:
 //
@@ -31,6 +37,7 @@ public class FiltersActivity extends Activity {
 		filter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
+           //     myIntent.putExtra("filterName", "null");
                 startActivity(myIntent);
                 
                 
@@ -41,7 +48,7 @@ public class FiltersActivity extends Activity {
         filter.setWidth(40);
         
 
-        for (int i = 0;i<20;i++) {
+        for (int i = 0;i<5;i++) {
         	TextView textview =new TextView(getApplicationContext());
         	final RelativeLayout rl = new RelativeLayout(this); 
             textview.setText("Filter " + i);
@@ -52,13 +59,16 @@ public class FiltersActivity extends Activity {
 
            	layoutParams.setMargins(8, 4, 8, 4);
            	rl.addView(textview);
+           	final String filterNumber = "Filter " + i;
             rl.setOnClickListener(new View.OnClickListener()
+            
             
             {
             	public void onClick(View v)
                 {
                 	Intent myIntent = new Intent(v.getContext(), FilterMenuActivity.class);
-                    startActivity(myIntent);
+                    myIntent.putExtra("filterName", filterNumber);
+                	startActivity(myIntent);
                 }
             });
 
@@ -67,16 +77,6 @@ public class FiltersActivity extends Activity {
             mainView.addView(rl, layoutParams);
         }
     }
-	
-	
-	
-	
-
-
-	
-	
-	
-	
 	
 	public void goToFilterMenuActivity(View v) {
     	setContentView(R.layout.filter_menu_activity);

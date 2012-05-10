@@ -10,13 +10,7 @@ public class TimeRuleViewerActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.time_rule_viewer_activity);
-	    
-	    
-	    
-	    
-	    
-	    
-	    // TODO Auto-generated method stub
+	     
 	}
 
 }
