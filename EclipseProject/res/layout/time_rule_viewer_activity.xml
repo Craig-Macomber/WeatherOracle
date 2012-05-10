@@ -1,100 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="@drawable/clouds" >
 
     <RelativeLayout
-        android:id="@+id/relativeLayout1"
+        android:id="@+id/save_and_cancel_bar"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="#CCCCCC" >
+		android:layout_alignParentTop="true">
 
         <Button
-            android:id="@+id/buttonFilterCancel"
+            android:id="@+id/cancel_filter_button"
             android:layout_width="150px"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="-4dp"
-            android:text="Back" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Cancel" />
 
         <Button
-            android:id="@+id/buttonFilterConfirm"
+            android:id="@+id/save_filter_button"
             android:layout_width="150px"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="-4dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:text="Save" />
     </RelativeLayout>
-
-    
-    
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:orientation="vertical"
-        android:layout_below="@+id/relativeLayout1" >
-		
-        
-        <LinearLayout 
+	<LinearLayout
+	        android:id="@+id/quick_selectors"
+	        android:layout_width="fill_parent"
+	        android:layout_height="100dp"
+	        android:orientation="horizontal"
+	        android:layout_below="@+id/save_and_cancel_bar"
+	        android:background="@drawable/main_view_element"
+	        android:layout_margin="5dp">
+	        <RelativeLayout
+		        android:id="@+id/select_and_deselect"
+		        android:layout_width="wrap_content"
+		        android:layout_height="150dp"
+		        android:layout_alignParentLeft="true"
+		        android:gravity="center_horizontal">
+		        
+	            <CheckBox
+		            android:id="@+id/select_all"
+		            android:layout_width="wrap_content"
+		            android:layout_height="40dp"
+		            android:text="Select All" />
+	        
+	        	<CheckBox
+		            android:id="@+id/deselect_all"
+		            android:layout_width="wrap_content"
+		            android:layout_height="40dp"
+		            android:layout_below="@+id/select_all"
+		            android:text="Deselect All" />
+	        </RelativeLayout>
+	        <RelativeLayout
+		        android:id="@+id/weekend_and_weekdays"
+		        android:layout_width="wrap_content"
+		        android:layout_height="150dp"
+		        android:layout_alignParentRight="true"
+		        android:gravity="center_horizontal">
+	        
+		        <CheckBox
+		            android:id="@+id/weekends"
+		            android:layout_width="wrap_content"
+		            android:layout_height="40dp"
+		            android:layout_marginLeft="5dp"
+		            android:text="Weekends" />
+		        
+		        <CheckBox
+		            android:id="@+id/weekdays"
+		            android:layout_width="wrap_content"
+		            android:layout_height="40dp"
+		            android:layout_marginLeft="5dp"
+		            android:layout_below="@+id/weekends"
+		            android:text="Weekdays" />
+	        </RelativeLayout>    
+	       
+	</LinearLayout>
+	    
+	<LinearLayout
+            android:id="@+id/all_days" 
+            android:layout_below="@+id/quick_selectors"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/main_view_element">
         	<CheckBox
-	            android:id="@+id/checkBox1"
+	            android:id="@+id/monday_checkbox"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="Monday:" />
-        	
-        	
-        </LinearLayout>
-        
+	            android:layout_height="40dp"
+	            android:text="Monday" />
+        	<CheckBox
+	            android:id="@+id/tuesday_checkbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="40dp"
+	            android:text="Tuesday" />
     
-       <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tuesday:" />
-    
-       <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wednesday:" />
-       
-       <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thursday:" />
-       
-       <CheckBox
-            android:id="@+id/checkBox5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Friday:" />
-       
-       <CheckBox
-            android:id="@+id/checkBox6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Saturday:" />
-       
-       <CheckBox
-            android:id="@+id/checkBox7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sunday:" />
-       
-        
-    </LinearLayout>
-
-    
-        
-
-    
+	       <CheckBox
+	            android:id="@+id/wednesday_checkbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="40dp"
+	            android:text="Wednesday" />
+	       
+	       <CheckBox
+	            android:id="@+id/thursday_checkbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="40dp"
+	            android:text="Thursday" />
+	       
+	       <CheckBox
+	            android:id="@+id/friday_checkbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="40dp"
+	            android:text="Friday" />
+	       
+	       <CheckBox
+	            android:id="@+id/saturday_checkbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="40dp"
+	            android:text="Saturday" />
+	       
+	       <CheckBox
+	            android:id="@+id/sunday_checkbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="40dp"
+	            android:text="Sunday" />
+        	</LinearLayout>
 </RelativeLayout> 
