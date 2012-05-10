@@ -30,10 +30,19 @@ public class FilterMenuActivity extends TabActivity {
                           res.getDrawable(R.drawable.ic_tab_weather))
                       .setContent(intent);
         tabHost.addTab(spec);
+        
+        String value = "";
+        Bundle extras = getIntent().getExtras();
+        value = extras.getString("filterName");
+     
 
+        
+
+        
+        
         // Do the same for the other tabs
         intent = new Intent().setClass(this, TimeRuleViewerActivity.class);
-        spec = tabHost.newTabSpec("clock").setIndicator("Clock",
+        spec = tabHost.newTabSpec("clock").setIndicator(value,
                           res.getDrawable(R.drawable.ic_tab_clock))
                       .setContent(intent);
         tabHost.addTab(spec);
