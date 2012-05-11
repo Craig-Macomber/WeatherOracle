@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -37,7 +38,7 @@ public class FiltersActivity extends Activity {
 		filter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
-           //     myIntent.putExtra("filterName", "null");
+                myIntent.putExtra("filterName", "I Work!!");
                 startActivity(myIntent);
                 
                 
@@ -49,8 +50,35 @@ public class FiltersActivity extends Activity {
         
 
         for (int i = 0;i<5;i++) {
+        	Button deleteButton = new Button(this);
+        	deleteButton.setText("Delete");
+        	
+        	
         	TextView textview =new TextView(getApplicationContext());
-        	final RelativeLayout rl = new RelativeLayout(this); 
+        	final RelativeLayout rl = new RelativeLayout(this);
+        	rl.addView(deleteButton);
+        	LayoutParams params = (RelativeLayout.LayoutParams)deleteButton.getLayoutParams();
+        	params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+        	deleteButton.setLayoutParams(params); //causes layout update
+
+        	deleteButton.setOnClickListener(new View.OnClickListener()
+            
+            
+            {
+            	public void onClick(View v)
+                {
+            		// List<Filter> filterList = FilterStore.getFilters();
+                	// String deletedFilter = rl.getText()
+                	// int filterListSize = filterList.size()
+            		// 
+                	
+                }
+            });
+        	
+        	
+        	
+        	
             textview.setText("Filter " + i);
             textview.setTextSize(2,30);
             rl.setBackgroundResource(R.drawable.main_view_element);
