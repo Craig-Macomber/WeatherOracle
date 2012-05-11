@@ -42,9 +42,11 @@ public class NotificationActivity extends Activity {
         //REASSIGN THIS SHIT FOR TESTING UI WHILE WAITING FOR THE MODEL SHIT TO WORK
         //TODO
         notificationList = new ArrayList<Notification>();
-        notificationList.add(new Notification("I"));
-        notificationList.add(new Notification("Love"));
-        notificationList.add(new Notification("Hentai!"));
+        notificationList.add(Notification.make("I",null,null));
+        notificationList.add(Notification.make("Love",null,null));
+        notificationList.add(Notification.make("Hentai",null,null));
+        notificationList.add(Notification.make("And",null,null));
+        notificationList.add(Notification.make("Bacon!",null,null));
         //END OF TESTING CODE
 		
 	}

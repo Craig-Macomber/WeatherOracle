@@ -19,10 +19,10 @@ public abstract class NotificationStore {
 														// "no data yet"
 														// notification
 	//TODO: call this somewhere
-	public static initializeNotificationStore()
+	public static void initializeNotificationStore()
 	{
-		notifications=new List<Notification>();
-		notifications.add(new Notification("no data yet",null,null));
+		notifications=new ArrayList<Notification>();
+		notifications.add(Notification.make("no data yet",null,null));
 	}
 	/**
 	 * update the notifications, if the filterVersionNumber is the newest we
