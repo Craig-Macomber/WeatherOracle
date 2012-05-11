@@ -18,7 +18,12 @@ public abstract class NotificationStore {
 														// list on one
 														// "no data yet"
 														// notification
-
+	//TODO: call this somewhere
+	public static initializeNotificationStore()
+	{
+		notifications=new List<Notification>();
+		notifications.add(new Notification("no data yet",null,null));
+	}
 	/**
 	 * update the notifications, if the filterVersionNumber is the newest we
 	 * have seen. If the filterVersionNumber is lower than the highest seen, the

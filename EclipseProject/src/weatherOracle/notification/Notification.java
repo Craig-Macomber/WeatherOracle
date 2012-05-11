@@ -17,15 +17,29 @@ public class Notification {
 	
 	
 	private String name;
+	private Filter filter;
+	private List<ForecastData> dataList;
 	
-	/*
-	 * FOR UI TEST WHILE I WAIT FOR YOUR PIECES OF SHITS TO ACTUALLY WORK
-	 */
-	public Notification(String name) {
-		//TODO
+	
+	private Notification(String name,List<ForecastData> dataList, Filter filter) {
+		
 		this.name = name; 
+		this.dataList=dataList;
+		this.filter=filter;
+		
 	}
 	
+	/**
+	 * @return The list of weather data that passed the filter
+	 */
+	public boolean getWeatherData()
+	{
+		return dataList;
+	}
+	
+	/**
+	 * @return The name of the filter
+	 */
 	public String getName() {
 		return name;
 	}
@@ -34,6 +48,8 @@ public class Notification {
 	/**
 	 * A constructor, but maybe we want to subclass, so use a static factory
 	 * 
+	 * @param name
+	 * 			  the name of the notification
 	 * @param dataList
 	 *            the ForecastData that passed filter
 	 * @param filter
@@ -41,9 +57,8 @@ public class Notification {
 	 * @return a Notification representing the passing of the contents of
 	 *         dataList through filter
 	 */
-	public static Notification make(List<ForecastData> dataList, Filter filter) {
-		// TODO
-		// MAKE Notifications here!
-		return null;
+	public static Notification make(String name,List<ForecastData> dataList, Filter filter) {
+		
+		return new Notification(name,dataList,filter);
 	}
 }
