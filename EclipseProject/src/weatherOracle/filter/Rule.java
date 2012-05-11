@@ -4,10 +4,15 @@ import java.io.Serializable;
 
 import weatherOracle.forecastData.ForecastData;
 
-// Used by filters to perform the actual filtering of ForecastData
+/**
+ * A Rule object stores restrictions about conditions for the users' filters.
+ *
+ */
 public interface Rule extends Serializable{
-	// Takes a ForecastData, and returns if it passes this Rule instance.
+	/**
+	 * Checks if the Rule applies to the given ForecastData
+	 * @param data the ForecastData object to check with
+	 * @return true if this Rule is satisfied by the ForecastData
+	 */
 	public abstract Boolean apply(ForecastData data);
-	// Used to display the UI for letting the user do any needed config for this rule instance
-
 }
