@@ -10,6 +10,27 @@ import java.util.List;
  * 
  */
 public class Notification {
+	
+	
+	
+	
+	
+	
+	private String name;
+	
+	/*
+	 * FOR UI TEST WHILE I WAIT FOR YOUR PIECES OF SHITS TO ACTUALLY WORK
+	 */
+	public Notification(String name) {
+		//TODO
+		this.name = name; 
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	
 	/**
 	 * A constructor, but maybe we want to subclass, so use a static factory
 	 * 

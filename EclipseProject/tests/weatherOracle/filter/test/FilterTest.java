@@ -13,7 +13,7 @@ public class FilterTest extends AndroidTestCase {
 	}
 	
 	public void testAddRule() {
-		Filter f = new Filter();
+		Filter f = new Filter("a");
 		Rule tR = new TimeRule(TimeRule.days[0]);
 		Rule cR = new ConditionRule(ConditionRule.conditions[0], 0, 5);
 		
@@ -25,7 +25,7 @@ public class FilterTest extends AndroidTestCase {
 	}
 	
 	public void testRemoveRule() {
-		Filter f = new Filter();
+		Filter f = new Filter("a");
 		Rule tR = new TimeRule(TimeRule.days[0]);
 		
 		f.addRule(tR);

@@ -1,7 +1,10 @@
 package weatherOracle.activity;
 
 
+import java.util.List;
+
 import weatherOracle.filter.Filter;
+import weatherOracle.filter.FilterStore;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,38 +17,17 @@ import android.widget.TextView;
 
 public class FiltersActivity extends Activity {
 	
-	
+	LinearLayout mainView;
+	List<Filter> filterList;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
-        final LinearLayout mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
-        
-        
-        
-        
-// 		will be implementing the following:
-//
-//         		List<Filter> filterList = FilterStore.getFilters()
-//              int numberOfFilters = filterList.size();
-//              for (int i = 0; i < numberOfFilters; i++){
-//              	// copy much of the code below
-        // /      }
-        
-        Button filter = new Button(this);
-		filter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
-           //     myIntent.putExtra("filterName", "null");
-                startActivity(myIntent);
-                
-                
-            }	
-        });
-        mainView.addView(filter);
-        filter.setText("Add Filter");
-        filter.setWidth(40);
+        mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
+        populateFilterList();
+        CreateAddFilterButton();
+        DisplayElements();
         
 
         for (int i = 0;i<5;i++) {
@@ -61,8 +43,6 @@ public class FiltersActivity extends Activity {
            	rl.addView(textview);
            	final String filterNumber = "Filter " + i;
             rl.setOnClickListener(new View.OnClickListener()
-            
-            
             {
             	public void onClick(View v)
                 {
@@ -71,15 +51,40 @@ public class FiltersActivity extends Activity {
                 	startActivity(myIntent);
                 }
             });
-
-           
-    		
             mainView.addView(rl, layoutParams);
         }
     }
 	
-	public void goToFilterMenuActivity(View v) {
-    	setContentView(R.layout.filter_menu_activity);
-    }
+	private void populateFilterList() {
+		//filterList = FilterStore.getFilters();
+		//REASSIGN the pieces of shit filterList to a fake one while waiting for model team to finish this shit
+		// TODO
+//		filterList.add(new Filter("I Will End"));
+//		filterList.add(new Filter("Your life"));
+//		filterList.add(new Filter("-long search for a soulmate <3"));
+		//END OF FAKE CODE
+	}
+
+	private void CreateAddFilterButton() {
+		Button filter = new Button(this);
+		filter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
+                
+                //myIntent.putExtra();
+                startActivity(myIntent);     
+            }	
+        });
+        mainView.addView(filter);
+        filter.setText("Add Filter");
+        filter.setWidth(40);
+	}
+
+	private void DisplayElements() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }
