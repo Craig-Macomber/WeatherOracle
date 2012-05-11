@@ -17,8 +17,8 @@ public class FilterStoreTest extends AndroidTestCase {
 		
 		// Put in some filters and get the filters again
 		List<Filter> filters = new LinkedList<Filter>();
-		Filter f = new Filter();
-		f.addRule(new ConditionRule());
+		Filter f = new Filter("a");
+		f.addRule(new ConditionRule(ConditionRule.conditions[0], 0, 5));
 		
 		filters.add(f);
 		FilterStore.setFilters(filters);

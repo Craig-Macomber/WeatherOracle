@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * A single data-point of forecast data for the forecast at a given time and location
- *
+ * 
  */
 public class ForecastData {
 	// TODO : include everything, verify units, add constructor, add accessors
