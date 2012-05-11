@@ -1,5 +1,6 @@
 package weatherOracle.activity;
 
+import weatherOracle.notification.NotificationStore;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
