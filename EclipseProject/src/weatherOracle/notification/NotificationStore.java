@@ -53,7 +53,7 @@ public abstract class NotificationStore {
 	 * @return unmodifiableList of Notifications containing the newest
 	 *         Notifications available
 	 */
-	synchronized static List<Notification> getNotifications() {
+	public synchronized static List<Notification> getNotifications() {
 		return notifications;
 	}
 
