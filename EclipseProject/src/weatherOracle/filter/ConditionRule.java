@@ -4,7 +4,7 @@ import android.util.Pair;
 import weatherOracle.forecastData.ForecastData;
 
 /**
- * A Rule class that keeps track of a single condition and the min and max values associated with
+ * A Rule subclass that keeps track of a single condition and the min and max values associated with
  * that Rule.
  *
  */
@@ -19,6 +19,12 @@ public class ConditionRule implements Rule {
 	private int min;
 	private int max;
 	
+	/**
+	 * Default Constructor
+	 * @param condition the condition of the Rule
+	 * @param min the minimum value for that condition
+	 * @param max the maximum value for that condition
+	 */
 	public ConditionRule(String condition, int min, int max) {
 		if (condition == null || min > max) {
 			throw new IllegalArgumentException("Illegal parameters for ConditionRule!");
