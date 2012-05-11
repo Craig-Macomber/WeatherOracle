@@ -32,8 +32,7 @@ public class Notification {
 	/**
 	 * @return The list of weather data that passed the filter
 	 */
-	public boolean getWeatherData()
-	{
+	public List<ForecastData> getWeatherData() {
 		return dataList;
 	}
 	
@@ -60,5 +59,9 @@ public class Notification {
 	public static Notification make(String name,List<ForecastData> dataList, Filter filter) {
 		
 		return new Notification(name,dataList,filter);
+	}
+	public static Notification make(List<ForecastData> dataList, Filter filter) {
+		
+		return new Notification("New Notification",dataList,filter);
 	}
 }
