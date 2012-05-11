@@ -48,6 +48,11 @@ public final class Filter implements Serializable {
 		r.addLoc(loc);
 	}
 
+	
+	public Filter(String name) {
+		this.name = name;
+	}
+	
 	/**
 	 * 
 	 * @return the location associated with this filter

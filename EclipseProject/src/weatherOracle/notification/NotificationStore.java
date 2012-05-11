@@ -3,7 +3,6 @@ package weatherOracle.notification;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import android.util.Log;
 
 /**
@@ -19,7 +18,12 @@ public abstract class NotificationStore {
 														// list on one
 														// "no data yet"
 														// notification
-
+	//TODO: call this somewhere
+	public static initializeNotificationStore()
+	{
+		notifications=new List<Notification>();
+		notifications.add(new Notification("no data yet",null,null));
+	}
 	/**
 	 * update the notifications, if the filterVersionNumber is the newest we
 	 * have seen. If the filterVersionNumber is lower than the highest seen, the
@@ -54,7 +58,7 @@ public abstract class NotificationStore {
 	 * @return unmodifiableList of Notifications containing the newest
 	 *         Notifications available
 	 */
-	synchronized static List<Notification> getNotifications() {
+	public synchronized static List<Notification> getNotifications() {
 		return notifications;
 	}
 
