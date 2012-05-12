@@ -62,5 +62,23 @@ public class ForecastData {
 		this.thunder=thunder;
 	}
 	
-
+	public double getTemperature() {
+		return this.temperature_hourly;
+	}
+	
+	public double getDewpoint() {
+		return this.temperature_dewPoint;
+	}
+	
+	public double getProbPrecipitation() {
+		return this.probabilityOfPrecipitation;
+	}
+	
+	public double getCloudCover() {
+		return this.cloudAmount;
+	}
+	
+	public double getHumidity() {
+		return this.humidity_relative;
+	}
 }

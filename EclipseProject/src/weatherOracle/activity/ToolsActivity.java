@@ -11,7 +11,7 @@ public class ToolsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    TextView textview = new TextView(this);
-        textview.setText("Wheather Oracle Version 0.69");
+        textview.setText("Weather Oracle Version 0.70 :)");
         setContentView(textview);
 
 	    // TODO Auto-generated method stub
