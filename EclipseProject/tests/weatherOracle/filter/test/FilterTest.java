@@ -17,7 +17,7 @@ public class FilterTest extends AndroidTestCase {
 		f.addRule(tR2);
 		
 		Set<Rule> ruleList = f.getRules();
-		assertEquals(ruleList.size(), 3);
+		assertEquals(3, ruleList.size());
 		
 	}
 	
@@ -26,7 +26,7 @@ public class FilterTest extends AndroidTestCase {
 		Rule tR = new TimeRule(TimeRule.days[0]);
 		
 		f.addRule(tR);
-		assertEquals(f.getRules().size(), 1);
+		assertEquals(1, f.getRules().size());
 		
 		f.removeRule(tR);
 		assertTrue(f.getRules().isEmpty());
