@@ -28,69 +28,108 @@ public class FiltersActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
         mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
-        populateFilterList();
+        int x = 9;
         CreateAddFilterButton();
-        DisplayElements();
+        populateFilterList();
         
+        DisplayElements();
+    }
+ 
+// 	public void onStart(Bundle savedInstanceState){
+// 		super.onStart();
+// 		if(true){
+// 			throw new IllegalArgumentException();
+// 		}
+// 		setContentView(R.layout.notification_activity);
+// 		populateFilterList();
+//   }
+ 	
+ 	@Override
+ 	public void onWindowFocusChanged(boolean hasFocus){
+ 	    if(hasFocus) {
+ 	    	mainView.removeAllViews();
+ 	    	CreateAddFilterButton();
+ 	    	populateFilterList();
+ 		} else {
+ 			mainView.removeAllViews();
+ 		}
+ 	}
 
-        for (int i = 0;i<5;i++) {
-         TextView textview =new TextView(getApplicationContext());
-         final RelativeLayout rl = new RelativeLayout(this);
+ 
+ private void populateFilterList() {
+	 //mainView.removeAllViews();
+	 int filterListSize = HomeMenuActivity.testFilterList.size();
+     for (int i = 0; i < filterListSize; i++) {
+    	 TextView textview =new TextView(getApplicationContext());
+      	 final RelativeLayout rl = new RelativeLayout(this);
 
 
-         final Button deleteButton = new Button(this);
-     	deleteButton.setText("Delete");
-     	
-     	rl.addView(deleteButton);
-     	LayoutParams params = (RelativeLayout.LayoutParams)deleteButton.getLayoutParams();
-     	params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-
-     	deleteButton.setLayoutParams(params); //causes layout update
-     	
-     	 deleteButton.setOnClickListener(new View.OnClickListener()
+      	 final Button deleteButton = new Button(this);
+      	 deleteButton.setText("Delete");
+  	
+         rl.addView(deleteButton);
+	  	 LayoutParams params = (RelativeLayout.LayoutParams)deleteButton.getLayoutParams();
+	  	 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+	
+	     deleteButton.setLayoutParams(params); //causes layout update
+	  	
+	  	 deleteButton.setOnClickListener(new View.OnClickListener()
+         {
+         public void onClick(View v)
+           {
+    	   	  String filterName = (String) deleteButton.getText();
+    	   	  int filterListSize = HomeMenuActivity.testFilterList.size();
+	          for(int i = 0; i < filterListSize; i++){
+	         	if(i == 0){
+	         		HomeMenuActivity.testFilterList.remove(i);
+	         	}
+	        	  // Filter currentFilter = filterList.get(i);
+	         	// if(currentFilter.getName() == filterName){
+	         	//	 filterList.remove(i);
+	         	 //}
+	          }
+    	   	  mainView.removeView(rl);
+//	          String filterName = (String) deleteButton.getText();
+//	          Pair<List<Filter>, Integer> filterListPair = FilterStore.getFilters();
+//	          List<Filter> filterList = filterListPair.first;
+//	          int filterListSize = filterList.size();
+//	          for(int i = 0; i < filterListSize; i++){
+//	         	 Filter currentFilter = filterList.get(i);
+//	         	 if(currentFilter.getName() == filterName){
+//	         		 filterList.remove(i);
+//	         	 }
+//	          }
+//	          FilterStore.setFilters(filterList);
+          
+          }
+      });
+      
+      
+      
+         textview.setText(HomeMenuActivity.testFilterList.get(i).getName());
+         textview.setTextSize(2,30);
+         rl.setBackgroundResource(R.drawable.main_view_element);
+         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+              LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+         
+         layoutParams.setMargins(8, 4, 8, 4);
+         rl.addView(textview);
+     //    final String filterNumber = "Filter " + i;
+         Filter filterNumber = HomeMenuActivity.testFilterList.get(i);
+         final String filterName = filterNumber.getName();
+         rl.setOnClickListener(new View.OnClickListener()
          {
           public void onClick(View v)
              {
-             String filterName = (String) deleteButton.getText();
-             Pair<List<Filter>, Integer> filterListPair = FilterStore.getFilters();
-             List<Filter> filterList = filterListPair.first;
-             int filterListSize = filterList.size();
-             for(int i = 0; i < filterListSize; i++){
-            	 Filter currentFilter = filterList.get(i);
-            	 if(currentFilter.getName() == filterName){
-            		 filterList.remove(i);
-            	 }
-             }
-             FilterStore.setFilters(filterList);
-             
+              Intent myIntent = new Intent(v.getContext(), FilterMenuActivity.class);
+                 myIntent.putExtra("filterName", filterName);
+              startActivity(myIntent);
              }
          });
-         
-         
-         
-            textview.setText("Filter " + i);
-            textview.setTextSize(2,30);
-            rl.setBackgroundResource(R.drawable.main_view_element);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                 LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-            layoutParams.setMargins(8, 4, 8, 4);
-            rl.addView(textview);
-            final String filterNumber = "Filter " + i;
-            rl.setOnClickListener(new View.OnClickListener()
-            {
-             public void onClick(View v)
-                {
-                 Intent myIntent = new Intent(v.getContext(), FilterMenuActivity.class);
-                    myIntent.putExtra("filterName", filterNumber);
-                 startActivity(myIntent);
-                }
-            });
-            mainView.addView(rl, layoutParams);
-        }
-    }
- 
- private void populateFilterList() {
+         mainView.addView(rl, layoutParams);
+     }
+	 
+	 
   //filterList = FilterStore.getFilters();
   //REASSIGN the pieces of shit filterList to a fake one while waiting for model team to finish this shit
   // TODO
@@ -104,9 +143,10 @@ public class FiltersActivity extends Activity {
   Button filter = new Button(this);
   filter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
+          //      finish();
+            	Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
                 
-                myIntent.putExtra("cereal", "cereal4");
+                myIntent.putExtra("newFilter", true);
                 startActivity(myIntent);     
             } 
         });

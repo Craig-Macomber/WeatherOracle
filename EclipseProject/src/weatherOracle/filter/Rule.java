@@ -8,7 +8,7 @@ import weatherOracle.forecastData.ForecastData;
  * A Rule object stores restrictions about conditions for the users' filters.
  *
  */
-public interface Rule extends Serializable{
+public interface Rule extends Serializable, Comparable<Rule> {
 	/**
 	 * Checks if the Rule applies to the given ForecastData
 	 * @param data the ForecastData object to check with

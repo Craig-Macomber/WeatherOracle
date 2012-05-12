@@ -1,5 +1,9 @@
 package weatherOracle.activity;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import weatherOracle.filter.Filter;
 import weatherOracle.notification.NotificationStore;
 import android.app.Activity;
 import android.app.TabActivity;
@@ -10,6 +14,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 public class HomeMenuActivity extends TabActivity {
+	static List<Filter> testFilterList = new LinkedList<Filter>();
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,4 +53,11 @@ public class HomeMenuActivity extends TabActivity {
 
         tabHost.setCurrentTab(0);
     }
+    
+    public void onResume(Bundle savedInstanceBundle){
+    	
+    }
+    
+    
+    
 }
