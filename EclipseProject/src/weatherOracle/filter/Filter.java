@@ -106,7 +106,7 @@ public final class Filter implements Serializable {
 		
 		for (Rule r : rules) {
 			if (r instanceof ConditionRule) {
-				conditionRules.add(r);
+				conditionRules.add((ConditionRule) r);
 			}
 		}
 		return conditionRules;
@@ -121,7 +121,7 @@ public final class Filter implements Serializable {
 		
 		for (Rule r : rules) {
 			if (r instanceof TimeRule) {
-				timeRules.add(r);
+				timeRules.add((TimeRule) r);
 			}
 		}
 		return timeRules;
