@@ -116,7 +116,7 @@ public final class Filter implements Serializable {
 	 * Returns all TimeRules in the Filter
 	 * @return a Set of all TimeRules
 	 */
-	public Set<Rule> getTimeRules() {
+	public Set<TimeRule> getTimeRules() {
 		Set<TimeRule> timeRules = new TreeSet<TimeRule>();
 		
 		for (Rule r : rules) {
