@@ -15,7 +15,7 @@ public class ConditionRule implements Rule {
 	public static final String[] conditions = new String[]{"Temperature", "Dewpoint", "Heat Index", "Wind", "Cloud Cover",
 													"Percipitation Percent", "Humidity", "Thunder", "Rain"};
 
-	private String condition;
+	private String condition;//TODO: should this be stored as an integer or string?
 	private int min;
 	private int max;
 	

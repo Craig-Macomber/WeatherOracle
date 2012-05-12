@@ -14,16 +14,17 @@ public abstract class NotificationStore {
 	private static int filterVersionNumber = -1;
 
 	// unmodifiableList of notifications
-	private static List<Notification> notifications; // TODO : init this to a
-														// list on one
-														// "no data yet"
-														// notification
-	//TODO: call this somewhere
+	private static List<Notification> notifications; 
+	
+	/**
+	 * 
+	 */
 	public static void initializeNotificationStore()
 	{
 		notifications=new ArrayList<Notification>();
 		notifications.add(Notification.make("no data yet",null,null));
 	}
+	
 	/**
 	 * update the notifications, if the filterVersionNumber is the newest we
 	 * have seen. If the filterVersionNumber is lower than the highest seen, the

@@ -7,7 +7,10 @@ import weatherOracle.notification.Notification;
 import weatherOracle.notification.NotificationStore;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,22 +36,19 @@ public class NotificationActivity extends Activity {
         populateNotificationList();
         displayNotifications();	
         
-        
-        
     }
 
 	private void populateNotificationList() {
 		notificationList = NotificationStore.getNotifications();
         //REASSIGN THIS SHIT FOR TESTING UI WHILE WAITING FOR THE MODEL SHIT TO WORK
         //TODO
-        notificationList = new ArrayList<Notification>();
+        //notificationList = new ArrayList<Notification>();
         notificationList.add(Notification.make("I",null,null));
         notificationList.add(Notification.make("Love",null,null));
         notificationList.add(Notification.make("Hentai",null,null));
         notificationList.add(Notification.make("And",null,null));
         notificationList.add(Notification.make("Bacon!",null,null));
         //END OF TESTING CODE
-		
 	}
 
 	private void displayNotifications() {
@@ -69,4 +69,28 @@ public class NotificationActivity extends Activity {
             mainView.addView(rl, layoutParams);
         }
 	}
+	
+	public void statusBarNotification(int icon,CharSequence tickerText,CharSequence contentTitle,CharSequence contentText)
+	{
+		//Example: statusBarNotification(R.drawable.rain,"It's raining!","WeatherOracle","It's raining outside! Get me my galoshes");
+		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		long when = System.currentTimeMillis();
+
+		android.app.Notification notification = new android.app.Notification(icon, tickerText, when);
+		
+		Context context = getApplicationContext();
+		Intent notificationIntent = new Intent(this, NotificationActivity.class);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+		
+		final int HELLO_ID = 1;
+
+		mNotificationManager.notify(HELLO_ID, notification);
+	}
+
+
+	
+	
 }
