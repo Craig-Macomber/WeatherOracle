@@ -90,11 +90,41 @@ public final class Filter implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Return all Rules in the Filter
 	 * @return a List of Rules
 	 */
 	public Set<Rule> getRules() {
 		return Collections.unmodifiableSet(rules);
+	}
+	
+	/**
+	 * Return all ConditionRules in the Filter
+	 * @return a Set of all ConditionRules
+	 */
+	public Set<Rule> getConditionRules() {
+		Set<Rule> conditionRules = new TreeSet<Rule>();
+		
+		for (Rule r : rules) {
+			if (r instanceof ConditionRule) {
+				conditionRules.add(r);
+			}
+		}
+		return conditionRules;
+	}
+	
+	/**
+	 * Returns all TimeRules in the Filter
+	 * @return a Set of all TimeRules
+	 */
+	public Set<Rule> getTimeRules() {
+		Set<Rule> timeRules = new TreeSet<Rule>();
+		
+		for (Rule r : rules) {
+			if (r instanceof TimeRule) {
+				timeRules.add(r);
+			}
+		}
+		return timeRules;
 	}
 
 	/**
