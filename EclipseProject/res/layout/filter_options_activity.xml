@@ -22,7 +22,7 @@
             android:text="Cancel" />
 
         <Button
-            android:id="@+id/save_filter_button"
+            android:id="@+id/save_filter_button_tools"
             android:layout_width="150px"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -53,7 +53,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/text_box"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/linearLayout1"
