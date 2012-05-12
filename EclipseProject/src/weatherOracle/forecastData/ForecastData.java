@@ -81,4 +81,8 @@ public class ForecastData {
 	public double getHumidity() {
 		return this.humidity_relative;
 	}
+	
+	public int getDayOfWeek() {
+		return day.getDay();
+	}
 }
