@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,32 +17,52 @@ public class FilterOptionsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.filter_options_activity);
+	    
+	    final EditText editText = (EditText)findViewById(R.id.text_box);
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_tools);
-	    saveButton.setOnClickListener(new View.OnClickListener()
-        {
-         public void onClick(View v)
-            {
-        	 	EditText editText = (EditText)findViewById(R.id.text_box);
-        	 	String filterName = editText.getText().toString();
-        	 	
-        	 	// Here must check format of string before adding to FilterList/Store:
-        	 	// (1) String must be alphanumeric
-        	 	// (2) String must not represent name that already exists
-        	 	// (3) String must be non-empty
-        	 	//
-        	 	// There should be a method call here ... that will call a private method
-        	 	// that will do this checking. If any one of the criteria are not met,
-        	 	// then it will trigger an AlertDialogue that tells the user that they have
-        	 	// put in incorrect data and it will also tell notify them of the 3 criteria
-        	 	// listed above that must be met for a valid name
-        	 	//
-        	 	//
-        	 	
-        	 	Filter filter = new Filter(filterName);
-        	 	HomeMenuActivity.testFilterList.add(filter);
-        	 	finish();
-            }
-        });
-	       
+	    
+	    initializeSaveButtonListener(saveButton);
+	    initializeEditTextListener(editText);
 	}
+	
+	private void initializeSaveButtonListener(Button saveButton){
+		 saveButton.setOnClickListener(new View.OnClickListener()
+	        {
+	         public void onClick(View v)
+	            {
+	        	 	boolean filterNameValid = true;
+	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
+	        	 		if(current.getName() == FilterMenuActivity.filterName){
+	        	 			filterNameValid = false;
+	        	 			//alert dialogue
+	        	 		}
+	        	 	}
+	        	 	// filter name is unique at this point, but not necessarily valid
+	        	 	// because it could still be the empty string
+	        	 	if(FilterMenuActivity.filterName == "") {
+	        	 		filterNameValid = false;
+	        	 	}
+	        	 	// filter name is valid
+	        	 	if(filterNameValid){
+	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
+	        	 		HomeMenuActivity.testFilterList.add(filter);
+	        	 		finish();
+	        	 	}
+	            }
+	        });
+	}
+	
+	private void initializeEditTextListener(final EditText editText){
+		editText.addTextChangedListener(new TextWatcher(){
+	        public void afterTextChanged(Editable s) {
+	            FilterMenuActivity.filterName = editText.getText().toString(); 
+	        }
+	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+	        public void onTextChanged(CharSequence s, int start, int before, int count){}
+	    }); 
+	}
+	
+	
+	
 }
