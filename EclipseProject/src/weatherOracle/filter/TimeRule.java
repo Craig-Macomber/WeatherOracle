@@ -9,7 +9,7 @@ import weatherOracle.forecastData.ForecastData;
 public class TimeRule implements Rule {
 	private static final long serialVersionUID = -8095730510021338560L;
 	
-	public static final String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+	public static final String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	
 	private String day;
 	
@@ -30,8 +30,8 @@ public class TimeRule implements Rule {
 	}
 
 	public Boolean apply(ForecastData data) {
-		// TODO Auto-generated method stub
-		return null;
+		int dayOfWeek = data.getDayOfWeek();
+		return day.equals(days[dayOfWeek]);
 	}
 
 	@Override

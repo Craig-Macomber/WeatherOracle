@@ -13,7 +13,7 @@ public class ConditionRule implements Rule {
 	
 	// All possible conditions
 	public static final String[] conditions = new String[]{"Temperature", "Dewpoint", "Heat Index", "Wind", "Cloud Cover",
-													"Percipitation Percent", "Humidity", "Thunder", "Rain"};
+													"Precipitation Percent", "Humidity", "Thunder", "Rain"};
 
 	private String condition;//TODO: should this be stored as an integer or string?
 	private int min;
