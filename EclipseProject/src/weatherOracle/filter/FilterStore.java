@@ -2,7 +2,6 @@ package weatherOracle.filter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import weatherOracle.control.MainControl;
+import weatherOracle.activity.HomeMenuActivity;
 
 import android.content.Context;
 import android.util.Pair;
@@ -28,11 +28,25 @@ import android.util.Pair;
  */
 public abstract class FilterStore {
 	private static String fileName = "filterFile";
-	private static Context ctx;
+	public static Context ctx = HomeMenuActivity.mainContext;
 	
 	private static int versionNumber = 0;
 	private static byte[] data;
 
+	/** 
+	 * Clears the filter memory
+	 */
+	public synchronized static void clearMemory() {
+		if (ctx == null) {
+			throw new IllegalStateException("Context has not been set!");
+		}
+		
+		versionNumber = 0;
+		data = null;
+		
+		ctx.deleteFile(fileName);
+	}
+	
 	/**
 	 * Replace the currently saved version, and increment the filter version
 	 * number.
@@ -42,7 +56,7 @@ public abstract class FilterStore {
 	 */
 	public synchronized static void setFilters(List<Filter> filters) {
 		if (ctx == null) {
-			//throw new IllegalStateException("Context has not been set!");
+			throw new IllegalStateException("Context has not been set!");
 		}
 		
 		ByteArrayOutputStream fbos = new ByteArrayOutputStream();
@@ -105,7 +119,7 @@ public abstract class FilterStore {
 	 */
 	public synchronized static Pair<List<Filter>, Integer> getFilters() {
 		if (ctx == null) {
-			//throw new IllegalStateException("Context has not been set!");
+			throw new IllegalStateException("Context has not been set!");
 		}
 		
 		if (data == null) { // no data set or read in yet

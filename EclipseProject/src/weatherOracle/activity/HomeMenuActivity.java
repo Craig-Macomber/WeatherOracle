@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class HomeMenuActivity extends TabActivity {
 	static List<Filter> testFilterList = new LinkedList<Filter>();
 	
-	static Context mainContext;
+	public static Context mainContext;
 	
     /** Called when the activity is first created. */
     @Override

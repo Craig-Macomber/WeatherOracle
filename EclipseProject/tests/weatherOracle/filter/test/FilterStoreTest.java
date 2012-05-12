@@ -10,10 +10,13 @@ import android.util.Pair;
 public class FilterStoreTest extends AndroidTestCase {
 	public void testFilterStore() {
 		// Try getting filters when there are none in there yet
+		FilterStore.ctx = getContext();
+		FilterStore.clearMemory();
+		
 		Pair<List<Filter>, Integer> returnFilters = FilterStore.getFilters();
 		
-		assertEquals(returnFilters.second.intValue(), 0);
-		assertTrue(returnFilters.first.isEmpty());
+		assertEquals(0, returnFilters.second.intValue());
+		assertEquals(0, returnFilters.first.size() );
 		
 		// Put in some filters and get the filters again
 		List<Filter> filters = new LinkedList<Filter>();
@@ -28,19 +31,27 @@ public class FilterStoreTest extends AndroidTestCase {
 		
 		
 		FilterStore.setFilters(filters);
-		
+		returnFilters = null;
 		returnFilters = FilterStore.getFilters();
 		
-		assertEquals(returnFilters.second.intValue(), 1);
+		assertEquals(1, returnFilters.second.intValue());
+		
+		List<Filter> outputFilters = returnFilters.first;
+		
+		assertEquals(1, outputFilters.size());
 		
 		boolean pairMatch = true;
-		for (int i = 0; i < returnFilters.first.size(); i++) {
+		for (int i = 0; i < outputFilters.size(); i++) {
 			pairMatch = pairMatch && returnFilters.first.get(i).equals(filters.get(i));
 			
 		}
-		
-		assertEquals(returnFilters.first.size(), 3);
-		
 		assertTrue(pairMatch);
+		
+		Filter output = outputFilters.get(0);
+		
+		assertEquals(3, output.getRules().size());
+		assertEquals(1, output.getTimeRules().size());
+		assertEquals(2, output.getConditionRules().size());
+		
 	}
 }
