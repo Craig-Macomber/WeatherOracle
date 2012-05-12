@@ -21,12 +21,16 @@ import android.widget.Toast;
 public class HomeMenuActivity extends TabActivity {
 	static List<Filter> testFilterList = new LinkedList<Filter>();
 	
+	static Context mainContext;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        mainContext = this.getApplicationContext();
+        
         NotificationStore.initializeNotificationStore();
         
         Resources res = getResources(); // Resource object to get Drawables
