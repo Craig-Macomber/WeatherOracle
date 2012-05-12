@@ -62,4 +62,13 @@ public class ConditionRuleViewerActivity extends Activity {
 //     mainLayout.addView(but, params);
 //     setContentView(mainLayout);
     }
+    
+    private void populateConditionRules(){
+    	
+    	//FilterMenuActivity.filter
+    }
+    
+    
+    
+    
    }

@@ -3,6 +3,8 @@ package weatherOracle.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import weatherOracle.filter.Filter;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 
 public class TimeRuleViewerActivity extends Activity {
 
@@ -20,7 +23,7 @@ public class TimeRuleViewerActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.time_rule_viewer_activity);
-        
+	    
 	    days.add((CheckBox) findViewById(R.id.monday_checkbox));
 	    days.add((CheckBox) findViewById(R.id.tuesday_checkbox));
 	    days.add((CheckBox) findViewById(R.id.wednesday_checkbox));
@@ -184,7 +187,6 @@ public class TimeRuleViewerActivity extends Activity {
 			((CheckBox)findViewById(R.id.weekends)).setChecked(true);
 		}
 	}
-	
 	
 	
 }
