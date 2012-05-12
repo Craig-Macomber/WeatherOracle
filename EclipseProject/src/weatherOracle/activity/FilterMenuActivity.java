@@ -18,8 +18,9 @@ import android.widget.TextView;
 public class FilterMenuActivity extends TabActivity {
     static Filter filter;
 	static Boolean newFilter;
-	static String filterName;
-	
+
+	static String filterName = "";
+    
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
