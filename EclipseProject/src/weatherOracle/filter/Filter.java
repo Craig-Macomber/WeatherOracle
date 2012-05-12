@@ -60,6 +60,14 @@ public final class Filter implements Serializable {
 	public Location getLocation() {
 		return loc;
 	}
+	
+	/**
+	 * 
+	 * @return the name associated with this filter
+	 */
+	public String getName() {
+		return name;
+	}
 
 	/**
 	 * 
@@ -109,4 +117,29 @@ public final class Filter implements Serializable {
 		}
 		return match;
 	}
+	
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Filter other = (Filter) obj;
+		if (!this.name.equals(other.name))
+			return false;
+		Set<Rule> otherRules = other.getRules();
+		if(otherRules.size() != this.rules.size()){
+			return false;
+		} 
+		int ruleNumber = this.rules.size();
+		for (Rule r : this.rules){
+			if(!otherRules.contains(r)){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
 }
