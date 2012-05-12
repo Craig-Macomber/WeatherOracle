@@ -14,7 +14,6 @@ import java.util.List;
 
 import weatherOracle.control.MainControl;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Pair;
 
@@ -42,9 +41,8 @@ public abstract class FilterStore {
 	 *            A list of filter to be saved.
 	 */
 	public synchronized static void setFilters(List<Filter> filters) {
-		// TODO not sure if this is good style
 		if (ctx == null) {
-			//ctx = activity.getApplicationContext();
+			//throw new IllegalStateException("Context has not been set!");
 		}
 		
 		ByteArrayOutputStream fbos = new ByteArrayOutputStream();
@@ -73,6 +71,8 @@ public abstract class FilterStore {
 			fos.close();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
 		}
 	}
 
@@ -93,6 +93,8 @@ public abstract class FilterStore {
 			data = array;
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
 		}
 	}
 
@@ -102,6 +104,10 @@ public abstract class FilterStore {
 	 * @return A Pair containing a list of Filters and a version number
 	 */
 	public synchronized static Pair<List<Filter>, Integer> getFilters() {
+		if (ctx == null) {
+			//throw new IllegalStateException("Context has not been set!");
+		}
+		
 		if (data == null) { // no data set or read in yet
 			readIn();
 			if (data == null) { // nothing to read/read failed
