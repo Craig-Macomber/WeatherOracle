@@ -19,8 +19,14 @@ public class FilterStoreTest extends AndroidTestCase {
 		List<Filter> filters = new LinkedList<Filter>();
 		Filter f = new Filter("a");
 		f.addRule(new ConditionRule(ConditionRule.conditions[0], 0, 5));
+		f.addRule(new TimeRule(TimeRule.days[0]));
+		f.addRule(new ConditionRule(ConditionRule.conditions[1], 3, 19));
+		
+		//System.out.println(f.getRules());
 		
 		filters.add(f);
+		
+		
 		FilterStore.setFilters(filters);
 		
 		returnFilters = FilterStore.getFilters();
@@ -32,6 +38,8 @@ public class FilterStoreTest extends AndroidTestCase {
 			pairMatch = pairMatch && returnFilters.first.get(i).equals(filters.get(i));
 			
 		}
+		
+		assertEquals(returnFilters.first.size(), 3);
 		
 		assertTrue(pairMatch);
 	}

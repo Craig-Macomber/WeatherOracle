@@ -3,6 +3,7 @@ package weatherOracle.filter;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Set;
+import java.util.TreeSet;
 
 import weatherOracle.app.Location;
 import weatherOracle.forecastData.ForecastData;
@@ -13,9 +14,6 @@ import weatherOracle.forecastData.ForecastRequirements;
  * 
  */
 public final class Filter implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1153920572465553775L;
 
 	private enum Op {
@@ -35,6 +33,15 @@ public final class Filter implements Serializable {
 	private Location loc;
 
 	/**
+	 * Default Constructor
+	 * @param name
+	 */
+	public Filter(String name) {
+		this.name = name;
+		this.rules = new TreeSet<Rule>();
+	}
+	
+	/**
 	 * registers with the ForecastRequirements object what ForecastDatas this
 	 * instance needs. This makes sure all the needed data is fetched by the
 	 * Reader that is producing ForecastDatas. This architecture is mainly to
@@ -48,11 +55,6 @@ public final class Filter implements Serializable {
 		r.addLoc(loc);
 	}
 
-	
-	public Filter(String name) {
-		this.name = name;
-	}
-	
 	/**
 	 * 
 	 * @return the location associated with this filter
@@ -140,6 +142,4 @@ public final class Filter implements Serializable {
 		}
 		return true;
 	}
-	
-	
 }

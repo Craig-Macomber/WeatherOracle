@@ -54,9 +54,41 @@ public class ConditionRule implements Rule {
 	}
 
 	public Boolean apply(ForecastData data) {
+		if (condition.equals(conditions[0])) {
+			// Temperature
+			double temp = data.getTemperature();
+			return temp >= min && temp <= max;
+		} else if (condition.equals(conditions[1])) {
+			// Dew point
+			double temp = data.getDewpoint();
+			return temp >= min && temp <= max;
+		} else if (condition.equals(conditions[2])) {
+			// Heat Index
+			// TODO
+		} else if (condition.equals(conditions[3])) {
+			// Wind
+			// TODO
+		} else if (condition.equals(conditions[4])) {
+			// Cloud Cover
+			double cover = data.getCloudCover();
+			return cover >= min && cover <= max;
+		} else if (condition.equals(conditions[5])) {
+			// Precipitation Percent
+			double percent = data.getProbPrecipitation();
+			return percent >= min && percent <= max;
+		} else if (condition.equals(conditions[6])) {
+			// Humidity
+			double humidity = data.getHumidity();
+			return humidity >= min && humidity <= max;
+		} else if (condition.equals(conditions[7])) {
+			// Thunder
+			// TODO
+		} else if (condition.equals(conditions[8])) {
+			// Rain
+			// TODO
+		} 
 		
-		// TODO Auto-generated method stub
-		return null;
+		return Boolean.FALSE;
 	}
 	
 	// Generated hashcode method
@@ -87,6 +119,22 @@ public class ConditionRule implements Rule {
 		if (min != other.min)
 			return false;
 		return true;
+	}
+
+	public int compareTo(Rule otherRule) {
+		if (getClass() == otherRule.getClass()) {
+			ConditionRule other = (ConditionRule) otherRule;
+			if (!condition.equals(other.getCondition())) {
+				return condition.compareTo(other.getCondition());
+			} else {
+				Integer diff = max - min;
+				Pair<Integer, Integer> otherP = other.getMinMax();
+				Integer otherDiff = otherP.second - otherP.first;
+				return diff.compareTo(otherDiff);
+			}
+		} else {
+			return 1;
+		}
 	}
 
 }

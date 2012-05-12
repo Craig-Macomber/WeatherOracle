@@ -24,6 +24,10 @@ public class TimeRule implements Rule {
 			this.day = day;
 		}
 	}
+	
+	public String getDay() {
+		return day;
+	}
 
 	public Boolean apply(ForecastData data) {
 		// TODO Auto-generated method stub
@@ -50,5 +54,14 @@ public class TimeRule implements Rule {
 		if (!day.equals(other.day))
 			return false;
 		return true;
+	}
+
+	public int compareTo(Rule otherRule) {
+		if (getClass() == otherRule.getClass()) {
+			TimeRule other = (TimeRule) otherRule;
+			return day.compareTo(other.getDay()); 
+		} else {
+			return -1;
+		}
 	}
 }
