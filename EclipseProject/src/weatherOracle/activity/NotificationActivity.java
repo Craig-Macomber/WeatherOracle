@@ -76,17 +76,17 @@ public class NotificationActivity extends Activity {
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		
 		long when = System.currentTimeMillis();
-
+		
 		android.app.Notification notification = new android.app.Notification(icon, tickerText, when);
 		
 		Context context = getApplicationContext();
 		Intent notificationIntent = new Intent(this, NotificationActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
+		
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 		
 		final int HELLO_ID = 1;
-
+		
 		mNotificationManager.notify(HELLO_ID, notification);
 	}
 

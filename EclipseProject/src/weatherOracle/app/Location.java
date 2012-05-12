@@ -1,5 +1,8 @@
 package weatherOracle.app;
 
+import android.content.Context;
+import android.location.LocationManager;
+
 /**
  * Stores an location by lat and lon.
  * <p>
@@ -30,5 +33,16 @@ public class Location {
 			return false;
 		Location that = (Location) aThat;
 		return this.lat == that.lat && this.lon == that.lon;
+	}
+	
+	private static android.location.Location myCurrentLocation;
+	
+	public static Location getCurrentLocation()
+	{
+		return new Location(myCurrentLocation.getLatitude(),myCurrentLocation.getLongitude());
+	}
+	public static void setCurrentLocation(android.location.Location loc)
+	{
+		myCurrentLocation=loc;
 	}
 }

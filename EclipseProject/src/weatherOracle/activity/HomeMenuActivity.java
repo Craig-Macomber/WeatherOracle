@@ -3,15 +3,20 @@ package weatherOracle.activity;
 import java.util.LinkedList;
 import java.util.List;
 
+import weatherOracle.app.Location;
 import weatherOracle.filter.Filter;
 import weatherOracle.notification.NotificationStore;
 import android.app.Activity;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeMenuActivity extends TabActivity {
 	static List<Filter> testFilterList = new LinkedList<Filter>();
@@ -52,12 +57,35 @@ public class HomeMenuActivity extends TabActivity {
         tabHost.addTab(spec);
 
         tabHost.setCurrentTab(0);
+        
+        
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocationListener ll = new mylocationlistener();
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
     }
     
     public void onResume(Bundle savedInstanceBundle){
     	
     }
     
+   
+    private class mylocationlistener implements LocationListener {
+        
+        public void onLocationChanged(android.location.Location location) {
+            if (location != null) {
+            	Location.setCurrentLocation(location);
+            }
+        }
+        
+        public void onProviderDisabled(String provider) {
+        }
+        
+        public void onProviderEnabled(String provider) {
+        }
+        
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
+    }
     
     
 }

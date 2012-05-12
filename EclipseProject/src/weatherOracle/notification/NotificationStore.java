@@ -17,7 +17,7 @@ public abstract class NotificationStore {
 	private static List<Notification> notifications; 
 	
 	/**
-	 * 
+	 * initializes the NotificationStore to have one element in it with the name "no data yet"
 	 */
 	public static void initializeNotificationStore()
 	{
