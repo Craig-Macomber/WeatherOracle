@@ -42,7 +42,7 @@ public class FilterMenuActivity extends TabActivity {
         
         // Do the same for the other tabs
         intent = new Intent().setClass(this, TimeRuleViewerActivity.class);
-        spec = tabHost.newTabSpec("clock").setIndicator(value,
+        spec = tabHost.newTabSpec("clock").setIndicator("Clock",
                           res.getDrawable(R.drawable.ic_tab_clock))
                       .setContent(intent);
         tabHost.addTab(spec);
