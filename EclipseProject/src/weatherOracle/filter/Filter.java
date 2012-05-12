@@ -101,8 +101,8 @@ public final class Filter implements Serializable {
 	 * Return all ConditionRules in the Filter
 	 * @return a Set of all ConditionRules
 	 */
-	public Set<Rule> getConditionRules() {
-		Set<Rule> conditionRules = new TreeSet<Rule>();
+	public Set<ConditionRule> getConditionRules() {
+		Set<ConditionRule> conditionRules = new TreeSet<ConditionRule>();
 		
 		for (Rule r : rules) {
 			if (r instanceof ConditionRule) {
@@ -117,7 +117,7 @@ public final class Filter implements Serializable {
 	 * @return a Set of all TimeRules
 	 */
 	public Set<Rule> getTimeRules() {
-		Set<Rule> timeRules = new TreeSet<Rule>();
+		Set<TimeRule> timeRules = new TreeSet<TimeRule>();
 		
 		for (Rule r : rules) {
 			if (r instanceof TimeRule) {
