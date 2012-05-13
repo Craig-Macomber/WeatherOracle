@@ -28,7 +28,6 @@ public class FiltersActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
         mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
-        int x = 9;
         CreateAddFilterButton();
         populateFilterList();
         
@@ -129,14 +128,7 @@ public class FiltersActivity extends Activity {
          mainView.addView(rl, layoutParams);
      }
 	 
-	 
-  //filterList = FilterStore.getFilters();
-  //REASSIGN the pieces of shit filterList to a fake one while waiting for model team to finish this shit
-  // TODO
-//  filterList.add(new Filter("I Will End"));
-//  filterList.add(new Filter("Your life"));
-//  filterList.add(new Filter("-long search for a soulmate <3"));
-  //END OF FAKE CODE
+	
  }
 
  private void CreateAddFilterButton() {
