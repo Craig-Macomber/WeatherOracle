@@ -33,7 +33,7 @@ public class FilterOptionsActivity extends Activity {
 	        	 	boolean filterNameValid = true;
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
-	        	 		if(current.getName() == FilterMenuActivity.filterName){
+	        	 		if(current.getName().equals(FilterMenuActivity.filterName)){
 	        	 			filterNameValid = false;
 	        	 			//alert dialogue
 	        	 		}
@@ -47,6 +47,7 @@ public class FilterOptionsActivity extends Activity {
 	        	 	if(filterNameValid){
 	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
 	        	 		HomeMenuActivity.testFilterList.add(filter);
+	        	 		
 	        	 		finish();
 	        	 	}
 	            }

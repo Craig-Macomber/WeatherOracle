@@ -59,10 +59,31 @@ public class FiltersActivity extends Activity {
 	 //mainView.removeAllViews();
 	 int filterListSize = HomeMenuActivity.testFilterList.size();
      for (int i = 0; i < filterListSize; i++) {
-    	 TextView textview =new TextView(getApplicationContext());
+    	 final TextView textview =new TextView(getApplicationContext());
       	 final RelativeLayout rl = new RelativeLayout(this);
 
-
+      	textview.setText(HomeMenuActivity.testFilterList.get(i).getName());
+        textview.setTextSize(2,30);
+        rl.setBackgroundResource(R.drawable.main_view_element);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+             LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        
+        layoutParams.setMargins(8, 4, 8, 4);
+        rl.addView(textview);
+    //    final String filterNumber = "Filter " + i;
+        Filter filterNumber = HomeMenuActivity.testFilterList.get(i);
+        final String filterName = filterNumber.getName();
+        rl.setOnClickListener(new View.OnClickListener()
+        {
+         public void onClick(View v)
+            {
+             Intent myIntent = new Intent(v.getContext(), FilterMenuActivity.class);
+                myIntent.putExtra("filterName", filterName);
+             startActivity(myIntent);
+            }
+        });
+      	 
+      	 
       	 final Button deleteButton = new Button(this);
       	 deleteButton.setText("Delete");
   	
@@ -76,17 +97,29 @@ public class FiltersActivity extends Activity {
          {
          public void onClick(View v)
            {
-    	   	  String filterName = (String) deleteButton.getText();
-    	   	  int filterListSize = HomeMenuActivity.testFilterList.size();
-	          for(int i = 0; i < filterListSize; i++){
-	         	if(i == 0){
-	         		HomeMenuActivity.testFilterList.remove(i);
-	         	}
+        	 	String filterName = (String) textview.getText();
+   	   	  		int filterListSize = HomeMenuActivity.testFilterList.size();
+	          for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+	        	 // if(i == 0){
+	        		//  HomeMenuActivity.testFilterList.remove(i);
+	        	  
+	        	  
+	        	   	  Filter current = HomeMenuActivity.testFilterList.get(i);
+	        	   	  if(current.getName() == filterName){
+	        	   		  HomeMenuActivity.testFilterList.remove(i);
+       	 		//alert dialogue
+	        	  }
+       	 	
 	        	  // Filter currentFilter = filterList.get(i);
 	         	// if(currentFilter.getName() == filterName){
 	         	//	 filterList.remove(i);
 	         	 //}
 	          }
+	        	  // Filter currentFilter = filterList.get(i);
+	         	// if(currentFilter.getName() == filterName){
+	         	//	 filterList.remove(i);
+	         	 //}
+	          
     	   	  mainView.removeView(rl);
 //	          String filterName = (String) deleteButton.getText();
 //	          Pair<List<Filter>, Integer> filterListPair = FilterStore.getFilters();
@@ -103,39 +136,14 @@ public class FiltersActivity extends Activity {
           }
       });
       
-      
-      
-         textview.setText(HomeMenuActivity.testFilterList.get(i).getName());
-         textview.setTextSize(2,30);
-         rl.setBackgroundResource(R.drawable.main_view_element);
-         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-              LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-         
-         layoutParams.setMargins(8, 4, 8, 4);
-         rl.addView(textview);
-     //    final String filterNumber = "Filter " + i;
-         Filter filterNumber = HomeMenuActivity.testFilterList.get(i);
-         final String filterName = filterNumber.getName();
-         rl.setOnClickListener(new View.OnClickListener()
-         {
-          public void onClick(View v)
-             {
-              Intent myIntent = new Intent(v.getContext(), FilterMenuActivity.class);
-                 myIntent.putExtra("filterName", filterName);
-              startActivity(myIntent);
-             }
-         });
          mainView.addView(rl, layoutParams);
      }
-	 
-	
  }
 
  private void CreateAddFilterButton() {
   Button filter = new Button(this);
   filter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-          //      finish();
             	Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
                 
                 myIntent.putExtra("newFilter", true);
