@@ -41,7 +41,7 @@ public class ConditionRuleViewerActivity extends Activity {
     }
     
     private void populateConditionRules(){
-<<<<<<< HEAD
+
     	//conditions = FilterMenuActivity.filter.getConditionRules();
     	conditions = new TreeSet<ConditionRule>();
     	conditions.add(new ConditionRule("a", 0, 10));
@@ -76,11 +76,6 @@ public class ConditionRuleViewerActivity extends Activity {
     		rl.setBackgroundResource(R.drawable.main_view_element);
     		mainLayout.addView(rl);
     	}
-
-
-=======
- 
->>>>>>> upstream/master
     }
     
     
