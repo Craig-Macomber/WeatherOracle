@@ -18,7 +18,8 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:noHistory="true" 
+        android:noHistory="true"
+        android:screenOrientation="portrait" 
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">        
         <uses-library android:name="android.test.runner" />
         <activity
@@ -36,10 +37,6 @@
         <activity android:name=".FilterMenuActivity"></activity>
         <activity android:name=".FilterOptionsActivity"></activity>
         <activity android:name=".TimeRuleViewerActivity"></activity>
-        <activity android:name=".ConditionRuleViewerActivity"></activity>
-        
-        
-        
+        <activity android:name=".ConditionRuleViewerActivity"></activity>   
     </application>
-
 </manifest>
