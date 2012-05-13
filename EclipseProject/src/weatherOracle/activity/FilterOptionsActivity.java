@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class FilterOptionsActivity extends Activity {
-
+	boolean invalidName = false;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,15 @@ public class FilterOptionsActivity extends Activity {
 	    
 	    initializeSaveButtonListener(saveButton);
 	    initializeEditTextListener(editText);
+	    
+	    Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+        	invalidName = extras.getBoolean("invalidName");
+        }
+        
 	}
+	
+	
 	
 	private void initializeSaveButtonListener(Button saveButton){
 		 saveButton.setOnClickListener(new View.OnClickListener()
