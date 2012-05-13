@@ -34,6 +34,7 @@ public class ConditionRuleViewerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.condition_rule_viewer_activity);
 		mainLayout = (LinearLayout)findViewById(R.id.condition_activity_linear_layout);
+		conditions = new TreeSet<ConditionRule>();
 		CreateAddConditionButton();
 		populateConditionRules();
 		displayConditionRules();
@@ -43,8 +44,8 @@ public class ConditionRuleViewerActivity extends Activity {
     private void populateConditionRules(){
 
     	//conditions = FilterMenuActivity.filter.getConditionRules();
-    	conditions = new TreeSet<ConditionRule>();
-    	conditions.add(new ConditionRule("C1", 0, 10));
+    	//conditions = new TreeSet<ConditionRule>();
+    	//conditions.add(new ConditionRule("C1", 0, 10));
     }
     
     private void displayConditionRules() {
@@ -56,7 +57,7 @@ public class ConditionRuleViewerActivity extends Activity {
     		int min = conditionList.get(i).getMinMax().first;
     		int max = conditionList.get(i).getMinMax().second;
     		textview.setText(conditionList.get(i).getCondition() + ": " + min + " - " + max);
-    		textview.setTextSize(2,30);
+    		textview.setTextSize(2,15);
          	 
     	  	final Button deleteButton = new Button(this);
           	deleteButton.setText("Delete");

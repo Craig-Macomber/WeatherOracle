@@ -20,7 +20,7 @@
                 android:text="Button" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/weather_condition_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Weather Condition"
@@ -29,12 +29,12 @@
 
 
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/condition_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/from_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="From:"
@@ -42,7 +42,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/min_condition_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -51,14 +51,8 @@
                 <requestFocus />
             </EditText>
 
-
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/to_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="To:"
@@ -66,17 +60,23 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/max_condition_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberSigned" />
 
 
-            <Spinner
-                android:id="@+id/spinner3"
+
+
+            <TextView
+                android:id="@+id/min_max_warning"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Please give a minimum number(From) that is lower than the maximum(To)."
+                android:visibility="gone"
+                android:textColor="#FF0000"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
     	</LinearLayout>
     
