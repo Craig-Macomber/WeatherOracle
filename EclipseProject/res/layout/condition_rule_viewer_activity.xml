@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
+    android:id="@+id/condition_rule_viewer_activity"
     android:background="@drawable/clouds" >
-
+
     <RelativeLayout
         android:id="@+id/save_and_cancel_bar"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-		android:layout_alignParentTop="true">
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true" >
 
         <Button
             android:id="@+id/add_condition_filter_button"
-            android:layout_width="300px"
+            android:layout_width="250px"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="-4dp"
             android:layout_marginLeft="5dp"
@@ -25,11 +26,25 @@
             android:id="@+id/save_filter_button"
             android:layout_width="150px"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="-4dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:text="Save" />
-    </RelativeLayout>   
-</RelativeLayout> 
+
+        <LinearLayout
+            android:id="@+id/condition_activity_linear_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/add_condition_filter_button"
+            android:orientation="vertical" >
+
+    	</LinearLayout>
+    </RelativeLayout>
+    
+    
+
+    
+
+</LinearLayout> 
