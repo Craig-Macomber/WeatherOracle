@@ -31,6 +31,9 @@ public class FilterOptionsActivity extends Activity {
 	         public void onClick(View v)
 	            {
 	        	 	boolean filterNameValid = true;
+	        	 	
+	        	 	// checks if filter name specified is already assigned to an existing
+	        	 	// filter
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
 	        	 		if(current.getName().equals(FilterMenuActivity.filterName)){
@@ -38,16 +41,17 @@ public class FilterOptionsActivity extends Activity {
 	        	 			//alert dialogue
 	        	 		}
 	        	 	}
+	        	 	
 	        	 	// filter name is unique at this point, but not necessarily valid
 	        	 	// because it could still be the empty string
-	        	 	if(FilterMenuActivity.filterName == "") {
+	        	 	if(FilterMenuActivity.filterName.trim().equals("")) {
 	        	 		filterNameValid = false;
 	        	 	}
+	        	 	
 	        	 	// filter name is valid
 	        	 	if(filterNameValid){
 	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
-	        	 		HomeMenuActivity.testFilterList.add(filter);
-	        	 		
+	        	 		HomeMenuActivity.testFilterList.add(filter);	
 	        	 		finish();
 	        	 	}
 	            }
