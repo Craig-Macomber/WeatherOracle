@@ -28,7 +28,6 @@ public class FiltersActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
         mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
-        int x = 9;
         CreateAddFilterButton();
         populateFilterList();
         
