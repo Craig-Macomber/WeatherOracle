@@ -35,7 +35,7 @@
     
     
 	<LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/filter_name_linear_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -63,4 +63,14 @@
         </EditText>
         
     </LinearLayout>
+    
+    <TextView
+        	android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp" 
+            android:layout_below="@+id/filter_name_linear_layout"
+            android:text="Please enter in a name that has not already been used and that is also at least one non-space character long!"
+            android:background="@drawable/main_view_element"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout> 

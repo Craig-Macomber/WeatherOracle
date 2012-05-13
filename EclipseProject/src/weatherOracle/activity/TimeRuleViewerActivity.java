@@ -6,6 +6,7 @@ import java.util.List;
 import weatherOracle.filter.Filter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +34,7 @@ public class TimeRuleViewerActivity extends Activity {
 	    days.add((CheckBox) findViewById(R.id.sunday_checkbox));
 	    
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_time);
-//	    initializeSaveButtonListener(saveButton);
+	    initializeSaveButtonListener(saveButton);
 	    
 	    final Button selectAll = (Button) findViewById(R.id.select_all);
 	    final Button deselectAll = (Button) findViewById(R.id.deselect_all);
@@ -191,15 +192,44 @@ public class TimeRuleViewerActivity extends Activity {
 		}
 	}
 	
-//	private void initializeSaveButtonListener(Button saveButton){
-//		 saveButton.setOnClickListener(new View.OnClickListener()
-//	        {
-//	         public void onClick(View v)
-//	            {
-//	        	 	Filter filter = new Filter(FilterMenuActivity.filterName);
-//	        	 	HomeMenuActivity.testFilterList.add(filter);
-//	        	 	finish();
-//	            }
-//	        });
-//	}
+	private void initializeSaveButtonListener(Button saveButton){
+		 saveButton.setOnClickListener(new View.OnClickListener()
+	        {
+	         public void onClick(View v)
+	            {
+	        	 	boolean filterNameValid = true;
+	        	 	
+	        	 	// checks if filter name specified is already assigned to an existing
+	        	 	// filter
+	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
+	        	 		if(current.getName().equals(FilterMenuActivity.filterName)){
+	        	 			filterNameValid = false;
+	        	 			//alert dialogue
+	        	 		}
+	        	 	}
+	        	 	
+	        	 	// filter name is unique at this point, but not necessarily valid
+	        	 	// because it could still be the empty string
+	        	 	if(FilterMenuActivity.filterName.trim().equals("")) {
+	        	 		filterNameValid = false;
+	        	 	}
+	        	 	
+	        	 	
+	        	 	if(!filterNameValid){
+	        	 	//	Intent myIntent = new Intent(v.getContext(), FilterOptionsActivity.class);
+	                //    myIntent.putExtra("invalidName", true);
+	        	 	//	startActivity(myIntent);
+	        	 		FilterMenuActivity.tabHost.setCurrentTab(2);
+	        	 		
+	        	 	// filter name is valid, add filter and return to
+	        	 	// FiltersActivity.java
+	        	 	} else { 
+	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
+	        	 		HomeMenuActivity.testFilterList.add(filter);	
+	        	 		finish();
+	        	 	}
+	            }
+	        });
+	}
 }

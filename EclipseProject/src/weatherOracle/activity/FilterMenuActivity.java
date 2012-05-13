@@ -19,6 +19,7 @@ public class FilterMenuActivity extends TabActivity {
     static Filter filter;
 	static Boolean newFilter;
 	static String filterName = "";
+	static TabHost tabHost;
     
 	/** Called when the activity is first created. */
     @Override
@@ -28,10 +29,20 @@ public class FilterMenuActivity extends TabActivity {
         setContentView(R.layout.filter_menu_activity);
 
         Resources res = getResources(); // Resource object to get Drawables
-        TabHost tabHost = getTabHost();  // The activity TabHost
+        tabHost = getTabHost();  // The activity TabHost
         TabHost.TabSpec spec;  // Resusable TabSpec for each tab
         Intent intent;  // Reusable Intent for each tab
 
+       
+        intent = new Intent().setClass(this, FilterOptionsActivity.class);
+        spec = tabHost.newTabSpec("tools").setIndicator("Name",
+                          res.getDrawable(R.drawable.ic_tab_tools))
+                      .setContent(intent);
+        tabHost.addTab(spec);
+        
+        
+        
+        
         // Create an Intent to launch an Activity for the tab (to be reused)
         intent = new Intent().setClass(this, ConditionRuleViewerActivity.class);
 
@@ -71,11 +82,6 @@ public class FilterMenuActivity extends TabActivity {
                       .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, FilterOptionsActivity.class);
-        spec = tabHost.newTabSpec("tools").setIndicator("Tools",
-                          res.getDrawable(R.drawable.ic_tab_tools))
-                      .setContent(intent);
-        tabHost.addTab(spec);
 
         tabHost.setCurrentTab(0);
     }
