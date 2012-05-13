@@ -44,7 +44,7 @@ public class ConditionRuleViewerActivity extends Activity {
 
     	//conditions = FilterMenuActivity.filter.getConditionRules();
     	conditions = new TreeSet<ConditionRule>();
-    	conditions.add(new ConditionRule("a", 0, 10));
+    	conditions.add(new ConditionRule("C1", 0, 10));
     }
     
     private void displayConditionRules() {
@@ -81,6 +81,13 @@ public class ConditionRuleViewerActivity extends Activity {
     
 
 	private void CreateAddConditionButton() {
+    	Button b = (Button)findViewById(R.id.add_condition_filter_button);
+    	 b.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View view) {
+             	Intent myIntent = new Intent(view.getContext(), ConditionAdderActivity.class);
+                startActivity(myIntent);     
+             } 
+         });
     	
     }
     
