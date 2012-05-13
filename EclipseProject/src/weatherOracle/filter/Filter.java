@@ -20,16 +20,24 @@ public final class Filter implements Serializable {
 		ALL, ANY
 	}
 
-	// op = Must all rules pass, or any of them to make a notification
+	/**
+	 * If all or any of the Rules must pass to make a notification
+	 */
 	private Op op;
 
-	// The rules that make up this filter
+	/**
+	 * The Set of all Rules in this Filter
+	 */
 	private Set<Rule> rules;
 
-	// the filters name, as specified by and shown to the user
+	/**
+	 * The name of this Filter
+	 */
 	private String name;
 
-	// the location this filter uses forecast data from
+	/**
+	 * The Location of this FIlter
+	 */
 	private Location loc;
 
 	/**
@@ -39,24 +47,25 @@ public final class Filter implements Serializable {
 	public Filter(String name) {
 		this.name = name;
 		this.rules = new TreeSet<Rule>();
+		this.op = Op.ALL;
 	}
 	
 	/**
-	 * registers with the ForecastRequirements object what ForecastDatas this
+	 * Registers with the ForecastRequirements object what ForecastDatas this
 	 * instance needs. This makes sure all the needed data is fetched by the
 	 * Reader that is producing ForecastDatas. This architecture is mainly to
 	 * allow future changes. Perhaps more than just the location will be needed
 	 * at some point.
 	 * 
 	 * @param r
-	 *            the ForecastRequirements to registers with
+	 *            the ForecastRequirements to register with
 	 */
 	public void addRequirements(ForecastRequirements r) {
 		r.addLoc(loc);
 	}
 
 	/**
-	 * 
+	 * Returns the Location of this Filter
 	 * @return the location associated with this filter
 	 */
 	public Location getLocation() {
@@ -64,7 +73,7 @@ public final class Filter implements Serializable {
 	}
 	
 	/**
-	 * 
+	 * Returns the name of this Filter
 	 * @return the name associated with this filter
 	 */
 	public String getName() {
@@ -72,7 +81,7 @@ public final class Filter implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Adds a Rule to this Filter
 	 * @param newRule
 	 *            the Rule to add
 	 */
@@ -81,7 +90,7 @@ public final class Filter implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Removes a Rule from this Filter
 	 * @param rule
 	 *            the Rule to remove
 	 */
@@ -105,7 +114,7 @@ public final class Filter implements Serializable {
 		Set<ConditionRule> conditionRules = new TreeSet<ConditionRule>();
 		
 		for (Rule r : rules) {
-			if (r instanceof ConditionRule) {
+			if (r.getClass() == ConditionRule.class) {
 				conditionRules.add((ConditionRule) r);
 			}
 		}
@@ -120,7 +129,7 @@ public final class Filter implements Serializable {
 		Set<TimeRule> timeRules = new TreeSet<TimeRule>();
 		
 		for (Rule r : rules) {
-			if (r instanceof TimeRule) {
+			if (r.getClass() == TimeRule.class) {
 				timeRules.add((TimeRule) r);
 			}
 		}
@@ -128,28 +137,33 @@ public final class Filter implements Serializable {
 	}
 
 	/**
-	 * filters ForecastData, producing a pass/fail boolean.
+	 * Filters ForecastData, producing a pass/fail boolean.
 	 * 
 	 * @param data
 	 *            the ForecastData to be filtered
 	 * @return did data pass this filter? true=pass, false=fail
 	 */
 	public boolean apply(ForecastData data) {
-
-		boolean all = op == Op.ALL;
-
-		boolean match = all;
-		for (Rule r : rules) {
-			boolean m = r.apply(data);
-			if (all) {
-				match &= m;
-			} else {
-				match |= m;
+		if (rules.isEmpty()) {
+			// Empty Filters should not trigger a notification
+			return false;
+		} else {
+			boolean all = op == Op.ALL;
+	
+			boolean match = all;
+			for (Rule r : rules) {
+				boolean m = r.apply(data);
+				if (all) {
+					match &= m;
+				} else {
+					match |= m;
+				}
 			}
+			return match;
 		}
-		return match;
 	}
 	
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -164,7 +178,6 @@ public final class Filter implements Serializable {
 		if(otherRules.size() != this.rules.size()){
 			return false;
 		} 
-		int ruleNumber = this.rules.size();
 		for (Rule r : this.rules){
 			if(!otherRules.contains(r)){
 				return false;
