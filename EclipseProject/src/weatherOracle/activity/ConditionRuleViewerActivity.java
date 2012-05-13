@@ -41,7 +41,7 @@ public class ConditionRuleViewerActivity extends Activity {
     }
     
     private void populateConditionRules(){
-    	FilterMenuActivity.filter.getRules();
+ 
     }
     
     

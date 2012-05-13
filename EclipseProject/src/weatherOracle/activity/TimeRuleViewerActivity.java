@@ -33,7 +33,7 @@ public class TimeRuleViewerActivity extends Activity {
 	    days.add((CheckBox) findViewById(R.id.sunday_checkbox));
 	    
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_time);
-	    initializeSaveButtonListener(saveButton);
+//	    initializeSaveButtonListener(saveButton);
 	    
 	    final Button selectAll = (Button) findViewById(R.id.select_all);
 	    final Button deselectAll = (Button) findViewById(R.id.deselect_all);
@@ -191,15 +191,15 @@ public class TimeRuleViewerActivity extends Activity {
 		}
 	}
 	
-	private void initializeSaveButtonListener(Button saveButton){
-		 saveButton.setOnClickListener(new View.OnClickListener()
-	        {
-	         public void onClick(View v)
-	            {
-	        	 	Filter filter = new Filter(FilterMenuActivity.filterName);
-	        	 	HomeMenuActivity.testFilterList.add(filter);
-	        	 	finish();
-	            }
-	        });
-	}
+//	private void initializeSaveButtonListener(Button saveButton){
+//		 saveButton.setOnClickListener(new View.OnClickListener()
+//	        {
+//	         public void onClick(View v)
+//	            {
+//	        	 	Filter filter = new Filter(FilterMenuActivity.filterName);
+//	        	 	HomeMenuActivity.testFilterList.add(filter);
+//	        	 	finish();
+//	            }
+//	        });
+//	}
 }
