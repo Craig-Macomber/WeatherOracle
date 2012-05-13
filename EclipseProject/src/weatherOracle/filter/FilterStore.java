@@ -27,25 +27,26 @@ import android.util.Pair;
  * 
  */
 public abstract class FilterStore {
+	
+	/**
+	 * The name of the file on the Android disk to store data
+	 */
 	private static String fileName = "filterFile";
+	
+	/**
+	 * The main Application Context
+	 */
 	public static Context ctx = HomeMenuActivity.mainContext;
 	
-	private static int versionNumber = 0;
-	private static byte[] data;
-
-	/** 
-	 * Clears the filter memory
+	/**
+	 * The current Filter version number
 	 */
-	public synchronized static void clearMemory() {
-		if (ctx == null) {
-			throw new IllegalStateException("Context has not been set!");
-		}
-		
-		versionNumber = 0;
-		data = null;
-		
-		ctx.deleteFile(fileName);
-	}
+	private static int versionNumber = 0;
+	
+	/**
+	 * The byte representation of the Filters
+	 */
+	private static byte[] data;
 	
 	/**
 	 * Replace the currently saved version, and increment the filter version
@@ -53,6 +54,7 @@ public abstract class FilterStore {
 	 * 
 	 * @param filters
 	 *            A list of filter to be saved.
+	 * @throws IllegalStateException if the main application Context is not set
 	 */
 	public synchronized static void setFilters(List<Filter> filters) {
 		if (ctx == null) {
@@ -116,6 +118,7 @@ public abstract class FilterStore {
 	 * Retrieves the filters from persistent memory
 	 * 
 	 * @return A Pair containing a list of Filters and a version number
+	 * @throws IllegalStateException if the main application Context is not set
 	 */
 	public synchronized static Pair<List<Filter>, Integer> getFilters() {
 		if (ctx == null) {
@@ -145,7 +148,7 @@ public abstract class FilterStore {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		assert (false);
 		return null;
 	}

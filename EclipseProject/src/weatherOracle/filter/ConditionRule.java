@@ -6,17 +6,29 @@ import weatherOracle.forecastData.ForecastData;
 /**
  * A Rule subclass that keeps track of a single condition and the min and max values associated with
  * that Rule.
- *
  */
 public class ConditionRule implements Rule {
 	private static final long serialVersionUID = 2695287363381416690L;
 	
-	// All possible conditions
+	/**
+	 * All possible conditions for ConditionRules
+	 */
 	public static final String[] conditions = new String[]{"Temperature", "Dewpoint", "Heat Index", "Wind", "Cloud Cover",
 													"Precipitation Percent", "Humidity", "Thunder", "Rain"};
 
-	private String condition;//TODO: should this be stored as an integer or string?
+	/**
+	 * The condition of this ConditionRule
+	 */
+	private String condition;
+	
+	/**
+	 * The minimum value for this ConditionRule
+	 */
 	private int min;
+	
+	/**
+	 * the maximum value for this ConditionRule
+	 */
 	private int max;
 	
 	/**
@@ -24,6 +36,8 @@ public class ConditionRule implements Rule {
 	 * @param condition the condition of the Rule
 	 * @param min the minimum value for that condition
 	 * @param max the maximum value for that condition
+	 * @throws IllegalArgumentException if the condition is null or
+	 * 			the min is greater than the max
 	 */
 	public ConditionRule(String condition, int min, int max) {
 		if (condition == null || min > max) {
@@ -53,6 +67,10 @@ public class ConditionRule implements Rule {
 		return new Pair<Integer, Integer>(min, max);
 	}
 
+	/**
+	 * Checks if this ConditionRule is satisfied by the ForecastData
+	 * @param data the ForecastData to compare to the Rule
+	 */
 	public Boolean apply(ForecastData data) {
 		if (condition.equals(conditions[0])) {
 			// Temperature
@@ -87,7 +105,6 @@ public class ConditionRule implements Rule {
 			// Rain
 			// TODO
 		} 
-		
 		return Boolean.FALSE;
 	}
 	
@@ -121,6 +138,10 @@ public class ConditionRule implements Rule {
 		return true;
 	}
 
+	/**
+	 * CompareTo method
+	 * @param otherRule the other Rule to compare with
+	 */
 	public int compareTo(Rule otherRule) {
 		if (getClass() == otherRule.getClass()) {
 			ConditionRule other = (ConditionRule) otherRule;
@@ -136,5 +157,4 @@ public class ConditionRule implements Rule {
 			return 1;
 		}
 	}
-
 }
