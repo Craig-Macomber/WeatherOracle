@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class FilterOptionsActivity extends Activity {
-
+	boolean invalidName = false;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,15 @@ public class FilterOptionsActivity extends Activity {
 	    
 	    initializeSaveButtonListener(saveButton);
 	    initializeEditTextListener(editText);
+	    
+	    Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+        	invalidName = extras.getBoolean("invalidName");
+        }
+        
 	}
+	
+	
 	
 	private void initializeSaveButtonListener(Button saveButton){
 		 saveButton.setOnClickListener(new View.OnClickListener()
@@ -31,6 +40,9 @@ public class FilterOptionsActivity extends Activity {
 	         public void onClick(View v)
 	            {
 	        	 	boolean filterNameValid = true;
+	        	 	
+	        	 	// checks if filter name specified is already assigned to an existing
+	        	 	// filter
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
 	        	 		if(current.getName().equals(FilterMenuActivity.filterName)){
@@ -38,16 +50,17 @@ public class FilterOptionsActivity extends Activity {
 	        	 			//alert dialogue
 	        	 		}
 	        	 	}
+	        	 	
 	        	 	// filter name is unique at this point, but not necessarily valid
 	        	 	// because it could still be the empty string
-	        	 	if(FilterMenuActivity.filterName == "") {
+	        	 	if(FilterMenuActivity.filterName.trim().equals("")) {
 	        	 		filterNameValid = false;
 	        	 	}
+	        	 	
 	        	 	// filter name is valid
 	        	 	if(filterNameValid){
 	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
-	        	 		HomeMenuActivity.testFilterList.add(filter);
-	        	 		
+	        	 		HomeMenuActivity.testFilterList.add(filter);	
 	        	 		finish();
 	        	 	}
 	            }
