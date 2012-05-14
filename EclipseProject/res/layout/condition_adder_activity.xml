@@ -74,7 +74,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Please give a minimum number(From) that is lower than the maximum(To)."
-                android:visibility="gone"
                 android:textColor="#FF0000"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
