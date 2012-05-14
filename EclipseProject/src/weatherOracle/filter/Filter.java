@@ -81,6 +81,15 @@ public final class Filter implements Serializable {
 	}
 
 	/**
+	 * Sets the name of this Filter
+	 * @param name
+	 * 			the name that this Filter will be given
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
 	 * Adds a Rule to this Filter
 	 * @param newRule
 	 *            the Rule to add
