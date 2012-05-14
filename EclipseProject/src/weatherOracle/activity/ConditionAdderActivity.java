@@ -9,20 +9,26 @@ import weatherOracle.filter.ConditionRule;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class ConditionAdderActivity extends Activity {
 
     LinearLayout mainLayout;
     String condition;
-    int min;
-    int max;
+    int min=0;
+    int max=0;
     String[] possibleCondition;
     
     
@@ -33,36 +39,102 @@ public class ConditionAdderActivity extends Activity {
 		mainLayout = (LinearLayout)findViewById(R.id.condition_adder_activity_linear_layout);
 		possibleCondition = ConditionRule.conditions.clone();
 		
-		createAddButton();
-		createConditionSpinner();
-		
+		setUpAddButton();
+		setUpConditionSpinner();
+		setUpMinEditText();
+		setUpMaxEditText();
     }
 
 
-	private void createAddButton() {
+	private void setUpMinEditText() {
+		final EditText et = (EditText) findViewById(R.id.min_condition_edittext);
+		et.addTextChangedListener(new TextWatcher(){
+			public void afterTextChanged(Editable s) {
+				String minNumber = et.getText().toString();
+				
+				if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
+					min = Integer.parseInt(minNumber);
+					
+					TextView tv = (TextView) findViewById(R.id.min_max_warning);
+					if (min < max) {
+						tv.setVisibility(0);
+						tv.refreshDrawableState();
+					} else {
+						tv.setVisibility(1);
+						tv.refreshDrawableState();
+					}
+				}
+				
+			}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence s, int start, int before, int count) {}
+		});
+		
+	}
+
+
+	private void setUpMaxEditText() {
+		final EditText et = (EditText) findViewById(R.id.max_condition_edittext);
+		et.addTextChangedListener(new TextWatcher(){
+			public void afterTextChanged(Editable s) {
+				String minNumber = et.getText().toString();
+				
+				if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
+					max = Integer.parseInt(minNumber);
+					
+					TextView tv = (TextView) findViewById(R.id.min_max_warning);
+					if (min < max) {
+						tv.setVisibility(0);
+						tv.refreshDrawableState();
+					} else {
+						tv.setVisibility(1);
+						tv.refreshDrawableState();
+					}
+				}
+				
+			}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence s, int start, int before, int count) {}
+		});
+		
+	}
+
+
+	private void setUpAddButton() {
 		Button b = (Button) findViewById(R.id.add_condition_button);
 		b.setText("Add weather condition");
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	ConditionRuleViewerActivity.conditions.add(new ConditionRule(condition,min,max));
-                Intent intent = new Intent();
-                setResult(RESULT_OK, intent);
-                finish();
+            	if (min <= max) {
+	            	ConditionRuleViewerActivity.conditions.add(new ConditionRule(condition,min,max));
+	                Intent intent = new Intent();
+	                setResult(RESULT_OK, intent);
+	                finish();
+            	}
             }
         });
 	}
 
-
-	private void createConditionSpinner() {
-//		Spinner s = new Spinner(this);
-//		ArrayAdapter adapter = new ArrayAdapter(this,
-//				android.R.layout.simple_spinner_item, array_spinner);
-//		
+	private void setUpConditionSpinner() {
+		Spinner s = (Spinner) findViewById(R.id.condition_spinner);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, possibleCondition);
+		s.setAdapter(adapter);
+		s.setOnItemSelectedListener(new ConditionOnItemSelectedListener());
 	}
 
-	    
- 	
-	  
-}
+	private class ConditionOnItemSelectedListener implements OnItemSelectedListener {
 
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,
+				long id) {
+			condition = (String)parent.getItemAtPosition(pos);
+		}
+
+		public void onNothingSelected(AdapterView<?> arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+
+}
 
