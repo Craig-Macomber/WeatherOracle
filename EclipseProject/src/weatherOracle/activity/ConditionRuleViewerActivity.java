@@ -34,7 +34,13 @@ public class ConditionRuleViewerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.condition_rule_viewer_activity);
 		mainLayout = (LinearLayout)findViewById(R.id.condition_activity_linear_layout);
+
+		final Button saveButton = (Button) findViewById(R.id.save_filter_button_conditions);
+	    
+		initializeSaveButtonListener(saveButton);
+
 		conditions = new TreeSet<ConditionRule>();
+
 		CreateAddConditionButton();
 		populateConditionRules();
 		displayConditionRules();
@@ -104,7 +110,47 @@ public class ConditionRuleViewerActivity extends Activity {
  			mainLayout.removeAllViews();
  		}
  	}
-	  
+ 	
+ 	private void initializeSaveButtonListener(Button saveButton){
+		 saveButton.setOnClickListener(new View.OnClickListener()
+	        {
+	         public void onClick(View v)
+	            {
+	        	 	boolean filterNameValid = true;
+	        	 	
+	        	 	// checks if filter name specified is already assigned to an existing
+	        	 	// filter
+	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
+	        	 		if(current.getName().equals(FilterMenuActivity.filterName)){
+	        	 			filterNameValid = false;
+	        	 			//alert dialogue
+	        	 		}
+	        	 	}
+	        	 	
+	        	 	// filter name is unique at this point, but not necessarily valid
+	        	 	// because it could still be the empty string
+	        	 	if(FilterMenuActivity.filterName.trim().equals("")) {
+	        	 		filterNameValid = false;
+	        	 	}
+	        	 	
+	        	 	
+	        	 	if(!filterNameValid){
+	        	 	//	Intent myIntent = new Intent(v.getContext(), FilterOptionsActivity.class);
+	                //    myIntent.putExtra("invalidName", true);
+	        	 	//	startActivity(myIntent);
+	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
+	        	 		
+	        	 	// filter name is valid, add filter and return to
+	        	 	// FiltersActivity.java
+	        	 	} else { 
+	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
+	        	 		HomeMenuActivity.testFilterList.add(filter);	
+	        	 		finish();
+	        	 	}
+	            }
+	        });
+	}  
 }
 
 
