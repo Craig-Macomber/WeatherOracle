@@ -60,7 +60,8 @@ public class FilterOptionsActivity extends Activity {
 	        	 	// filter name is valid
 	        	 	if(filterNameValid){
 	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
-	        	 		HomeMenuActivity.testFilterList.add(filter);	
+	        	 		HomeMenuActivity.testFilterList.add(filter);
+	        	 		FilterMenuActivity.filterName = "";
 	        	 		finish();
 	        	 	}
 	            }

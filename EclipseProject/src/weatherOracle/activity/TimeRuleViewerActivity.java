@@ -220,7 +220,7 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 	//	Intent myIntent = new Intent(v.getContext(), FilterOptionsActivity.class);
 	                //    myIntent.putExtra("invalidName", true);
 	        	 	//	startActivity(myIntent);
-	        	 		FilterMenuActivity.tabHost.setCurrentTab(2);
+	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
 	        	 		
 	        	 	// filter name is valid, add filter and return to
 	        	 	// FiltersActivity.java

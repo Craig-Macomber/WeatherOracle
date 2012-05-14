@@ -23,7 +23,7 @@
             android:text="Add Weather Condition" />
 
         <Button
-            android:id="@+id/save_filter_button"
+            android:id="@+id/save_filter_button_conditions"
             android:layout_width="150px"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"

@@ -107,6 +107,7 @@ public class FiltersActivity extends Activity {
 	        	   	  Filter current = HomeMenuActivity.testFilterList.get(i);
 	        	   	  if(current.getName() == filterName){
 	        	   		  HomeMenuActivity.testFilterList.remove(i);
+	        	   		  i--;
        	 		//alert dialogue
 	        	  }
        	 	
