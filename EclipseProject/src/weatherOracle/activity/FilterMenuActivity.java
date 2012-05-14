@@ -2,7 +2,9 @@ package weatherOracle.activity;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
+import weatherOracle.filter.ConditionRule;
 import weatherOracle.filter.Filter;
 import weatherOracle.filter.FilterStore;
 import android.app.Activity;
@@ -19,6 +21,8 @@ public class FilterMenuActivity extends TabActivity {
     static Filter filter;
 	static Boolean newFilter;
 	static String filterName = "";
+	static String initialFilterName = "";
+	static Set<ConditionRule> conditions;
 	static TabHost tabHost;
     
 	/** Called when the activity is first created. */
@@ -52,10 +56,11 @@ public class FilterMenuActivity extends TabActivity {
                       .setContent(intent);
         tabHost.addTab(spec);
         
+        // get extras passed to this activity by FiltersActivity
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-        	newFilter = extras.getBoolean("newFilter");
-        //	filter = (Filter) extras.get("filterName");
+        	filter = (Filter) extras.get("newFilter");
+        	conditions = filter.getConditionRules();
         }
         
 
