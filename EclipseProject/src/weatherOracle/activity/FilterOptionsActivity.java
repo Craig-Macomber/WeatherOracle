@@ -45,7 +45,7 @@ public class FilterOptionsActivity extends Activity {
 	        	 	// filter
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
-	        	 		if(current.getName().equals(FilterMenuActivity.filterName)){
+	        	 		if(current.getName().equals(FilterMenuActivity.filter.getName())){
 	        	 			filterNameValid = false;
 	        	 			//alert dialogue
 	        	 		}
@@ -53,16 +53,18 @@ public class FilterOptionsActivity extends Activity {
 	        	 	
 	        	 	// filter name is unique at this point, but not necessarily valid
 	        	 	// because it could still be the empty string
-	        	 	if(FilterMenuActivity.filterName.trim().equals("")) {
+	        	 	if(FilterMenuActivity.filter.getName().trim().equals("")) {
 	        	 		filterNameValid = false;
 	        	 	}
 	        	 	
 	        	 	// filter name is valid
 	        	 	if(filterNameValid){
-	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
-	        	 		HomeMenuActivity.testFilterList.add(filter);
-	        	 		FilterMenuActivity.filterName = "";
+	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
+	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
+	        	 	//	FilterMenuActivity.filterName = "";
 	        	 		finish();
+	        	 	} else {
+	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
 	        	 	}
 	            }
 	        });
@@ -71,7 +73,17 @@ public class FilterOptionsActivity extends Activity {
 	private void initializeEditTextListener(final EditText editText){
 		editText.addTextChangedListener(new TextWatcher(){
 	        public void afterTextChanged(Editable s) {
-	            FilterMenuActivity.filterName = editText.getText().toString(); 
+	        	boolean validName = true;
+	        	String tempFilterName = editText.getText().toString(); 
+	        	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
+        	 		// with just the first test
+        	 		if(current.getName().equals(tempFilterName) && !(tempFilterName.equals(FilterMenuActivity.initialFilterName))){
+        	 			validName = false;
+        	 		}
+        	 	}
+	        	// name is valid
+	            FilterMenuActivity.filter.setName(editText.getText().toString()); 
 	        }
 	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
 	        public void onTextChanged(CharSequence s, int start, int before, int count){}

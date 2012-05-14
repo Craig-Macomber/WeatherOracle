@@ -27,7 +27,7 @@ public class ConditionRuleViewerActivity extends Activity {
 	LayoutParams params;
     LinearLayout mainLayout;
     
-    static Set<ConditionRule> conditions;
+    
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class ConditionRuleViewerActivity extends Activity {
 	    
 		initializeSaveButtonListener(saveButton);
 
-		conditions = new TreeSet<ConditionRule>();
+	//	FilterMenuActivity.conditions = new TreeSet<ConditionRule>();
 
 		CreateAddConditionButton();
 		populateConditionRules();
@@ -55,7 +55,7 @@ public class ConditionRuleViewerActivity extends Activity {
     }
     
     private void displayConditionRules() {
-    	List<ConditionRule> conditionList = new ArrayList<ConditionRule>(conditions);
+    	List<ConditionRule> conditionList = new ArrayList<ConditionRule>(FilterMenuActivity.conditions);
     	for (int i = 0; i < conditionList.size(); i++) {    		
     		final RelativeLayout rl = new RelativeLayout(this);
     		//final Button deleteButton = new Button(this);
@@ -122,7 +122,7 @@ public class ConditionRuleViewerActivity extends Activity {
 	        	 	// filter
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
-	        	 		if(current.getName().equals(FilterMenuActivity.filterName)){
+	        	 		if(current.getName().equals(FilterMenuActivity.filter.getName())){
 	        	 			filterNameValid = false;
 	        	 			//alert dialogue
 	        	 		}
@@ -130,27 +130,22 @@ public class ConditionRuleViewerActivity extends Activity {
 	        	 	
 	        	 	// filter name is unique at this point, but not necessarily valid
 	        	 	// because it could still be the empty string
-	        	 	if(FilterMenuActivity.filterName.trim().equals("")) {
+	        	 	if(FilterMenuActivity.filter.getName().trim().equals("")) {
 	        	 		filterNameValid = false;
 	        	 	}
 	        	 	
-	        	 	
-	        	 	if(!filterNameValid){
-	        	 	//	Intent myIntent = new Intent(v.getContext(), FilterOptionsActivity.class);
-	                //    myIntent.putExtra("invalidName", true);
-	        	 	//	startActivity(myIntent);
-	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
-	        	 		
-	        	 	// filter name is valid, add filter and return to
-	        	 	// FiltersActivity.java
-	        	 	} else { 
-	        	 		Filter filter = new Filter(FilterMenuActivity.filterName);
-	        	 		HomeMenuActivity.testFilterList.add(filter);	
+	        	 	// filter name is valid
+	        	 	if(filterNameValid){
+	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
+	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
+	        	 	//	FilterMenuActivity.filterName = "";
 	        	 		finish();
+	        	 	} else {
+	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
 	        	 	}
 	            }
 	        });
-	}  
+	} 
 }
 
 
