@@ -146,6 +146,56 @@ public final class Filter implements Serializable {
 	}
 
 	/**
+	 * Remove all condition rules from "rules"
+	 * 
+	 */
+	public void removeConditionRules() {
+		for (Rule r : rules) {
+			if (r.getClass() == ConditionRule.class) {
+				removeRule((ConditionRule) r);
+			}
+		}
+	}
+	
+	/**
+	 * Remove all time rules from "rules"
+	 * 
+	 */
+	public void removeTimeRules() {
+		for (Rule r : rules) {
+			if (r.getClass() == TimeRule.class) {
+				removeRule((TimeRule) r);
+			}
+		}
+	}
+	
+	/**
+	 * Add the given set of condition rules to this filter
+	 * 
+	 * @param rules
+	 * 			a set of condition rules to be added to this Filter
+	 */
+	public void addSetOfConditionRules(Set<ConditionRule> rules) {
+		for (Rule r : rules){
+			addRule(r);
+		}
+	}
+	
+	/**
+	 * Add the given set of time rules to this filter
+	 * 
+	 * @param rules
+	 * 			a set of time rules to be added to this Filter
+	 */
+	public void addSetOfTimeRules(Set<TimeRule> rules) {
+		for (Rule r : rules){
+			addRule(r);
+		}
+	}
+	
+	
+	
+	/**
 	 * Filters ForecastData, producing a pass/fail boolean.
 	 * 
 	 * @param data
