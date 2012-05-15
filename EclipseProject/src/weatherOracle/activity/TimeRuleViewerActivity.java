@@ -207,15 +207,29 @@ public class TimeRuleViewerActivity extends Activity {
 	        {
 	         public void onClick(View v)
 	            {
+
+	        	 	boolean filterNameValid = true;
 	        	 	
-	        	 	// as long as currentFilterName is non empty we know it holds a valid filter name
-	        	 	// this fact is guaranteed to us by the checks in the edit text listener ... if 
-	        	 	// currentFilterName is the empty string then either (1) the user never specified a
-	        	 	// name, or (2) the user tried to specify a name containing only spaces, or (3) the
-	        	 	// user entered in a name of a filter that already existed. Either way, the name would
-	        	 	// be invalid and the edit text listener would ensure that currentFilterName was not
-	        	 	// updated with this invalid name
-	        	 	if(!FilterMenuActivity.currentFilterName.equals("")){ 
+	        	 	// checks if filter name specified is already assigned to an existing
+	        	 	// filter
+	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
+	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName)){
+	        	 			filterNameValid = false;
+	        	 		}
+	        	 	}
+	        	 	
+	        	 	// filter name is unique at this point, but not necessarily valid
+	        	 	// because it could still be the empty string
+	        	 	if(FilterMenuActivity.currentFilterName.trim().equals("")) {
+	        	 		filterNameValid = false;
+	        	 	}
+	        	 	
+	        	 	// filter name is valid
+	        	 	if(filterNameValid){
+	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
+
+
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
 	        	 	//	FilterMenuActivity.filterName = "";
@@ -225,5 +239,5 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 	}
 	            }
 	        });
-	}
+	} 
 }
