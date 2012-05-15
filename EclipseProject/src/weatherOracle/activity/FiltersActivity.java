@@ -75,6 +75,11 @@ public class FiltersActivity extends Activity {
  			});
       	 
       	 
+ 			
+ 			
+ 			
+ 			
+ 			
  			final Button deleteButton = new Button(this);
  			deleteButton.setText("Delete");
   	
@@ -107,14 +112,17 @@ public class FiltersActivity extends Activity {
  		}
  	}
 
+ 
  	
  	private void initializeAddFilterButton() {
  		Button filter = new Button(this);
  		filter.setOnClickListener(new View.OnClickListener() {
            public void onClick(View view) 
            {
+        	    // create empty filter with empty string as name to pass into FilterMenuActivity
+        	   	Filter filter = new Filter("");
             	Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
-                myIntent.putExtra("newFilter", true);
+                myIntent.putExtra("filter", filter);
                 startActivity(myIntent);     
            } 
  		});

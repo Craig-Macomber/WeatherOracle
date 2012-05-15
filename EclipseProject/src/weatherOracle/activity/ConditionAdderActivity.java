@@ -106,7 +106,7 @@ public class ConditionAdderActivity extends Activity {
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	if (min <= max) {
-	            	ConditionRuleViewerActivity.conditions.add(new ConditionRule(condition,min,max));
+	            	FilterMenuActivity.conditions.add(new ConditionRule(condition,min,max));
 	                Intent intent = new Intent();
 	                setResult(RESULT_OK, intent);
 	                finish();
