@@ -271,6 +271,8 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 	if(filterNameValid){		
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
+	        	 		FilterMenuActivity.filter.removeConditionRules();
+	        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		if(editingExistingFilter){
 	        	 			for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){  

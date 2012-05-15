@@ -35,8 +35,7 @@ public class ConditionRuleViewerActivity extends Activity {
 		setContentView(R.layout.condition_rule_viewer_activity);
 		mainLayout = (LinearLayout)findViewById(R.id.condition_activity_linear_layout);
 
-		final Button saveButton = (Button) findViewById(R.id.save_filter_button_conditions);
-	    
+		final Button saveButton = (Button) findViewById(R.id.save_filter_button_conditions);   
 		initializeSaveButtonListener(saveButton);
 
 	//	FilterMenuActivity.conditions = new TreeSet<ConditionRule>();
@@ -119,54 +118,57 @@ public class ConditionRuleViewerActivity extends Activity {
  		}
  	}
  	
- 	private void initializeSaveButtonListener(Button saveButton){
-		 saveButton.setOnClickListener(new View.OnClickListener()
-	        {
-	         public void onClick(View v)
-	            {
-	        	 	String currentName = FilterMenuActivity.currentFilterName;
-	        	 	boolean filterNameValid = true;
-	        	 	boolean editingExistingFilter = false;
-	        	 	// checks if filter name specified is already assigned to an existing
-	        	 	// filter
-	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
-	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
-	        	 		if (FilterMenuActivity.initialFilterName.equals(current.getName())){
-	        	 			editingExistingFilter = true;
-	        	 		}
-	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName) 
-	        	 				&& !(editingExistingFilter)){
-	        	 			filterNameValid = false;
-	        	 		}
-	        	 	}
-	        	 	
-	        	 	// filter name is unique at this point, but not necessarily valid
-	        	 	// because it could still be the empty string
-	        	 	if(FilterMenuActivity.currentFilterName.trim().equals("")) {
-	        	 		filterNameValid = false;
-	        	 	}
-	        	 	
-	        	 	// filter name is valid
-	        	 	if(filterNameValid){		
-	        	 		FilterMenuActivity.filter.removeTimeRules();
-	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
-	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
-	        	 		if(editingExistingFilter){
-	        	 			for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){  
-	       	   	  				Filter current = HomeMenuActivity.testFilterList.get(i);
-	       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)){
-	       	   	  					HomeMenuActivity.testFilterList.remove(i);
-	       	   	  					i--;
-	       	   	  				}
-	       	   	  			}
-	        	 		}
-	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);	
-	        	 		finish();
-	        	 	} else {
-	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
-	        	 	}
-	            }
-	        });
+
+	private void initializeSaveButtonListener(Button saveButton){
+		saveButton.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				String currentName = FilterMenuActivity.currentFilterName;
+				boolean filterNameValid = true;
+				boolean editingExistingFilter = false;
+				// checks if filter name specified is already assigned to an existing
+				// filter
+				for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+					Filter current = HomeMenuActivity.testFilterList.get(i);
+					if (FilterMenuActivity.initialFilterName.equals(current.getName())){
+						editingExistingFilter = true;
+					}
+					if(current.getName().equals(FilterMenuActivity.currentFilterName)
+					&& !(editingExistingFilter)){
+						filterNameValid = false;
+					}
+				}
+				
+				// filter name is unique at this point, but not necessarily valid
+				// because it could still be the empty string
+				if(FilterMenuActivity.currentFilterName.trim().equals("")) {
+					filterNameValid = false;
+				}
+				
+				// filter name is valid
+				if(filterNameValid){
+					FilterMenuActivity.filter.removeTimeRules();
+					FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
+					FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
+					FilterMenuActivity.filter.removeConditionRules();
+        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
+					if(editingExistingFilter){
+						for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+							Filter current = HomeMenuActivity.testFilterList.get(i);
+							if(current.getName().equals(FilterMenuActivity.initialFilterName)){
+								HomeMenuActivity.testFilterList.remove(i);
+								i--;
+							}
+						}
+					}
+					HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
+					finish();
+				} else {
+					FilterMenuActivity.tabHost.setCurrentTab(0);
+				}
+			}
+		});
 	}
 }
 

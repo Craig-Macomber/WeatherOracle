@@ -100,6 +100,8 @@ public class FilterOptionsActivity extends Activity {
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
+	        	 		FilterMenuActivity.filter.removeConditionRules();
+	        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
 	        	 		if(editingExistingFilter){
 	        	 			for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){  
 	       	   	  				Filter current = HomeMenuActivity.testFilterList.get(i);
