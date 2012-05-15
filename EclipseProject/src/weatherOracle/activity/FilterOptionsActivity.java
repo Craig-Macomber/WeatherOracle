@@ -36,6 +36,7 @@ public class FilterOptionsActivity extends Activity {
 	private void initializeEditTextListener(final EditText editText){
 		editText.addTextChangedListener(new TextWatcher(){
 	        public void afterTextChanged(Editable s) {
+
 //	        	boolean validName = true;
 //	        	String tempFilterName = editText.getText().toString(); 
 //	        	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
@@ -65,6 +66,7 @@ public class FilterOptionsActivity extends Activity {
 	        {
 	         public void onClick(View v)
 	            {
+
 	        	 	boolean filterNameValid = true;
 	        	 	
 	        	 	// checks if filter name specified is already assigned to an existing
@@ -85,6 +87,8 @@ public class FilterOptionsActivity extends Activity {
 	        	 	// filter name is valid
 	        	 	if(filterNameValid){
 	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
+
+
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
 	        	 	//	FilterMenuActivity.filterName = "";
@@ -95,5 +99,4 @@ public class FilterOptionsActivity extends Activity {
 	            }
 	        });
 	} 
-	
 }

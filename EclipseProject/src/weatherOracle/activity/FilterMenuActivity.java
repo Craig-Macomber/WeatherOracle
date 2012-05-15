@@ -64,6 +64,9 @@ public class FilterMenuActivity extends TabActivity {
         if(extras != null) {
         	filter = (Filter) extras.get("filter");
         	currentFilterName = filter.getName();
+
+        	initialFilterName = filter.getName();
+
         	conditions = filter.getConditionRules();
         }
         

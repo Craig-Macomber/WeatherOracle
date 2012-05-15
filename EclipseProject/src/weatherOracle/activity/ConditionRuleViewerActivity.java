@@ -116,6 +116,7 @@ public class ConditionRuleViewerActivity extends Activity {
 	        {
 	         public void onClick(View v)
 	            {
+
 	        	 	boolean filterNameValid = true;
 	        	 	
 	        	 	// checks if filter name specified is already assigned to an existing
@@ -136,6 +137,8 @@ public class ConditionRuleViewerActivity extends Activity {
 	        	 	// filter name is valid
 	        	 	if(filterNameValid){
 	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
+
+
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
 	        	 	//	FilterMenuActivity.filterName = "";
