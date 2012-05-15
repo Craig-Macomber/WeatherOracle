@@ -148,10 +148,13 @@ public class ConditionRule implements Rule {
 			if (!condition.equals(other.getCondition())) {
 				return condition.compareTo(other.getCondition());
 			} else {
-				Integer diff = max - min;
 				Pair<Integer, Integer> otherP = other.getMinMax();
-				Integer otherDiff = otherP.second - otherP.first;
-				return diff.compareTo(otherDiff);
+				if (min != otherP.first) {
+					return ((Integer)min).compareTo(otherP.first);
+				} else if (max != otherP.second) {
+					return ((Integer)max).compareTo(otherP.second);
+				}
+				return 0;
 			}
 		} else {
 			return 1;
