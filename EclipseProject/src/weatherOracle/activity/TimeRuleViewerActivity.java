@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import weatherOracle.filter.Filter;
+import weatherOracle.filter.TimeRule;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -52,6 +53,8 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				for (int i =0; i < days.size();i++) {
 					days.get(i).setChecked(true);
+			//		String day = (String)days.get(i).getText();
+			//		FilterMenuActivity.times.add(new TimeRule(day));
 				}
 				((CheckBox)weekends).setChecked(true);
 				((CheckBox)weekdays).setChecked(true);
@@ -62,6 +65,8 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				for (int i =0; i < days.size();i++) {
 					days.get(i).setChecked(false);
+			//		String day = (String)days.get(i).getText();
+			//		FilterMenuActivity.times.remove(new TimeRule(day));
 				}
 				((CheckBox)weekends).setChecked(false);
 				((CheckBox)weekdays).setChecked(false);
@@ -101,6 +106,7 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				if (((CheckBox)monday).isChecked()) {
 					weekdayCheck();
+					FilterMenuActivity.times.add(new TimeRule("Monday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
 				}
@@ -111,6 +117,7 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				if (((CheckBox)tuesday).isChecked()) {
 					weekdayCheck();
+					FilterMenuActivity.times.add(new TimeRule("Tuesday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
 				}
@@ -121,6 +128,7 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				if (((CheckBox)wednesday).isChecked()) {
 					weekdayCheck();
+					FilterMenuActivity.times.add(new TimeRule("Wednesday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
 				}
@@ -131,6 +139,7 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				if (((CheckBox)thursday).isChecked()) {
 					weekdayCheck();
+					FilterMenuActivity.times.add(new TimeRule("Thursday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
 				}
@@ -141,6 +150,7 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				if (((CheckBox)friday).isChecked()) {
 					weekdayCheck();
+					FilterMenuActivity.times.add(new TimeRule("Friday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
 				}

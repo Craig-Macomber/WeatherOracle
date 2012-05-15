@@ -122,7 +122,7 @@ public class FiltersActivity extends Activity {
         	    // create empty filter with empty string as name to pass into FilterMenuActivity
         	   	Filter filter = new Filter("");
             	Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
-                myIntent.putExtra("newFilter", filter);
+                myIntent.putExtra("filter", filter);
                 startActivity(myIntent);     
            } 
  		});
