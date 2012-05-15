@@ -55,7 +55,7 @@ public class ConditionRuleViewerActivity extends Activity {
     }
     
     private void displayConditionRules() {
-    	List<ConditionRule> conditionList = new ArrayList<ConditionRule>(FilterMenuActivity.conditions);
+    	final List<ConditionRule> conditionList = new ArrayList<ConditionRule>(FilterMenuActivity.conditions);
     	for (int i = 0; i < conditionList.size(); i++) {    		
     		final RelativeLayout rl = new RelativeLayout(this);
     		//final Button deleteButton = new Button(this);
@@ -72,10 +72,13 @@ public class ConditionRuleViewerActivity extends Activity {
     	  	LayoutParams params = (RelativeLayout.LayoutParams)deleteButton.getLayoutParams();
     	  	((android.widget.RelativeLayout.LayoutParams) params).addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
     		
+    	  	final int index = i;
    	  	 	deleteButton.setOnClickListener(new View.OnClickListener() {
    	  	 		public void onClick(View v) {
-   	  	 			//DO SOMETHING
-   	  	 			mainLayout.removeView(rl); 
+   	  	 			System.out.println(FilterMenuActivity.conditions.size());
+   	  	 			FilterMenuActivity.conditions.remove(conditionList.get(index));
+   	  	 			mainLayout.removeAllViews();
+   	  	 			displayConditionRules();
    	  	 		}
    	  	 	});
     	  	
