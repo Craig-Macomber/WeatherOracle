@@ -65,6 +65,11 @@ public class ConditionRuleViewerActivity extends Activity {
     		textview.setText(conditionList.get(i).getCondition() + ": " + min + " - " + max);
     		textview.setTextSize(2,15);
          	 
+    		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+ 					LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+ 			layoutParams.setMargins(8, 4, 8, 4); // top and bottom margins are 4 so that if two elements
+ 												 // appear in succession the total separation will be 8
+    		
     	  	final Button deleteButton = new Button(this);
           	deleteButton.setText("Delete");
       	
@@ -84,7 +89,7 @@ public class ConditionRuleViewerActivity extends Activity {
     	  	
     		rl.addView(textview);
     		rl.setBackgroundResource(R.drawable.main_view_element);
-    		mainLayout.addView(rl);
+    		mainLayout.addView(rl, layoutParams);
     	}
     }
     
