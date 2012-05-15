@@ -1,6 +1,10 @@
 package weatherOracle.activity;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import weatherOracle.filter.Filter;
+import weatherOracle.filter.TimeRule;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class FilterOptionsActivity extends Activity {
+	
+	
 	boolean invalidName = false;
 	
 	/** Called when the activity is first created. */
@@ -21,7 +27,7 @@ public class FilterOptionsActivity extends Activity {
 	    
 	    final EditText editText = (EditText)findViewById(R.id.text_box);
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_tools);
-	    //editText.setText(FilterMenuActivity.currentFilterName);
+	//    editText.setText(FilterMenuActivity.currentFilterName);
 	    
 	    initializeSaveButtonListener(saveButton);
 	    initializeEditTextListener(editText);
@@ -88,10 +94,13 @@ public class FilterOptionsActivity extends Activity {
 	        	 	if(filterNameValid){
 	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
 
-
+	        	 		
+	        	 		FilterMenuActivity.filter.removeTimeRules();
+	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
 	        	 	//	FilterMenuActivity.filterName = "";
+	        	 		
 	        	 		finish();
 	        	 	} else {
 	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
