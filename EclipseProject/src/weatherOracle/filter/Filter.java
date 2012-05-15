@@ -150,11 +150,13 @@ public final class Filter implements Serializable {
 	 * 
 	 */
 	public void removeConditionRules() {
+		Set<Rule> temp = new TreeSet<Rule>();
 		for (Rule r : rules) {
-			if (r.getClass() == ConditionRule.class) {
-				removeRule((ConditionRule) r);
+			if (r.getClass() == TimeRule.class) {
+				temp.add((TimeRule)r);
 			}
 		}
+		this.rules = temp;
 	}
 	
 	/**
@@ -162,11 +164,13 @@ public final class Filter implements Serializable {
 	 * 
 	 */
 	public void removeTimeRules() {
+		Set<Rule> temp = new TreeSet<Rule>();
 		for (Rule r : rules) {
-			if (r.getClass() == TimeRule.class) {
-				removeRule((TimeRule) r);
+			if (r.getClass() == ConditionRule.class) {
+				temp.add((ConditionRule)r);
 			}
 		}
+		this.rules = temp;
 	}
 	
 	/**

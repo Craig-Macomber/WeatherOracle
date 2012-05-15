@@ -3,6 +3,7 @@ package weatherOracle.activity;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import weatherOracle.filter.ConditionRule;
 import weatherOracle.filter.Filter;
@@ -24,8 +25,8 @@ public class FilterMenuActivity extends TabActivity {
     static Filter filter;
 	static String currentFilterName = "";
 	static String initialFilterName = "";
-	static Set<ConditionRule> conditions;
-	static Set<TimeRule> times;
+	static Set<ConditionRule> conditions = new TreeSet<ConditionRule>();
+	static Set<TimeRule> times = new TreeSet<TimeRule>();
 	static TabHost tabHost;
     
 	/** Called when the activity is first created. */
@@ -64,9 +65,12 @@ public class FilterMenuActivity extends TabActivity {
         if(extras != null) {
         	filter = (Filter) extras.get("filter");
         	currentFilterName = filter.getName();
-
         	initialFilterName = filter.getName();
-
+        	if(filter.getTimeRules() == null){
+        		times = new TreeSet<TimeRule>();
+        	} else {
+        		times = filter.getTimeRules();
+        	}
         	conditions = filter.getConditionRules();
         }
         
