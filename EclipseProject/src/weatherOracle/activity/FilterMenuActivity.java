@@ -62,7 +62,7 @@ public class FilterMenuActivity extends TabActivity {
         // get extras passed to this activity by FiltersActivity
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-        	filter = (Filter) extras.get("newFilter");
+        	filter = (Filter) extras.get("filter");
         	currentFilterName = filter.getName();
         	initialFilterName = filter.getName();
         	conditions = filter.getConditionRules();
