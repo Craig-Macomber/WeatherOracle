@@ -122,21 +122,21 @@ public class ConditionRuleViewerActivity extends Activity {
 	        	 	// filter
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
-	        	 		if(current.getName().equals(FilterMenuActivity.filter.getName())){
+	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName)){
 	        	 			filterNameValid = false;
-	        	 			//alert dialogue
 	        	 		}
 	        	 	}
 	        	 	
 	        	 	// filter name is unique at this point, but not necessarily valid
 	        	 	// because it could still be the empty string
-	        	 	if(FilterMenuActivity.filter.getName().trim().equals("")) {
+	        	 	if(FilterMenuActivity.currentFilterName.trim().equals("")) {
 	        	 		filterNameValid = false;
 	        	 	}
 	        	 	
 	        	 	// filter name is valid
 	        	 	if(filterNameValid){
 	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
+	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
 	        	 	//	FilterMenuActivity.filterName = "";
 	        	 		finish();
