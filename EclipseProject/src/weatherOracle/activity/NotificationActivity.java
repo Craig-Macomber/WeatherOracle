@@ -1,6 +1,5 @@
 package weatherOracle.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import weatherOracle.notification.Notification;
@@ -9,22 +8,18 @@ import weatherOracle.notification.NotificationStore;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class NotificationActivity extends Activity {
 	
+	/**
+	 *  List of Notifications to be displayed by this activity
+	 */
 	List<Notification> notificationList;
 	
     /** Called when the activity is first created. */
@@ -38,17 +33,11 @@ public class NotificationActivity extends Activity {
         
     }
 
+    /**
+     * Populate and update the notificationList Field 
+     */
 	private void populateNotificationList() {
 		notificationList = NotificationStore.getNotifications();
-        //REASSIGN THIS SHIT FOR TESTING UI WHILE WAITING FOR THE MODEL SHIT TO WORK
-        //TODO
-        //notificationList = new ArrayList<Notification>();
-        notificationList.add(Notification.make("I",null,null));
-        notificationList.add(Notification.make("Love",null,null));
-        notificationList.add(Notification.make("Hentai",null,null));
-        notificationList.add(Notification.make("And",null,null));
-        notificationList.add(Notification.make("Bacon!",null,null));
-        //END OF TESTING CODE
 	}
 
 	private void displayNotifications() {
