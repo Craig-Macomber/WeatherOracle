@@ -41,7 +41,25 @@ public class FilterMenuActivity extends TabActivity {
         TabHost.TabSpec spec;  // Resusable TabSpec for each tab
         Intent intent;  // Reusable Intent for each tab
 
-       
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+        	filter = (Filter) extras.get("filter");
+        	currentFilterName = filter.getName();
+        	initialFilterName = filter.getName();
+        	if(filter.getTimeRules() == null){
+        		times = new TreeSet<TimeRule>();
+        	} else {
+        		times = filter.getTimeRules();
+        	}
+        	if(filter.getConditionRules() == null){
+        		conditions = new TreeSet<ConditionRule>();
+        	} else {
+        		conditions = filter.getConditionRules();
+        	}
+        	
+        }
+        
+        
         intent = new Intent().setClass(this, FilterOptionsActivity.class);
         spec = tabHost.newTabSpec("tools").setIndicator("Name",
                           res.getDrawable(R.drawable.ic_tab_tools))
@@ -61,18 +79,7 @@ public class FilterMenuActivity extends TabActivity {
         tabHost.addTab(spec);
         
         // get extras passed to this activity by FiltersActivity
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-        	filter = (Filter) extras.get("filter");
-        	currentFilterName = filter.getName();
-        	initialFilterName = filter.getName();
-        	if(filter.getTimeRules() == null){
-        		times = new TreeSet<TimeRule>();
-        	} else {
-        		times = filter.getTimeRules();
-        	}
-        	conditions = filter.getConditionRules();
-        }
+        
         
 
    //     String test = "no";

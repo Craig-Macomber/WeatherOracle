@@ -27,7 +27,7 @@ public class FilterOptionsActivity extends Activity {
 	    
 	    final EditText editText = (EditText)findViewById(R.id.text_box);
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_tools);
-	//    editText.setText(FilterMenuActivity.currentFilterName);
+	    editText.setText(FilterMenuActivity.filter.getName());
 	    
 	    initializeSaveButtonListener(saveButton);
 	    initializeEditTextListener(editText);
@@ -94,18 +94,16 @@ public class FilterOptionsActivity extends Activity {
 	        	 	if(filterNameValid){
 	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
 
-	        	 		
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
 	        	 	//	FilterMenuActivity.filterName = "";
-	        	 		
 	        	 		finish();
 	        	 	} else {
 	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
 	        	 	}
 	            }
 	        });
-	} 
+	}
 }
