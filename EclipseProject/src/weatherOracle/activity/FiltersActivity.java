@@ -35,7 +35,8 @@ public class FiltersActivity extends Activity {
  	
  	// updates the view with the appropriate filter info every time it gets navigated to
  	public void onWindowFocusChanged(boolean hasFocus){
- 	    if(hasFocus) {
+ 		super.onWindowFocusChanged(hasFocus);
+ 		if(hasFocus) {
  	    	mainView.removeAllViews();
  	    	initializeAddFilterButton();
  	    	populateFilterList();
@@ -46,12 +47,13 @@ public class FiltersActivity extends Activity {
 
  
  	private void populateFilterList() {
- 		int filterListSize = HomeMenuActivity.testFilterList.size();
+ 		FilterStore.setFilters(HomeMenuActivity.filterList);
+ 		int filterListSize = HomeMenuActivity.filterList.size();
  		for (int i = 0; i < filterListSize; i++) {
  			final TextView textview = new TextView(getApplicationContext());
  			final RelativeLayout rl = new RelativeLayout(this);
 
- 			textview.setText(HomeMenuActivity.testFilterList.get(i).getName());
+ 			textview.setText(HomeMenuActivity.filterList.get(i).getName());
  			textview.setTextSize(2,30);
  			
  			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -62,7 +64,7 @@ public class FiltersActivity extends Activity {
  			rl.setBackgroundResource(R.drawable.main_view_element);
  			rl.addView(textview);
     
- 			final Filter currentFilter = HomeMenuActivity.testFilterList.get(i);
+ 			final Filter currentFilter = HomeMenuActivity.filterList.get(i);
  			// when a given view element gets clicked on, launch FilterMenuActivity and pass it
  			// the given filter so that it can display it's information
  			rl.setOnClickListener(new View.OnClickListener(){
@@ -96,10 +98,10 @@ public class FiltersActivity extends Activity {
  				public void onClick(View v)
  				{
  					String filterName = (String) textview.getText();
-   	   	  			for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){  
-   	   	  				Filter current = HomeMenuActivity.testFilterList.get(i);
+   	   	  			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
+   	   	  				Filter current = HomeMenuActivity.filterList.get(i);
    	   	  				if(current.getName().equals(filterName)){
-   	   	  					HomeMenuActivity.testFilterList.remove(i);
+   	   	  					HomeMenuActivity.filterList.remove(i);
    	   	  					i--;
    	   	  				}
    	   	  			}
