@@ -21,6 +21,7 @@ public class FilterOptionsActivity extends Activity {
 	    
 	    final EditText editText = (EditText)findViewById(R.id.text_box);
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_tools);
+	    //editText.setText(FilterMenuActivity.currentFilterName);
 	    
 	    initializeSaveButtonListener(saveButton);
 	    initializeEditTextListener(editText);
@@ -35,29 +36,24 @@ public class FilterOptionsActivity extends Activity {
 	private void initializeEditTextListener(final EditText editText){
 		editText.addTextChangedListener(new TextWatcher(){
 	        public void afterTextChanged(Editable s) {
-	        	boolean validName = true;
-	        	String tempFilterName = editText.getText().toString(); 
-	        	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
-        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
 
-        	 		// name currently entered in edit text element matches the name of a filter
-        	 	    // in the filter list ... and the name in the edit text is NOT equal to the
-        	 	    // initial name of the filter. This means that the user entered in a name that is
-       	 	 		// already taken. If the name they entered is the same as the initial name that all
-       	 			// it means is that they made a number of edits but changed it back to the original
-           			// which is valid
-        	 		if(current.getName().equals(tempFilterName) && !(tempFilterName.equals(FilterMenuActivity.initialFilterName))){
-        	 			validName = false;
-        	 		}
-        	 	}
-	        	if(tempFilterName.trim().equals("")){
-	        		validName = false;
-	        	}
-	        	if(validName){
-	        		// name is valid ... at this point currentFilterName is guaranteed to be a unique non-empty
-	        		// filter name
-	        		FilterMenuActivity.currentFilterName = tempFilterName;
-	        	}
+//	        	boolean validName = true;
+//	        	String tempFilterName = editText.getText().toString(); 
+//	        	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+//        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
+//
+//        	 		// name currently entered in edit text element matches the name of a filter
+//        	 	    // in the filter list ... and the name in the edit text is NOT equal to the
+//        	 	    // initial name of the filter. This means that the user entered in a name that is
+//       	 	 		// already taken. If the name they entered is the same as the initial name that all
+//       	 			// it means is that they made a number of edits but changed it back to the original
+//           			// which is valid
+//        	 		if(current.getName().equals(tempFilterName) && !(tempFilterName.equals(FilterMenuActivity.initialFilterName))){
+//        	 			validName = false;
+//        	 		}
+//        	 	}
+	        	
+	        	FilterMenuActivity.currentFilterName = editText.getText().toString();
 	        	
 	        }
 	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
@@ -70,15 +66,29 @@ public class FilterOptionsActivity extends Activity {
 	        {
 	         public void onClick(View v)
 	            {
+
+	        	 	boolean filterNameValid = true;
 	        	 	
-	        	 	// as long as currentFilterName is non empty we know it holds a valid filter name
-	        	 	// this fact is guaranteed to us by the checks in the edit text listener ... if 
-	        	 	// currentFilterName is the empty string then either (1) the user never specified a
-	        	 	// name, or (2) the user tried to specify a name containing only spaces, or (3) the
-	        	 	// user entered in a name of a filter that already existed. Either way, the name would
-	        	 	// be invalid and the edit text listener would ensure that currentFilterName was not
-	        	 	// updated with this invalid name
-	        	 	if(!FilterMenuActivity.currentFilterName.equals("")){ 
+	        	 	// checks if filter name specified is already assigned to an existing
+	        	 	// filter
+	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
+	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
+	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName)){
+	        	 			filterNameValid = false;
+	        	 		}
+	        	 	}
+	        	 	
+	        	 	// filter name is unique at this point, but not necessarily valid
+	        	 	// because it could still be the empty string
+	        	 	if(FilterMenuActivity.currentFilterName.trim().equals("")) {
+	        	 		filterNameValid = false;
+	        	 	}
+	        	 	
+	        	 	// filter name is valid
+	        	 	if(filterNameValid){
+	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
+
+
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
 	        	 	//	FilterMenuActivity.filterName = "";
