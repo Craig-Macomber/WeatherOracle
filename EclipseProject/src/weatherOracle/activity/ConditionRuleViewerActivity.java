@@ -119,14 +119,18 @@ public class ConditionRuleViewerActivity extends Activity {
 	        {
 	         public void onClick(View v)
 	            {
-
+	        	 	String currentName = FilterMenuActivity.currentFilterName;
 	        	 	boolean filterNameValid = true;
-	        	 	
+	        	 	boolean editingExistingFilter = false;
 	        	 	// checks if filter name specified is already assigned to an existing
 	        	 	// filter
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
-	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName)){
+	        	 		if (FilterMenuActivity.initialFilterName.equals(current.getName())){
+	        	 			editingExistingFilter = true;
+	        	 		}
+	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName) 
+	        	 				&& !(editingExistingFilter)){
 	        	 			filterNameValid = false;
 	        	 		}
 	        	 	}
@@ -138,20 +142,27 @@ public class ConditionRuleViewerActivity extends Activity {
 	        	 	}
 	        	 	
 	        	 	// filter name is valid
-	        	 	if(filterNameValid){
-	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
-
-
+	        	 	if(filterNameValid){		
+	        	 		FilterMenuActivity.filter.removeTimeRules();
+	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
-	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
-	        	 	//	FilterMenuActivity.filterName = "";
+	        	 		if(editingExistingFilter){
+	        	 			for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){  
+	       	   	  				Filter current = HomeMenuActivity.testFilterList.get(i);
+	       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)){
+	       	   	  					HomeMenuActivity.testFilterList.remove(i);
+	       	   	  					i--;
+	       	   	  				}
+	       	   	  			}
+	        	 		}
+	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);	
 	        	 		finish();
 	        	 	} else {
 	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
 	        	 	}
 	            }
 	        });
-	} 
+	}
 }
 
 

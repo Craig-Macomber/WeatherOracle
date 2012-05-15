@@ -138,6 +138,7 @@ public class TimeRuleViewerActivity extends Activity {
 					FilterMenuActivity.times.add(new TimeRule("Monday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
+					FilterMenuActivity.times.remove(new TimeRule("Monday"));
 				}
 			}
 		});
@@ -149,6 +150,7 @@ public class TimeRuleViewerActivity extends Activity {
 					FilterMenuActivity.times.add(new TimeRule("Tuesday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
+					FilterMenuActivity.times.remove(new TimeRule("Tuesday"));
 				}
 			}
 		});
@@ -160,6 +162,7 @@ public class TimeRuleViewerActivity extends Activity {
 					FilterMenuActivity.times.add(new TimeRule("Wednesday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
+					FilterMenuActivity.times.remove(new TimeRule("Wednesday"));
 				}
 			}
 		});
@@ -171,6 +174,7 @@ public class TimeRuleViewerActivity extends Activity {
 					FilterMenuActivity.times.add(new TimeRule("Thursday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
+					FilterMenuActivity.times.remove(new TimeRule("Thursday"));
 				}
 			}
 		});
@@ -182,6 +186,7 @@ public class TimeRuleViewerActivity extends Activity {
 					FilterMenuActivity.times.add(new TimeRule("Friday"));
 				} else {		
 					((CheckBox) weekdays).setChecked(false);
+					FilterMenuActivity.times.remove(new TimeRule("Friday"));
 				}
 			}
 		});
@@ -193,6 +198,7 @@ public class TimeRuleViewerActivity extends Activity {
 					FilterMenuActivity.times.add(new TimeRule("Saturday"));
 				} else {		
 					((CheckBox) weekends).setChecked(false);
+					FilterMenuActivity.times.remove(new TimeRule("Saturday"));
 				}
 			}
 		});
@@ -204,6 +210,7 @@ public class TimeRuleViewerActivity extends Activity {
 					FilterMenuActivity.times.add(new TimeRule("Sunday"));
 				} else {		
 					((CheckBox) weekends).setChecked(false);
+					FilterMenuActivity.times.remove(new TimeRule("Sunday"));
 				}
 			}
 		});
@@ -238,14 +245,18 @@ public class TimeRuleViewerActivity extends Activity {
 	        {
 	         public void onClick(View v)
 	            {
-
+	        	 	String currentName = FilterMenuActivity.currentFilterName;
 	        	 	boolean filterNameValid = true;
-	        	 	
+	        	 	boolean editingExistingFilter = false;
 	        	 	// checks if filter name specified is already assigned to an existing
 	        	 	// filter
 	        	 	for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
 	        	 		Filter current = HomeMenuActivity.testFilterList.get(i);
-	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName)){
+	        	 		if (FilterMenuActivity.initialFilterName.equals(current.getName())){
+	        	 			editingExistingFilter = true;
+	        	 		}
+	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName) 
+	        	 				&& !(editingExistingFilter)){
 	        	 			filterNameValid = false;
 	        	 		}
 	        	 	}
@@ -257,14 +268,20 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 	}
 	        	 	
 	        	 	// filter name is valid
-	        	 	if(filterNameValid){
-	        	 	//	Filter filter = new Filter(FilterMenuActivity.filterName);
-
+	        	 	if(filterNameValid){		
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
-	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
-	        	 	//	FilterMenuActivity.filterName = "";
+	        	 		if(editingExistingFilter){
+	        	 			for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){  
+	       	   	  				Filter current = HomeMenuActivity.testFilterList.get(i);
+	       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)){
+	       	   	  					HomeMenuActivity.testFilterList.remove(i);
+	       	   	  					i--;
+	       	   	  				}
+	       	   	  			}
+	        	 		}
+	        	 		HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);	
 	        	 		finish();
 	        	 	} else {
 	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
