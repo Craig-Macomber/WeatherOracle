@@ -38,7 +38,7 @@ public final class Filter implements Serializable {
 	/**
 	 * The Location of this FIlter
 	 */
-	private Location loc;
+	private Location loc = new Location(47.609, -122.3331);
 
 	/**
 	 * Default Constructor

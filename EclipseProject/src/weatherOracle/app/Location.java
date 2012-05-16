@@ -1,5 +1,7 @@
 package weatherOracle.app;
 
+import java.io.Serializable;
+
 import android.content.Context;
 import android.location.LocationManager;
 
@@ -9,7 +11,7 @@ import android.location.LocationManager;
  * Has a proper hash and equals so it can be use in set and map keys.
  *
  */
-public class Location {
+public class Location implements Serializable{
 	public double lat;
 	public double lon;
 
