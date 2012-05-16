@@ -11,7 +11,7 @@ public class TimeRule implements Rule {
 	/**
 	 * All possible days for this TimeRule
 	 */
-	public static final String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+	public static final String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 	
 	/**
 	 * The current day for this TimeRule
@@ -45,7 +45,11 @@ public class TimeRule implements Rule {
 	 */	
 	public Boolean apply(ForecastData data) {
 		int dayOfWeek = data.getDayOfWeek();
-		return day.equals(days[dayOfWeek - 1]);
+		if (dayOfWeek == 1) {
+			return day.equals(days[6]);
+		} else {
+			return day.equals(days[dayOfWeek - 2]);
+		}
 	}
 
 	@Override
