@@ -6,6 +6,7 @@ import java.util.List;
 import weatherOracle.app.Location;
 import weatherOracle.control.MainControl;
 import weatherOracle.filter.Filter;
+import weatherOracle.filter.FilterStore;
 import weatherOracle.notification.NotificationStore;
 import android.app.Activity;
 import android.app.TabActivity;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeMenuActivity extends TabActivity {
-	static List<Filter> filterList = new LinkedList<Filter>();
+	static List<Filter> filterList;
 	
 	public static Context mainContext;
 	
@@ -33,7 +34,7 @@ public class HomeMenuActivity extends TabActivity {
         mainContext = this.getApplicationContext();
         
         NotificationStore.initializeNotificationStore();
-        
+        filterList = new LinkedList<Filter>(FilterStore.getFilters().first);
         MainControl.start();
         
         Resources res = getResources(); // Resource object to get Drawables

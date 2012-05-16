@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class FilterOptionsActivity extends Activity {
 	
@@ -111,6 +112,7 @@ public class FilterOptionsActivity extends Activity {
 	       	   	  				}
 	       	   	  			}
 	        	 		}
+	        	 		findViewById(R.id.notification_activity_linear_layout).invalidate();
 	        	 		HomeMenuActivity.filterList.add(FilterMenuActivity.filter);	
 	        	 		finish();
 	        	 	} else {
