@@ -62,6 +62,6 @@ public class Notification {
 	}
 	public static Notification make(List<ForecastData> dataList, Filter filter) {
 		
-		return new Notification("New Notification",dataList,filter);
+		return new Notification(filter.getName(),dataList,filter);
 	}
 }
