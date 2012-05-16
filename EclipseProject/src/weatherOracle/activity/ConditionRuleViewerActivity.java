@@ -80,7 +80,6 @@ public class ConditionRuleViewerActivity extends Activity {
     	  	final int index = i;
    	  	 	deleteButton.setOnClickListener(new View.OnClickListener() {
    	  	 		public void onClick(View v) {
-   	  	 			System.out.println(FilterMenuActivity.conditions.size());
    	  	 			FilterMenuActivity.conditions.remove(conditionList.get(index));
    	  	 			mainLayout.removeAllViews();
    	  	 			displayConditionRules();

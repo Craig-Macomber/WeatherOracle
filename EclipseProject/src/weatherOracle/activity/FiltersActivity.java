@@ -102,6 +102,7 @@ public class FiltersActivity extends Activity {
    	   	  				Filter current = HomeMenuActivity.filterList.get(i);
    	   	  				if(current.getName().equals(filterName)){
    	   	  					HomeMenuActivity.filterList.remove(i);
+   	   	  					FilterStore.setFilters(HomeMenuActivity.filterList);
    	   	  					i--;
    	   	  				}
    	   	  			}
