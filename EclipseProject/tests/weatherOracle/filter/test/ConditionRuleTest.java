@@ -45,7 +45,7 @@ public class ConditionRuleTest extends AndroidTestCase {
 	
 	public void testApply() {
 		// Forecast data with 35 temperature and 37 cloud cover, zero for everything else
-		ForecastData data = new ForecastData(0, null, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
+		ForecastData data = new ForecastData(null, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
 		
 		ConditionRule cR = new ConditionRule(conditions[0], 0, 5);		// Temperature between 0 and 5
 		ConditionRule cR2 = new ConditionRule(conditions[4], 35, 45);	// Cloud Cover between 35 and 45  

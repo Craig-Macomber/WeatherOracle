@@ -1,6 +1,6 @@
 package weatherOracle.forecastData;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * A single data-point of forecast data for the forecast at a given time and location
@@ -30,12 +30,10 @@ public class ForecastData {
 	private Thunder thunder;
 	
 	// Time
-	private int hour;
-	private Date day;
+	private Calendar dateTime;
 	
 	public ForecastData(
-			int hour,
-			Date day,
+			Calendar dateTime,
 			double temperature_hourly,
 			double temperature_dewPoint,
 			double probabilityOfPrecipitation,
@@ -47,8 +45,7 @@ public class ForecastData {
 			double hourly_qpf,
 			Rain rain,
 			Thunder thunder){
-		this.day=day;
-		this.hour=hour;
+		this.dateTime=dateTime;
 		this.temperature_hourly=temperature_hourly;
 		this.temperature_dewPoint=temperature_dewPoint;
 		this.probabilityOfPrecipitation=probabilityOfPrecipitation;
@@ -83,6 +80,6 @@ public class ForecastData {
 	}
 	
 	public int getDayOfWeek() {
-		return day.getDay();
+		return dateTime.get(Calendar.DAY_OF_WEEK);
 	}
 }

@@ -71,7 +71,7 @@ public class FilterTest extends AndroidTestCase {
 	
 	public void testApply() {
 		// Forecast data with 35 temperature and 37 cloud cover, zero for everything else
-		ForecastData data = new ForecastData(0, null, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
+		ForecastData data = new ForecastData(null, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
 		
 		Filter shouldPass = new Filter("pass");
 		Filter shouldFail = new Filter("fail");

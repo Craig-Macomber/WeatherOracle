@@ -7,7 +7,9 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -95,48 +97,46 @@ public class NoaaReader implements Reader {
 			
 			
 			Node startTimeNode=times.item(0);
-			String startTimeString=startTimeNode.getTextContent();
-			DateFormat df=DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-			Date startDay=null;
 			
-			try {
-				startDay=df.parse(startTimeString); // TODO : Does not work
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int startHour=0;//startDay.getHours(); // TODO : Not done
+			// get time as string like: 2012-05-15T21:00:00-07:00
+			String startTimeString=startTimeNode.getTextContent();
+			String[] timeParts=startTimeString.split("[-T:]");
+			
+			GregorianCalendar dateTime=new GregorianCalendar();
+			int year=Integer.parseInt(timeParts[0]);
+			int month=Integer.parseInt(timeParts[1]);
+			int day=Integer.parseInt(timeParts[2]);
+			int hourOfDay=Integer.parseInt(timeParts[3]);
+			dateTime.set(year, month, day, hourOfDay, 0);
+
+		
 			
 			List<ForecastData> dataList = new ArrayList<ForecastData>(count);
 			
 			NodeList params=dom.getElementsByTagName("parameters").item(0).getChildNodes();
 			
-			Node[] doubleSources=new Node[9];
-			for (int k=0;k<doubleSources.length;k++){ 
+			int colCount= 9;
+			double[][] doubles=new double[count][colCount];
+			for (int k=0;k<colCount;k++){ 
 				// WTF with this indexing
-				doubleSources[k]=params.item(k*2+1).getFirstChild();
+				Node n=params.item(k*2+1).getFirstChild();
+				for (int i=0;i<count;i++){
+					String val=n.getTextContent();
+					n=n.getNextSibling();
+					if (val==""){
+						doubles[i][k]=0;
+					} else {
+						doubles[i][k]=Double.parseDouble(val);
+					}
+				}
 			}
 			
 			for (int i=0;i<count;i++){
-				double[] d=new double[9];
-				for (int k=0;k<d.length;k++){
-					String val=doubleSources[k].getTextContent();
-					if (val==""){
-						d[k]=0;
-					} else {
-						d[k]=Double.parseDouble(val);
-					}
-					doubleSources[k]=doubleSources[k].getNextSibling();
-				}
-				
-				Date day=null;
-				int hour=(startHour+i)%24;
+				double[] d=doubles[i];
 				ForecastData.Rain rain=ForecastData.Rain.NONE; // TODO
 				ForecastData.Thunder thunder=ForecastData.Thunder.NONE; // TODO
-				
 				ForecastData f=new ForecastData(
-						hour,
-						day,
+						(Calendar) dateTime.clone(),
 						d[0],
 						d[1],
 						d[2],
@@ -150,6 +150,7 @@ public class NoaaReader implements Reader {
 						thunder
 				);
 				dataList.add(f);
+				dateTime.add(Calendar.HOUR, 1);
 			}
 			
 			//Element times=dom.getElementById("time-layout");

@@ -17,9 +17,10 @@ public class NoaaReaderTest extends AndroidTestCase {
 		r.addLoc(loc);
 		Reader reader=new NoaaReader();
 		Map<Location, List<ForecastData>> result=reader.getData(r);
+		assertNotNull(result);
 		assertTrue(result.containsKey(loc));
-		assertTrue(result.get(loc)!=null);
+		assertNotNull(result.get(loc));
 		assertTrue(result.get(loc).size()>100);
-		assertTrue(result.get(loc).get(0)!=null);
+		assertNotNull(result.get(loc).get(0));
 	}
 }
