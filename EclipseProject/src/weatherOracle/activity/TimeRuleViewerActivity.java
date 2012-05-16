@@ -205,7 +205,7 @@ public class TimeRuleViewerActivity extends Activity {
 	    
 	    sunday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (((CheckBox)saturday).isChecked()) {
+				if (((CheckBox)sunday).isChecked()) {
 					weekendCheck();
 					FilterMenuActivity.times.add(new TimeRule("Sunday"));
 				} else {		
