@@ -117,4 +117,80 @@ public class FilterTest extends AndroidTestCase {
 		assertTrue(first.equals(sameNameCopy));
 		assertFalse(first.equals(sameNameEmpty));
 	}
+	
+	public void testAddAndRemoveRules() {
+		Filter f1 = new Filter("F1");
+		Filter f2 = new Filter("F2");
+		Filter empty = new Filter("Empty");
+		
+		Set<TimeRule> TimeRuleSet = new TreeSet<TimeRule>();
+		
+		for(int i = 0; i < 7; i++) {
+			TimeRuleSet.add(new TimeRule(TimeRule.days[i]));
+		}
+		
+		f1.addSetOfTimeRules(TimeRuleSet);
+		f2.addSetOfTimeRules(TimeRuleSet);
+		
+		assertTrue(f1.getTimeRules().equals(f2.getTimeRules()));
+		
+		f2.removeTimeRules();
+		
+		assertFalse(f1.getTimeRules().equals(f2.getTimeRules()));
+		assertTrue(f2.getTimeRules().equals(empty.getTimeRules()));
+		
+		f2.addSetOfTimeRules(TimeRuleSet);
+		
+		assertTrue(f1.getTimeRules().equals(f2.getTimeRules()));
+		assertFalse(f2.getTimeRules().equals(empty.getTimeRules()));
+		
+		
+		ConditionRule temperature = new ConditionRule(ConditionRule.conditions[0], 0, 5);
+		ConditionRule dewpoint = new ConditionRule(ConditionRule.conditions[1], 0, 5);
+		ConditionRule cloudcover = new ConditionRule(ConditionRule.conditions[4], 0, 5);
+		
+		Set<ConditionRule> ConditionRuleSet = new TreeSet<ConditionRule>();
+		ConditionRuleSet.add(temperature);
+		ConditionRuleSet.add(dewpoint);
+		ConditionRuleSet.add(cloudcover);
+		
+		Filter f3 = new Filter("F3");
+		Filter f4 = new Filter("F4");
+		
+		f3.addSetOfConditionRules(ConditionRuleSet);
+		f4.addSetOfConditionRules(ConditionRuleSet);
+		
+		assertTrue(f3.getConditionRules().equals(f4.getConditionRules()));
+		
+		f4.removeConditionRules();
+		
+		assertFalse(f3.getConditionRules().equals(f4.getConditionRules()));
+		assertTrue(f4.getConditionRules().equals(empty.getConditionRules()));
+		
+		f4.addSetOfConditionRules(ConditionRuleSet);
+		
+		assertTrue(f3.getConditionRules().equals(f4.getConditionRules()));
+		assertFalse(f4.getConditionRules().equals(empty.getConditionRules()));
+		
+		f1 = new Filter("F1");
+		
+		f1.addSetOfTimeRules(TimeRuleSet);
+		f1.addSetOfConditionRules(ConditionRuleSet);
+		f2.addSetOfTimeRules(TimeRuleSet);
+		f2.addSetOfConditionRules(ConditionRuleSet);
+		
+		assertTrue(f1.getConditionRules().equals(f2.getConditionRules()));
+		f1.removeConditionRules();
+		assertFalse(f1.getConditionRules().equals(f2.getConditionRules()));
+		assertTrue(f1.getTimeRules().equals(f2.getTimeRules()));
+		f1.addSetOfConditionRules(ConditionRuleSet);
+		assertTrue(f1.getConditionRules().equals(f2.getConditionRules()));
+		
+		assertTrue(f1.getTimeRules().equals(f2.getTimeRules()));
+		f1.removeTimeRules();
+		assertFalse(f1.getTimeRules().equals(f2.getTimeRules()));
+		assertTrue(f1.getConditionRules().equals(f2.getConditionRules()));
+		f1.addSetOfTimeRules(TimeRuleSet);
+		assertTrue(f1.getTimeRules().equals(f2.getTimeRules()));
+	}
 }
