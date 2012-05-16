@@ -21,21 +21,28 @@ public class NotificationActivity extends Activity {
 	 *  List of Notifications to be displayed by this activity
 	 */
 	List<Notification> notificationList;
+	LinearLayout mainView;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
-        
+        mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
         populateNotificationList();
         displayNotifications();	
         
     }
 
+    public void onResume() {
+    	super.onResume();
+    	mainView.removeAllViews();
+    	populateNotificationList();
+        displayNotifications();	
+    }
+    
     public void onWindowFocusChanged(boolean hasFocus){
     	super.onWindowFocusChanged(hasFocus);
-    	final LinearLayout mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
     	if(hasFocus) {
  	    	mainView.removeAllViews();
  	    	populateNotificationList();
