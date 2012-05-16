@@ -33,10 +33,23 @@ public class NotificationActivity extends Activity {
         
     }
 
+    public void onWindowFocusChanged(boolean hasFocus){
+    	super.onWindowFocusChanged(hasFocus);
+    	final LinearLayout mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
+    	if(hasFocus) {
+ 	    	mainView.removeAllViews();
+ 	    	populateNotificationList();
+ 	        displayNotifications();
+ 		} else {
+ 			mainView.removeAllViews();
+ 		}
+ 	}
+    
     /**
      * Populate and update the notificationList Field 
      */
 	private void populateNotificationList() {
+		
 		notificationList = NotificationStore.getNotifications();
 	}
 

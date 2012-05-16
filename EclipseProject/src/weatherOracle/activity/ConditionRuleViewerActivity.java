@@ -21,6 +21,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import weatherOracle.filter.*;
+import weatherOracle.notification.NotificationStore;
 
 public class ConditionRuleViewerActivity extends Activity {
 
@@ -129,8 +130,8 @@ public class ConditionRuleViewerActivity extends Activity {
 				boolean editingExistingFilter = false;
 				// checks if filter name specified is already assigned to an existing
 				// filter
-				for (int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
-					Filter current = HomeMenuActivity.testFilterList.get(i);
+				for (int i = 0; i < HomeMenuActivity.filterList.size(); i++){
+					Filter current = HomeMenuActivity.filterList.get(i);
 					if (FilterMenuActivity.initialFilterName.equals(current.getName())){
 						editingExistingFilter = true;
 					}
@@ -153,16 +154,17 @@ public class ConditionRuleViewerActivity extends Activity {
 					FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 					FilterMenuActivity.filter.removeConditionRules();
         	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
+        	 		
 					if(editingExistingFilter){
-						for(int i = 0; i < HomeMenuActivity.testFilterList.size(); i++){
-							Filter current = HomeMenuActivity.testFilterList.get(i);
+						for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){
+							Filter current = HomeMenuActivity.filterList.get(i);
 							if(current.getName().equals(FilterMenuActivity.initialFilterName)){
-								HomeMenuActivity.testFilterList.remove(i);
+								HomeMenuActivity.filterList.remove(i);
 								i--;
 							}
 						}
 					}
-					HomeMenuActivity.testFilterList.add(FilterMenuActivity.filter);
+					HomeMenuActivity.filterList.add(FilterMenuActivity.filter);
 					finish();
 				} else {
 					FilterMenuActivity.tabHost.setCurrentTab(0);
