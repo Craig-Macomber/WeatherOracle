@@ -45,7 +45,7 @@ public class TimeRule implements Rule {
 	 */	
 	public Boolean apply(ForecastData data) {
 		int dayOfWeek = data.getDayOfWeek();
-		return day.equals(days[dayOfWeek]);
+		return day.equals(days[dayOfWeek - 1]);
 	}
 
 	@Override
