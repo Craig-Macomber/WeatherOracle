@@ -112,7 +112,6 @@ public class FilterOptionsActivity extends Activity {
 	       	   	  				}
 	       	   	  			}
 	        	 		}
-	        	 		findViewById(R.id.notification_activity_linear_layout).invalidate();
 	        	 		HomeMenuActivity.filterList.add(FilterMenuActivity.filter);	
 	        	 		finish();
 	        	 	} else {
