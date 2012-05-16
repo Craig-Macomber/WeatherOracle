@@ -2,6 +2,7 @@ package weatherOracle.filter.test;
 
 import java.util.*;
 
+import weatherOracle.app.Location;
 import weatherOracle.filter.*;
 
 import android.test.AndroidTestCase;
@@ -48,7 +49,7 @@ public class FilterStoreTest extends AndroidTestCase {
 		// Retrieve again
 		Pair<List<Filter>, Integer> secondFilters = FilterStore.getFilters();
 		
-		assertEquals(firstVersion + 1, secondFilters.second.intValue());	// Second version number should be larger 
+		assertTrue(firstVersion < secondFilters.second.intValue());	// Second version number should be larger 
 		
 		assertEquals(2, secondFilters.first.size());		// Two Filters in the List
 		Filter firstNew = secondFilters.first.get(0);
@@ -63,5 +64,25 @@ public class FilterStoreTest extends AndroidTestCase {
 			
 		}
 		assertTrue(pairMatch);
+	}
+	
+	public void testFilterStoreLocations() {
+		FilterStore.ctx = getContext();
+		
+		// Create a list of Filters
+		List<Filter> filters = new LinkedList<Filter>();
+		Filter f = new Filter("firstFilter");
+		f.setLocation(new Location(123,123));
+		filters.add(f);
+		
+		// Store Filters in persistent memory
+		FilterStore.setFilters(filters);
+		
+		// Retrieve from persistent memory
+		Pair<List<Filter>, Integer> firstFilters = FilterStore.getFilters();
+		
+		assertEquals(1, firstFilters.first.size());			// Only one Filter in the list
+		Filter first = firstFilters.first.get(0);
+		assertEquals(f.getLocation(), first.getLocation());			// 3 Rules in the first Filter
 	}
 }

@@ -73,6 +73,14 @@ public final class Filter implements Serializable {
 	}
 	
 	/**
+	 * Sets the location of this filter
+	 * @param loc the new location
+	 */
+	public void setLocation(Location loc) {
+		this.loc=loc;
+	}
+	
+	/**
 	 * Returns the name of this Filter
 	 * @return the name associated with this filter
 	 */
