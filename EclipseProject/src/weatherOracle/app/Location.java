@@ -6,7 +6,7 @@ import android.content.Context;
 import android.location.LocationManager;
 
 /**
- * Stores an location by lat and lon.
+ * Stores a serializable location by latitude and longitude.
  * <p>
  * Has a proper hash and equals so it can be use in set and map keys.
  *
@@ -19,7 +19,7 @@ public class Location implements Serializable{
 	 * 
 	 * @param lat=latitude of new Location
 	 * @param lon=longitude of new Location
-	 * Constructor creates a new Location object from a specified lat/long location
+	 * Constructor creates a new Location object from a specified lat/lon location
 	 */
 	public Location(double lat, double lon) {
 		this.lat = lat;
@@ -58,7 +58,7 @@ public class Location implements Serializable{
 	
 	/**
 	 * 
-	 * @return the user's current Lat/Long location as recorded by the phone
+	 * @return the user's current Lat/Lon location as recorded by the phone
 	 */
 	public static Location getCurrentLocation()
 	{
