@@ -32,6 +32,10 @@ public class ForecastData {
 	// Time
 	private Calendar dateTime;
 	
+	/**
+	 * 
+	 * Constructor for a new ForecastData object, takes a billion parameters and stores everything in the structure
+	 */
 	public ForecastData(
 			Calendar dateTime,
 			double temperature_hourly,
@@ -59,26 +63,50 @@ public class ForecastData {
 		this.thunder=thunder;
 	}
 	
+	/**
+	 * 
+	 * @return the current temperature
+	 */
 	public double getTemperature() {
 		return this.temperature_hourly;
 	}
 	
+	/**
+	 * 
+	 * @return the current dew point
+	 */
 	public double getDewpoint() {
 		return this.temperature_dewPoint;
 	}
 	
+	/**
+	 * 
+	 * @return the probability of precipitation
+	 */
 	public double getProbPrecipitation() {
 		return this.probabilityOfPrecipitation;
 	}
 	
+	/**
+	 * 
+	 * @return the amount of cloud cover
+	 */
 	public double getCloudCover() {
 		return this.cloudAmount;
 	}
 	
+	/**
+	 * 
+	 * @return the amount of relative humidity
+	 */
 	public double getHumidity() {
 		return this.humidity_relative;
 	}
 	
+	/**
+	 * 
+	 * @return the day of the week
+	 */
 	public int getDayOfWeek() {
 		return dateTime.get(Calendar.DAY_OF_WEEK);
 	}
