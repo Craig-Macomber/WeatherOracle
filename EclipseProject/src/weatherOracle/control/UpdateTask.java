@@ -47,7 +47,8 @@ class UpdateTask implements Runnable {
 					passed.add(d);
 				}
 			}
-			notifications.add(Notification.make(passed, f));
+			if(!passed.isEmpty())
+				notifications.add(Notification.make(passed, f));
 		}
 
 		NotificationStore.update(notifications, filterVersionNumber);

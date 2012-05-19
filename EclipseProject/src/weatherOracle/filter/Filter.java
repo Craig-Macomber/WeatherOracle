@@ -215,7 +215,7 @@ public final class Filter implements Serializable {
 	 * @return did data pass this filter? true=pass, false=fail
 	 */
 	public boolean apply(ForecastData data) {
-		if (rules.isEmpty()) {
+		if (rules.isEmpty()||rules==null) {
 			// Empty Filters should not trigger a notification
 			return false;
 		} else {
