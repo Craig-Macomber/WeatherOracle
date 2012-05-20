@@ -16,11 +16,11 @@ import weatherOracle.reader.Reader;
 public abstract class MainControl {
 	private static Reader reader = new NoaaReader();
 
-	private static final int NUM_THREADS = 3;
+	private static final int NUM_THREADS = 1;
 	private static final ScheduledExecutorService fScheduler = Executors
 			.newScheduledThreadPool(NUM_THREADS);
 	private static final boolean DONT_INTERRUPT_IF_RUNNING = true;
-	private static final long fDelayBetweenRuns = 10;
+	private static final long fDelayBetweenRuns = 600; // in seconds
 	private static ScheduledFuture<?> updateFuture;
 
 	/**
