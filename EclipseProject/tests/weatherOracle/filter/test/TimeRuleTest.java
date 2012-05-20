@@ -1,9 +1,13 @@
 package weatherOracle.filter.test;
 
-//import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import weatherOracle.filter.ConditionRule;
 import weatherOracle.filter.TimeRule;
+import weatherOracle.forecastData.ForecastData;
+import weatherOracle.forecastData.ForecastData.Rain;
+import weatherOracle.forecastData.ForecastData.Thunder;
 import android.test.AndroidTestCase;
 
 public class TimeRuleTest extends AndroidTestCase {
@@ -40,11 +44,15 @@ public class TimeRuleTest extends AndroidTestCase {
 	}
 	
 	public void testApply() {
-		// Forecast data with 35 temperature and 37 cloud cover, zero for everything else
-		//Date d = new Date();
-		//ForecastData data = new ForecastData(0, d, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
+		// Forecast data with Tuesday
+		Calendar dateTime = new GregorianCalendar();
+		dateTime.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+		ForecastData data = new ForecastData(dateTime, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
 		
-		fail("not implemented yet, Date is deprecated so what do we use?");
+		TimeRule tR = new TimeRule(days[4]);		// Friday
+		TimeRule tR2 = new TimeRule(days[1]);		// Tuesday
+		
+		assertFalse(tR.apply(data));
+		assertTrue(tR2.apply(data));
 	}
-
 }
