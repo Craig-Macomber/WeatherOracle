@@ -222,6 +222,9 @@ public final class Filter implements Serializable {
 			boolean all = op == Op.ALL;
 	
 			boolean match = all;
+			boolean matchConditions = true;
+			int matchTimes = 0;
+			
 			for (Rule r : rules) {
 				boolean m = r.apply(data);
 				if (all) {
@@ -229,8 +232,19 @@ public final class Filter implements Serializable {
 				} else {
 					match |= m;
 				}
+				
+				if (r.getClass() == TimeRule.class) {
+					// TimeRule -> or
+					matchTimes = m ? matchTimes + 1 : matchTimes;
+				} else if (r.getClass() == ConditionRule.class) {
+					// ConditionRule -> and
+					matchConditions &= m;
+				} else {
+					// Bad if we are here, or new kinds of rules to be added later
+				}
 			}
-			return match;
+			return matchConditions && (matchTimes > 0 ? true : false);
+			//return match;
 		}
 	}
 	
