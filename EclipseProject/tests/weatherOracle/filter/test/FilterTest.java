@@ -81,10 +81,12 @@ public class FilterTest extends AndroidTestCase {
 		Filter emptyFilter = new Filter("empty");
 		Filter multipleDays = new Filter("multipleDays");
 		Filter wrongDay = new Filter("wrongDay");
+		Filter noConditions = new Filter("noConditions");
+		Filter noTimes = new Filter("noTimes");
 		
 		ConditionRule cR = new ConditionRule(ConditionRule.conditions[0], 30, 45);		// Temperature 30 -> 45
 		TimeRule tR = new TimeRule(TimeRule.days[0]);			// Monday
-		TimeRule tR1 = new TimeRule(TimeRule.days[1]);			// Tuesday
+		TimeRule tR2 = new TimeRule(TimeRule.days[1]);			// Tuesday
 		ConditionRule cR2 = new ConditionRule(ConditionRule.conditions[4], 35, 45);		// Cloud Cover 35 -> 45
 		ConditionRule bad = new ConditionRule(ConditionRule.conditions[0], 0, 5);		// Temperature 0 -> 5
 		
@@ -94,22 +96,29 @@ public class FilterTest extends AndroidTestCase {
 		
 		shouldFail.addRule(cR2);
 		shouldFail.addRule(bad);
-		shouldFail.addRule(tR1);
+		shouldFail.addRule(tR2);
 		
 		multipleDays.addRule(cR);
 		multipleDays.addRule(tR);
-		multipleDays.addRule(tR1);
+		multipleDays.addRule(tR2);
 		
 		wrongDay.addRule(cR);
 		wrongDay.addRule(cR2);
-		wrongDay.addRule(tR1);
+		wrongDay.addRule(tR2);
+		
+		noConditions.addRule(tR);
+		noConditions.addRule(tR2);
+		
+		noTimes.addRule(cR);
+		noTimes.addRule(cR2);
 		
 		assertTrue(shouldPass.apply(data));
 		assertFalse(emptyFilter.apply(data));
 		assertFalse(shouldFail.apply(data));
 		assertTrue(multipleDays.apply(data));
 		assertFalse(wrongDay.apply(data));
-		
+		assertFalse(noConditions.apply(data));
+		assertFalse(noTimes.apply(data));	
 	}
 	
 	public void testEquals() {
