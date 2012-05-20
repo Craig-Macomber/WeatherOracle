@@ -28,6 +28,8 @@ import android.util.Log;
 
 import weatherOracle.forecastData.ForecastData;
 import weatherOracle.forecastData.ForecastRequirements;
+import weatherOracle.forecastData.ForecastData.Rain;
+import weatherOracle.forecastData.ForecastData.Thunder;
 import weatherOracle.app.Location;
 
 /**
@@ -37,6 +39,62 @@ import weatherOracle.app.Location;
  */
 public class NoaaReader implements Reader {
 	private static final String TAG="*******NoaaReader*******";
+
+	private static final String units[] ={  "Degrees fahrenheit",//temperature_hourly
+											"Degrees fahrenheit",//temperature_dewPoint
+											"Percentage",//probabilityOfPrecipitation
+											"Miles per hour",//windSpeed_sustained
+											"Miles per hour",//windSpeed_gust
+											"Miles per hour",//windSpeed_direction
+											"",//cloudAmount
+											"",//humidity_relative
+											"",//hourly_qpf
+											"",//Rain
+											"",};//Thunder
+	/**
+	 * 
+	 * @param i=index of ForecastData items you need a unit for
+	 * @return a string of the name of the unit used
+	 */
+	public static String getUnit(int i)
+	{
+		//TODO: support unit conversion to metric or whatever
+		return units[i];
+	}
+	
+	/**
+	 * 
+	 * @param condition=the name of the weather condition
+	 * @return a string of the name of the unit used
+	 */
+	public static String getUnit(String condition)
+	{
+		if(condition.equalsIgnoreCase("temperature_hourly"))
+			return units[0];
+		else if(condition.equalsIgnoreCase("temperature_dewPoint"))
+			return units[1];
+		else if(condition.equalsIgnoreCase("probabilityOfPrecipitation"))
+			return units[2];
+		else if(condition.equalsIgnoreCase("windSpeed_sustained"))
+			return units[3];
+		else if(condition.equalsIgnoreCase("windSpeed_gust"))
+			return units[4];
+		else if(condition.equalsIgnoreCase("windSpeed_direction"))
+			return units[5];
+		else if(condition.equalsIgnoreCase("cloudAmount"))
+			return units[6];
+		else if(condition.equalsIgnoreCase("humidity_relative"))
+			return units[7];
+		else if(condition.equalsIgnoreCase("hourly_qpf"))
+			return units[8];
+		else if(condition.equalsIgnoreCase("Rain"))
+			return units[9];
+		else if(condition.equalsIgnoreCase("Thunder"))
+			return units[10];
+		else
+			return null;
+	}
+	
 	public Map<Location, List<ForecastData>> getData(ForecastRequirements r) {
 		Log.i(TAG,"getData start");
 		
