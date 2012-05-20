@@ -215,31 +215,28 @@ public final class Filter implements Serializable {
 	 * @return did data pass this filter? true=pass, false=fail
 	 */
 	public boolean apply(ForecastData data) {
-		if (rules.isEmpty()||rules==null) {
-			// Empty Filters should not trigger a notification
+		if (rules == null || getConditionRules().isEmpty() || getTimeRules().isEmpty()) {
+			// Filters with no ConditionRules or TimeRules (also, no Rules at all) should not pass
 			return false;
 		} else {
-			boolean all = op == Op.ALL;
-
+			// Atleast one ConditionRule and atleast one TimeRule
 			boolean matchConditions = true;
-			int matchTimes = 0;
-			int countConditions = 0;
+			boolean matchTimes = false;
 			
 			for (Rule r : rules) {
-				boolean m = r.apply(data);
+				boolean ruleApply = r.apply(data);
 				
 				if (r.getClass() == TimeRule.class) {
 					// TimeRule -> or
-					matchTimes = m ? matchTimes + 1 : matchTimes;
+					matchTimes |= ruleApply;
 				} else if (r.getClass() == ConditionRule.class) {
 					// ConditionRule -> and
-					countConditions++;
-					matchConditions &= m;
+					matchConditions &= ruleApply;
 				} else {
 					// Bad if we are here, or new kinds of rules to be added later
 				}
 			}
-			return (matchConditions && countConditions > 0) && (matchTimes > 0 ? true : false);
+			return matchConditions && matchTimes;
 		}
 	}
 	
