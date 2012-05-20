@@ -223,6 +223,7 @@ public final class Filter implements Serializable {
 
 			boolean matchConditions = true;
 			int matchTimes = 0;
+			int countConditions = 0;
 			
 			for (Rule r : rules) {
 				boolean m = r.apply(data);
@@ -232,12 +233,13 @@ public final class Filter implements Serializable {
 					matchTimes = m ? matchTimes + 1 : matchTimes;
 				} else if (r.getClass() == ConditionRule.class) {
 					// ConditionRule -> and
+					countConditions++;
 					matchConditions &= m;
 				} else {
 					// Bad if we are here, or new kinds of rules to be added later
 				}
 			}
-			return matchConditions && (matchTimes > 0 ? true : false);
+			return (matchConditions && countConditions > 0) && (matchTimes > 0 ? true : false);
 		}
 	}
 	
