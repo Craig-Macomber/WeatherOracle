@@ -10,9 +10,7 @@ public class ToolsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    TextView textview = new TextView(this);
-        textview.setText("Weather Oracle Version 0.70 :)");
-        setContentView(textview);
+        setContentView(R.layout.tools_activity);
 
 	    // TODO Auto-generated method stub
 	}

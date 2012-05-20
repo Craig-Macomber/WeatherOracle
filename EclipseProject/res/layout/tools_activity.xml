@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="@drawable/clouds" >
     
+    
+	<LinearLayout
+        android:id="@+id/filter_name_linear_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical"
+        android:layout_below="@+id/save_and_cancel_bar"
+        android:layout_margin="4dp" 
+        android:background="@drawable/main_view_element">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button4"
+            android:text="Press the button below to set all filters to be valid for your current location:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <Button
+            android:id="@+id/save_filter_button_tools"
+            android:layout_width="150px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-4dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Set Location" />
+       
+    </LinearLayout>
+</RelativeLayout> 
