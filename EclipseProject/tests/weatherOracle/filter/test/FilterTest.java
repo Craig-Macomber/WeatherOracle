@@ -71,26 +71,45 @@ public class FilterTest extends AndroidTestCase {
 	
 	public void testApply() {
 		// Forecast data with 35 temperature and 37 cloud cover, zero for everything else
-		ForecastData data = new ForecastData(null, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
+		Calendar dateTime = new GregorianCalendar();
+		dateTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);		// Monday
+		System.out.println(dateTime.toString());
+		ForecastData data = new ForecastData(dateTime, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
 		
 		Filter shouldPass = new Filter("pass");
 		Filter shouldFail = new Filter("fail");
 		Filter emptyFilter = new Filter("empty");
+		Filter multipleDays = new Filter("multipleDays");
+		Filter wrongDay = new Filter("wrongDay");
 		
 		ConditionRule cR = new ConditionRule(ConditionRule.conditions[0], 30, 45);		// Temperature 30 -> 45
-		//TimeRule tR = new TimeRule(TimeRule.days[0]);
+		TimeRule tR = new TimeRule(TimeRule.days[0]);			// Monday
+		TimeRule tR1 = new TimeRule(TimeRule.days[1]);			// Tuesday
 		ConditionRule cR2 = new ConditionRule(ConditionRule.conditions[4], 35, 45);		// Cloud Cover 35 -> 45
 		ConditionRule bad = new ConditionRule(ConditionRule.conditions[0], 0, 5);		// Temperature 0 -> 5
 		
 		shouldPass.addRule(cR);
 		shouldPass.addRule(cR2);
+		shouldPass.addRule(tR);
 		
 		shouldFail.addRule(cR2);
 		shouldFail.addRule(bad);
+		shouldFail.addRule(tR1);
+		
+		multipleDays.addRule(cR);
+		multipleDays.addRule(tR);
+		multipleDays.addRule(tR1);
+		
+		wrongDay.addRule(cR);
+		wrongDay.addRule(cR2);
+		wrongDay.addRule(tR1);
 		
 		assertTrue(shouldPass.apply(data));
 		assertFalse(emptyFilter.apply(data));
 		assertFalse(shouldFail.apply(data));
+		assertTrue(multipleDays.apply(data));
+		assertFalse(wrongDay.apply(data));
+		
 	}
 	
 	public void testEquals() {
