@@ -220,18 +220,12 @@ public final class Filter implements Serializable {
 			return false;
 		} else {
 			boolean all = op == Op.ALL;
-	
-			boolean match = all;
+
 			boolean matchConditions = true;
 			int matchTimes = 0;
 			
 			for (Rule r : rules) {
 				boolean m = r.apply(data);
-				if (all) {
-					match &= m;
-				} else {
-					match |= m;
-				}
 				
 				if (r.getClass() == TimeRule.class) {
 					// TimeRule -> or
@@ -244,7 +238,6 @@ public final class Filter implements Serializable {
 				}
 			}
 			return matchConditions && (matchTimes > 0 ? true : false);
-			//return match;
 		}
 	}
 	
