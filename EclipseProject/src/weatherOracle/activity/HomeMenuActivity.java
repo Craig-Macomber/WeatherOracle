@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 public class HomeMenuActivity extends TabActivity {
 	static List<Filter> filterList;
-	
+	public static LocationManager lm;
 	public static Context mainContext;
 	
     /** Called when the activity is first created. */
@@ -69,16 +69,12 @@ public class HomeMenuActivity extends TabActivity {
         tabHost.setCurrentTab(0);
         
         
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener ll = new mylocationlistener();
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, ll);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 9, ll);
     }
     
-    public void onResume(Bundle savedInstanceBundle){
-    	
-    }
-    
-   
     private class mylocationlistener implements LocationListener {
         
         public void onLocationChanged(android.location.Location location) {
@@ -95,7 +91,5 @@ public class HomeMenuActivity extends TabActivity {
         
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
-    }
-    
-    
+    }   
 }
