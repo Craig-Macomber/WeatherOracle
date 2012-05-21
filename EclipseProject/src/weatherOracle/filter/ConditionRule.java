@@ -1,5 +1,8 @@
 package weatherOracle.filter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.util.Pair;
 import weatherOracle.forecastData.ForecastData;
 
@@ -16,6 +19,23 @@ public class ConditionRule implements Rule {
 	public static final String[] conditions = new String[]{"Temperature", "Dewpoint", "Heat Index", "Wind", "Cloud Cover",
 													"Precipitation Percent", "Humidity", "Thunder", "Rain"};
 
+	/**
+	 * The units for the different weather conditions
+	 */
+	public static final Map<String, String> units = new HashMap<String, String>() {
+		
+		private static final long serialVersionUID = -8447558203204357059L;
+		{
+		put("Temperature", "\u00b0F");
+		put("Dewpoint", "\u00b0F");
+		put("Heat Index", "u00b0F");
+		put("Wind","mph");
+		put("Cloud Cover", "%");
+		put("Precipitation Percent", "%");
+		put("Humidity", "%");
+		}
+	};
+	
 	/**
 	 * The condition of this ConditionRule
 	 */
@@ -106,6 +126,14 @@ public class ConditionRule implements Rule {
 			// TODO
 		} 
 		return Boolean.FALSE;
+	}
+	
+	/**
+	 * Checks if this ConditionRule is satisfied by the ForecastData
+	 * @return the unit type for the given weather condition
+	 */
+	public static String getUnits(String type) {
+		return units.get(type);
 	}
 	
 	// Generated hashcode method
