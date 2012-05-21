@@ -28,7 +28,7 @@ public class ConditionRule implements Rule {
 		{
 		put("Temperature", "\u00b0F");
 		put("Dewpoint", "\u00b0F");
-		put("Heat Index", "u00b0F");
+		put("Heat Index", "\u00b0F");
 		put("Wind","mph");
 		put("Cloud Cover", "%");
 		put("Precipitation Percent", "%");
