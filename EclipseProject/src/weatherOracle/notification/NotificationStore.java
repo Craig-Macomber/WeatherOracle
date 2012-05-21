@@ -14,17 +14,17 @@ public abstract class NotificationStore {
 	private static int filterVersionNumber = -1;
 
 	// unmodifiableList of notifications
-	private static List<Notification> notifications; 
-	
+	private static List<Notification> notifications;
+
 	/**
-	 * initializes the NotificationStore to have one element in it with the name "no data yet"
+	 * initializes the NotificationStore to have one element in it with the name
+	 * "no data yet"
 	 */
-	public static void initializeNotificationStore()
-	{
-		notifications=new ArrayList<Notification>();
-		notifications.add(Notification.make("no data yet",null,null));
+	public static void initializeNotificationStore() {
+		notifications = new ArrayList<Notification>();
+		notifications.add(Notification.makeNoData());
 	}
-	
+
 	/**
 	 * update the notifications, if the filterVersionNumber is the newest we
 	 * have seen. If the filterVersionNumber is lower than the highest seen, the
@@ -43,8 +43,9 @@ public abstract class NotificationStore {
 			// get ourself a copy of the passed list, and prevent it from being
 			// modified.
 			// Assumes the contained Notifications themselves won't be edited!
-			NotificationStore.notifications = Collections
-					.unmodifiableList(new ArrayList<Notification>(notifications));
+			List<Notification> newNotifications=new ArrayList<Notification>(notifications);
+			Collections.sort(newNotifications);
+			NotificationStore.notifications = Collections.unmodifiableList(newNotifications);
 			updated();
 		}
 	}

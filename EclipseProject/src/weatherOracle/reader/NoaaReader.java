@@ -165,8 +165,9 @@ public class NoaaReader implements Reader {
 			int month=Integer.parseInt(timeParts[1]);
 			int day=Integer.parseInt(timeParts[2]);
 			int hourOfDay=Integer.parseInt(timeParts[3]);
-			dateTime.set(year, month, day, hourOfDay, 0);
-
+			dateTime.clear();
+			dateTime.set(year, month-1, day, hourOfDay, 0);
+			
 		
 			
 			List<ForecastData> dataList = new ArrayList<ForecastData>(count);

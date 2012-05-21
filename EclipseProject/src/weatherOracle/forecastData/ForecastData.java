@@ -1,6 +1,8 @@
 package weatherOracle.forecastData;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A single data-point of forecast data for the forecast at a given time and location
@@ -109,5 +111,17 @@ public class ForecastData {
 	 */
 	public int getDayOfWeek() {
 		return dateTime.get(Calendar.DAY_OF_WEEK);
+	}
+	
+	public long getMillisTime(){
+		return dateTime.getTimeInMillis();
+	}
+	
+	public String getTimeString(){
+		SimpleDateFormat f=new SimpleDateFormat("EEE MM/dd hh a");
+		Date d=dateTime.getTime();
+		String s=d.toLocaleString();;
+		s=f.format(d);
+		return s;
 	}
 }
