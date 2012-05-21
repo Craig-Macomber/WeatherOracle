@@ -29,8 +29,8 @@ public class ConditionAdderActivity extends Activity {
 
     LinearLayout mainLayout;
     String condition;
-    int min=0;
-    int max=0;
+    int min;
+    int max;
     String[] possibleCondition;
     
     
@@ -40,7 +40,8 @@ public class ConditionAdderActivity extends Activity {
 		setContentView(R.layout.condition_adder_activity);
 		mainLayout = (LinearLayout)findViewById(R.id.condition_adder_activity_linear_layout);
 		possibleCondition = ConditionRule.conditions.clone();
-		
+		min = Integer.MIN_VALUE;
+		max = Integer.MAX_VALUE;
 		setUpAddButton();
 		setUpConditionSpinner();
 		setUpMinEditText();
@@ -50,13 +51,14 @@ public class ConditionAdderActivity extends Activity {
 
 	private void setUpMinEditText() {
 		final EditText et = (EditText) findViewById(R.id.min_condition_edittext);
+		et.setHint("No minimum bound if not set");
 		et.addTextChangedListener(new TextWatcher(){
 			public void afterTextChanged(Editable s) {
 				String minNumber = et.getText().toString();
-				
-				if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
+				if (minNumber == "") {
+					min = Integer.MIN_VALUE;
+				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					min = Integer.parseInt(minNumber);
-					
 				}
 				
 			}
@@ -69,11 +71,13 @@ public class ConditionAdderActivity extends Activity {
 
 	private void setUpMaxEditText() {
 		final EditText et = (EditText) findViewById(R.id.max_condition_edittext);
+		et.setHint("No maximum bound if not set");
 		et.addTextChangedListener(new TextWatcher(){
 			public void afterTextChanged(Editable s) {
 				String minNumber = et.getText().toString();
-				
-				if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
+				if (minNumber == "") {
+					min = Integer.MAX_VALUE;
+				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					max = Integer.parseInt(minNumber);
 					
 				}
@@ -123,6 +127,12 @@ public class ConditionAdderActivity extends Activity {
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,
 				long id) {
 			condition = (String)parent.getItemAtPosition(pos);
+			
+			TextView tv = (TextView) findViewById(R.id.to_textview);
+			tv.setText("To (" + ConditionRule.getUnits(condition) + "):");
+			
+			tv = (TextView) findViewById(R.id.from_textview);
+			tv.setText("From (" + ConditionRule.getUnits(condition) + "):");
 		}
 
 		public void onNothingSelected(AdapterView<?> arg0) {
