@@ -7,6 +7,8 @@ import java.util.TreeSet;
 
 import weatherOracle.filter.ConditionRule;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -55,14 +57,6 @@ public class ConditionAdderActivity extends Activity {
 				if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					min = Integer.parseInt(minNumber);
 					
-					TextView tv = (TextView) findViewById(R.id.min_max_warning);
-					if (min < max) {
-						tv.setVisibility(0);
-						tv.refreshDrawableState();
-					} else {
-						tv.setVisibility(1);
-						tv.refreshDrawableState();
-					}
 				}
 				
 			}
@@ -82,14 +76,6 @@ public class ConditionAdderActivity extends Activity {
 				if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					max = Integer.parseInt(minNumber);
 					
-					TextView tv = (TextView) findViewById(R.id.min_max_warning);
-					if (min < max) {
-						tv.setVisibility(0);
-						tv.refreshDrawableState();
-					} else {
-						tv.setVisibility(1);
-						tv.refreshDrawableState();
-					}
 				}
 				
 			}
@@ -110,6 +96,16 @@ public class ConditionAdderActivity extends Activity {
 	                Intent intent = new Intent();
 	                setResult(RESULT_OK, intent);
 	                finish();
+            	} else {
+            		 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                     builder.setMessage("Please give a minimum number(From) that is lower than the maximum(To).")
+                        .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                             dialog.dismiss();
+                            }
+                        });
+                     AlertDialog alert = builder.create();
+                     alert.show();
             	}
             }
         });
