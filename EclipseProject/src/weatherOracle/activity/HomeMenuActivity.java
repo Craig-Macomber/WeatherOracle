@@ -61,7 +61,7 @@ public class HomeMenuActivity extends TabActivity {
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, ToolsActivity.class);
-        spec = tabHost.newTabSpec("tools").setIndicator("Tools",
+        spec = tabHost.newTabSpec("tools").setIndicator("Location",
                           res.getDrawable(R.drawable.ic_tab_tools))
                       .setContent(intent);
         tabHost.addTab(spec);
