@@ -21,7 +21,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class FiltersActivity extends Activity {
- 
+ boolean confirmationDialogueUp = false;
  LinearLayout mainView;
  List<Filter> filterList;
  
@@ -38,12 +38,18 @@ public class FiltersActivity extends Activity {
  	// updates the view with the appropriate filter info every time it gets navigated to
  	public void onWindowFocusChanged(boolean hasFocus){
  		super.onWindowFocusChanged(hasFocus);
- 		if(hasFocus) {
- 	    	mainView.removeAllViews();
- 	    	initializeAddFilterButton();
- 	    	populateFilterList();
+ 		if(!confirmationDialogueUp){
+	 		if(hasFocus) {
+	 	    	mainView.removeAllViews();
+	 	    	initializeAddFilterButton();
+	 	    	populateFilterList();
+	 		} else {
+	 			mainView.removeAllViews();
+	 		}
  		} else {
- 			mainView.removeAllViews();
+ 			if(!hasFocus){
+ 				confirmationDialogueUp = false;
+ 			}
  		}
  	}
 
@@ -93,6 +99,7 @@ public class FiltersActivity extends Activity {
  			deleteButton.setOnClickListener(new View.OnClickListener() {
 				
 				public void onClick(View v) {
+					confirmationDialogueUp = true;
 					AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());					
 					builder.setMessage("Are you sure you want to delete this filter?")
 						.setCancelable(false)
@@ -108,7 +115,7 @@ public class FiltersActivity extends Activity {
 		   	   	  					i--;
 		   	   	  				}
 			   	   	  		}
-		          
+			   	   	  	
 			   	   	  			mainView.removeView(rl);
 								
 								
@@ -121,10 +128,13 @@ public class FiltersActivity extends Activity {
 								
 							}
 						});
+					
 					AlertDialog alert = builder.create();
 					alert.show();
 				}
+				
 			});
+ 			
  			mainView.addView(rl, layoutParams);
  		}
  	}
