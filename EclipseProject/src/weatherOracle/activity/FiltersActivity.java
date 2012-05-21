@@ -77,29 +77,7 @@ public class FiltersActivity extends Activity {
  					startActivity(myIntent);
  				}
  			});
-      	 
-      	 
- 			
- 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
- 			builder.setMessage("Are you sure you want to delete this filter?")
- 			       .setCancelable(false)
- 			       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
- 			           public void onClick(DialogInterface dialog, int id) {
- 			                FiltersActivity.this.finish();
- 			           }
- 			       })
- 			       .setNegativeButton("No", new DialogInterface.OnClickListener() {
- 			           public void onClick(DialogInterface dialog, int id) {
- 			                dialog.cancel();
- 			           }
- 			       });
- 			AlertDialog alert = builder.create();
- 			
- 			
- 			
- 			
- 			
- 			
+
  			
  			final Button deleteButton = new Button(this);
  			deleteButton.setText("Delete");
@@ -112,24 +90,41 @@ public class FiltersActivity extends Activity {
  			// attach listener to the delete button
  			// when it gets clicked, delete the given relative layout from the view
  			// and remove the filter associated with it from the list of filters
- 			deleteButton.setOnClickListener(new View.OnClickListener()
- 			{
- 				public void onClick(View v)
- 				{
- 					String filterName = (String) textview.getText();
-   	   	  			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
-   	   	  				Filter current = HomeMenuActivity.filterList.get(i);
-   	   	  				if(current.getName().equals(filterName)){
-   	   	  					HomeMenuActivity.filterList.remove(i);
-   	   	  					FilterStore.setFilters(HomeMenuActivity.filterList);
-   	   	  					i--;
-   	   	  				}
-   	   	  			}
-	          
-   	   	  			mainView.removeView(rl);
- 				}
- 			});
-      
+ 			deleteButton.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());					
+					builder.setMessage("Are you sure you want to delete this filter?")
+						.setCancelable(false)
+						.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+							
+							public void onClick(DialogInterface dialog, int which) {
+								String filterName = (String) textview.getText();
+			   	   	  			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
+		   	   	  				Filter current = HomeMenuActivity.filterList.get(i);
+		   	   	  				if(current.getName().equals(filterName)){
+		   	   	  					HomeMenuActivity.filterList.remove(i);
+		   	   	  					FilterStore.setFilters(HomeMenuActivity.filterList);
+		   	   	  					i--;
+		   	   	  				}
+			   	   	  		}
+		          
+			   	   	  			mainView.removeView(rl);
+								
+								
+							}
+						})
+						.setNegativeButton("No", new DialogInterface.OnClickListener() {
+							
+							public void onClick(DialogInterface dialog, int which) {
+								// Do Nothing!
+								
+							}
+						});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+			});
  			mainView.addView(rl, layoutParams);
  		}
  	}

@@ -68,15 +68,6 @@
 
 
 
-
-            <TextView
-                android:id="@+id/min_max_warning"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Please give a minimum number(From) that is lower than the maximum(To)."
-                android:textColor="#FF0000"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
     	</LinearLayout>
     
 </LinearLayout> 
