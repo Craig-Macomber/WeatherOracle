@@ -50,6 +50,7 @@ public class FilterMenuActivity extends TabActivity {
         		times = new TreeSet<TimeRule>();
         	} else {
         		times = filter.getTimeRules();
+        		System.out.println(times.toString());
         	}
         	if(filter.getConditionRules() == null){
         		conditions = new TreeSet<ConditionRule>();

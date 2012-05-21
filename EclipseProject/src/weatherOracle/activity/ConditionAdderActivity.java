@@ -58,7 +58,11 @@ public class ConditionAdderActivity extends Activity {
 				if (minNumber == "") {
 					min = Integer.MIN_VALUE;
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
-					min = Integer.parseInt(minNumber);
+					try {
+						min = Integer.parseInt(minNumber);
+					} catch (Exception e) { //number too small to parse into int ob
+						min = Integer.MIN_VALUE;
+					}
 				}
 				
 			}
@@ -78,7 +82,12 @@ public class ConditionAdderActivity extends Activity {
 				if (minNumber == "") {
 					min = Integer.MAX_VALUE;
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
-					max = Integer.parseInt(minNumber);
+					try {
+						max = Integer.parseInt(minNumber);	
+					} catch (Exception e) {
+						max = Integer.MAX_VALUE;
+					}
+					
 					
 				}
 				
