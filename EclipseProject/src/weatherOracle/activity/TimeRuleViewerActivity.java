@@ -228,9 +228,9 @@ public class TimeRuleViewerActivity extends Activity {
 	    selectAll.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				for (int i =0; i < days.size();i++) {
-					days.get(i).setChecked(true);
-			//		String day = (String)days.get(i).getText();
-			//		FilterMenuActivity.times.add(new TimeRule(day));
+					days.get(i).setChecked(true);		
+					String day = (String)days.get(i).getText();
+					FilterMenuActivity.times.add(new TimeRule(day));
 				}
 				((CheckBox)weekends).setChecked(true);
 				((CheckBox)weekdays).setChecked(true);
@@ -241,8 +241,8 @@ public class TimeRuleViewerActivity extends Activity {
 			public void onClick(View v) {
 				for (int i =0; i < days.size();i++) {
 					days.get(i).setChecked(false);
-			//		String day = (String)days.get(i).getText();
-			//		FilterMenuActivity.times.remove(new TimeRule(day));
+					String day = (String)days.get(i).getText();
+					FilterMenuActivity.times.remove(new TimeRule(day));
 				}
 				((CheckBox)weekends).setChecked(false);
 				((CheckBox)weekdays).setChecked(false);
