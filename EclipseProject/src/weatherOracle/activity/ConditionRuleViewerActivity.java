@@ -62,7 +62,17 @@ public class ConditionRuleViewerActivity extends Activity {
     		final TextView textview = new TextView(this);
     		int min = conditionList.get(i).getMinMax().first;
     		int max = conditionList.get(i).getMinMax().second;
-    		textview.setText(conditionList.get(i).getCondition() + ": " + min + " - " + max);
+    		String range;
+    		if (min == Integer.MIN_VALUE && max == Integer.MAX_VALUE) {
+    			range = "Any Amount/Value";
+    		} else if (min == Integer.MIN_VALUE) {
+    			range = "Lower than " +  max + conditionList.get(i).getUnits(conditionList.get(i).getCondition());
+    		} else if (max == Integer.MAX_VALUE) {
+    			range = "Higher than " + min + conditionList.get(i).getUnits(conditionList.get(i).getCondition());
+    		} else {
+    			range = min + conditionList.get(i).getUnits(conditionList.get(i).getCondition()) + " - " + max + conditionList.get(i).getUnits(conditionList.get(i).getCondition());
+    		}
+    		textview.setText(conditionList.get(i).getCondition() + ":\n " + range);
     		textview.setTextSize(2,15);
          	 
     		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
