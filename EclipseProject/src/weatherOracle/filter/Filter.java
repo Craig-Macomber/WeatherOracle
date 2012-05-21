@@ -222,7 +222,7 @@ public final class Filter implements Serializable {
 			// Atleast one ConditionRule and atleast one TimeRule
 			boolean matchConditions = true;
 			boolean matchTimes = false;
-			
+			boolean hasACondition=false;
 			for (Rule r : rules) {
 				boolean ruleApply = r.apply(data);
 				
@@ -231,12 +231,13 @@ public final class Filter implements Serializable {
 					matchTimes |= ruleApply;
 				} else if (r.getClass() == ConditionRule.class) {
 					// ConditionRule -> and
+					hasACondition=true;
 					matchConditions &= ruleApply;
 				} else {
 					// Bad if we are here, or new kinds of rules to be added later
 				}
 			}
-			return matchConditions && matchTimes;
+			return matchConditions && matchTimes && hasACondition;
 		}
 	}
 	
