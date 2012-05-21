@@ -20,7 +20,7 @@ public class Notification {
 	private Filter filter;
 	private List<ForecastData> dataList;
 	
-	/*
+	/**
 	 * 
 	 * @param name=the name of the notification to be displayed
 	 * @param dataList=the data that passed the filter and triggered the notification
