@@ -74,6 +74,33 @@ public class TimeRuleViewerActivity extends Activity {
 	    final Button sunday = (CheckBox) findViewById(R.id.sunday_checkbox);
 	    final Button weekends = (Button) findViewById(R.id.weekends);
 	    final Button weekdays = (Button) findViewById(R.id.weekdays);
+	    
+	    if (FilterMenuActivity.initialFilterName.equals("")){
+	    	((CheckBox)monday).setChecked(true);
+	    	FilterMenuActivity.times.add(new TimeRule("Monday"));
+	    	
+	    	((CheckBox)tuesday).setChecked(true);
+	    	FilterMenuActivity.times.add(new TimeRule("Tuesday"));
+	    	
+	    	((CheckBox)wednesday).setChecked(true);
+	    	FilterMenuActivity.times.add(new TimeRule("Wednesday"));
+	    	
+	    	((CheckBox)thursday).setChecked(true);
+	    	FilterMenuActivity.times.add(new TimeRule("Thursday"));
+	    	
+	    	((CheckBox)friday).setChecked(true);
+	    	FilterMenuActivity.times.add(new TimeRule("Friday"));
+	    	
+	    	((CheckBox)saturday).setChecked(true);
+	    	FilterMenuActivity.times.add(new TimeRule("Saturday"));
+	    	
+	    	((CheckBox)sunday).setChecked(true);
+	    	FilterMenuActivity.times.add(new TimeRule("Sunday"));
+	    	
+	    	((CheckBox)weekdays).setChecked(true);
+	    	((CheckBox)weekends).setChecked(true);
+	    }
+	    
 	    monday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)monday).isChecked()) {
