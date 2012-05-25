@@ -60,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp" 
             android:layout_below="@+id/filter_name_linear_layout"
-            android:text="Please enter in a name that has not already been used and that is also at least one non-space character long!"
+            android:text="Filter names cannot be duplicate and
+must contain at least on alphanumeric letter"
             android:background="@drawable/main_view_element"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout> 
