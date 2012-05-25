@@ -8,7 +8,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -38,8 +40,6 @@ public class ConditionRuleViewerActivity extends Activity {
 
 		final Button saveButton = (Button) findViewById(R.id.save_filter_button_conditions);   
 		initializeSaveButtonListener(saveButton);
-
-	//	FilterMenuActivity.conditions = new TreeSet<ConditionRule>();
 
 		CreateAddConditionButton();
 		populateConditionRules();
@@ -90,9 +90,26 @@ public class ConditionRuleViewerActivity extends Activity {
     	  	final int index = i;
    	  	 	deleteButton.setOnClickListener(new View.OnClickListener() {
    	  	 		public void onClick(View v) {
-   	  	 			FilterMenuActivity.conditions.remove(conditionList.get(index));
-   	  	 			mainLayout.removeAllViews();
-   	  	 			displayConditionRules();
+   	  	 			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+   	  	 			builder.setMessage("Are you sure you want to delete this Condition?")
+						.setCancelable(false)
+						.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+			   	  	 			FilterMenuActivity.conditions.remove(conditionList.get(index));
+			   	  	 			mainLayout.removeAllViews();
+			   	  	 			displayConditionRules();
+							}
+						})
+						.setNegativeButton("No", new DialogInterface.OnClickListener() {
+							
+							public void onClick(DialogInterface dialog, int which) {
+								// Do Nothing!
+								
+							}
+						});
+   	  	 			
+   					AlertDialog alert = builder.create();
+   					alert.show();
    	  	 		}
    	  	 	});
     	  	
@@ -114,21 +131,26 @@ public class ConditionRuleViewerActivity extends Activity {
          });
     	
     }
-    
-    
- 	@Override
+
+// 	public void onResume() {
+// 		super.onResume();
+// 		mainLayout.removeAllViews();
+//    	populateConditionRules();
+//    	displayConditionRules();
+// 	}
+
  	public void onWindowFocusChanged(boolean hasFocus){
- 	    if(hasFocus) {
- 	    	mainLayout.removeAllViews();
- 	    	CreateAddConditionButton();
+ 		super.onWindowFocusChanged(hasFocus);
+ 		if(hasFocus) {
+ 	 		mainLayout.removeAllViews();
  	    	populateConditionRules();
  	    	displayConditionRules();
- 		} else {
- 			mainLayout.removeAllViews();
- 		}
+ 		} 
  	}
  	
-
+ 	
+ 	
+ 	
 	private void initializeSaveButtonListener(Button saveButton){
 		saveButton.setOnClickListener(new View.OnClickListener()
 		{
