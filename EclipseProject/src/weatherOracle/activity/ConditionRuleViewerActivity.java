@@ -139,6 +139,18 @@ public class ConditionRuleViewerActivity extends Activity {
     	displayConditionRules();
  	}
 
+ 	public void onWindowFocusChanged(boolean hasFocus){
+ 		super.onWindowFocusChanged(hasFocus);
+ 		if(hasFocus) {
+ 	 		mainLayout.removeAllViews();
+ 	    	populateConditionRules();
+ 	    	displayConditionRules();
+ 		} 
+ 	}
+ 	
+ 	
+ 	
+ 	
 	private void initializeSaveButtonListener(Button saveButton){
 		saveButton.setOnClickListener(new View.OnClickListener()
 		{
