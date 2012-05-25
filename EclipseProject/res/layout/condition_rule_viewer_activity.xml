@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:id="@+id/condition_rule_viewer_activity"
-    android:background="@drawable/clouds" >
+    android:id="@+id/condition_rule_viewer_activity" >
 
     <RelativeLayout
         android:id="@+id/save_and_cancel_bar"
@@ -15,23 +14,18 @@
             android:id="@+id/add_condition_filter_button"
             android:layout_width="250px"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginBottom="-4dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentTop="true"
             android:text="Add Weather Condition" />
 
         <Button
             android:id="@+id/save_filter_button_conditions"
             android:layout_width="150px"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="-4dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentTop="true"
             android:text="Save" />
+        
 	</RelativeLayout>
         <LinearLayout
             android:id="@+id/condition_activity_linear_layout"
@@ -39,6 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/save_and_cancel_bar"
             android:orientation="vertical" >
+
+
 
     	</LinearLayout>
     

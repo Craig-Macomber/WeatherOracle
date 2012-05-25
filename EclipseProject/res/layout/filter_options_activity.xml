@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:background="@drawable/clouds" >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:id="@+id/save_and_cancel_bar"
@@ -60,7 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp" 
             android:layout_below="@+id/filter_name_linear_layout"
-            android:text="Please enter in a name that has not already been used and that is also at least one non-space character long!"
+            android:text="Filter names cannot be duplicate and
+must contain at least on alphanumeric letter"
             android:background="@drawable/main_view_element"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout> 
