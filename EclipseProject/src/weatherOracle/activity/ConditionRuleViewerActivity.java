@@ -132,12 +132,12 @@ public class ConditionRuleViewerActivity extends Activity {
     	
     }
 
- 	public void onResume() {
- 		super.onResume();
- 		mainLayout.removeAllViews();
-    	populateConditionRules();
-    	displayConditionRules();
- 	}
+// 	public void onResume() {
+// 		super.onResume();
+// 		mainLayout.removeAllViews();
+//    	populateConditionRules();
+//    	displayConditionRules();
+// 	}
 
  	public void onWindowFocusChanged(boolean hasFocus){
  		super.onWindowFocusChanged(hasFocus);
