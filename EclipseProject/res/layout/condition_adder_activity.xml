@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:id="@+id/condition_adder_activity"
-    android:background="@drawable/clouds" >
+    android:id="@+id/condition_adder_activity" >
 
         <LinearLayout
             android:id="@+id/condition_adder_activity_linear_layout"

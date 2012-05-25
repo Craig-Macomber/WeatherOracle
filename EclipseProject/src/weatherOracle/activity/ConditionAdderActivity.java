@@ -55,7 +55,7 @@ public class ConditionAdderActivity extends Activity {
 		et.addTextChangedListener(new TextWatcher(){
 			public void afterTextChanged(Editable s) {
 				String minNumber = et.getText().toString();
-				if (minNumber == "") {
+				if (minNumber.equals("")) {
 					min = Integer.MIN_VALUE;
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					try {
@@ -79,8 +79,8 @@ public class ConditionAdderActivity extends Activity {
 		et.addTextChangedListener(new TextWatcher(){
 			public void afterTextChanged(Editable s) {
 				String minNumber = et.getText().toString();
-				if (minNumber == "") {
-					min = Integer.MAX_VALUE;
+				if (minNumber.equals("")) {
+					max = Integer.MAX_VALUE;
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					try {
 						max = Integer.parseInt(minNumber);	
