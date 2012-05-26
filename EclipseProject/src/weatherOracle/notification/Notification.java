@@ -63,9 +63,16 @@ public class Notification implements Comparable<Notification> {
 	public static Notification makeNoData() {
 		return new Notification("no data yet", null, null);
 	}
+	
+	public static Notification makeNoLocationData(Filter filter) {
+		return new Notification(filter.getName()+": No data at location", null, filter);
+	}
 
 	// sort by time of first passing dataList entry
 	public int compareTo(Notification other) {
+		if (this.dataList==null) return 1;
+		if (other.dataList==null) return -1;
+		
 		return (int) (this.dataList.get(0).getMillisTime() - other.dataList
 				.get(0).getMillisTime());
 	}
