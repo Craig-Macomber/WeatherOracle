@@ -98,15 +98,47 @@ public class ForecastData {
 		return dateTime.get(Calendar.DAY_OF_WEEK);
 	}
 	
+	/**
+	 * 
+	 * @return the time in milliseconds
+	 */
 	public long getMillisTime(){
 		return dateTime.getTimeInMillis();
 	}
 	
+	/**
+	 * 
+	 * @return a String representation of the Time
+	 */
 	public String getTimeString(){
 		SimpleDateFormat f=new SimpleDateFormat("EEE MM/dd hh a");
 		Date d=dateTime.getTime();
 		String s=d.toLocaleString();;
 		s=f.format(d);
 		return s;
+	}
+	
+	/**
+	 * 
+	 * @return the sustained wind speed
+	 */
+	public double getSustainedWindSpeed() {
+		return this.windSpeed_sustained;
+	}
+	
+	/**
+	 * 
+	 * @return the gust wind speed
+	 */
+	public double getGustWindSpeed() {
+		return this.windSpeed_gust;
+	}
+	
+	/**
+	 * 
+	 * @return the quantatative precipitation forecast
+	 */
+	public double getQPF() {
+		return this.hourly_qpf;
 	}
 }
