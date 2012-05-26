@@ -220,4 +220,12 @@ public class ConditionRule implements Rule {
 			return 1;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		String condition = this.condition;
+		String units = ConditionRule.getUnits(condition);
+		condition += " " + this.min + units + " - " + this.max + units ;
+		return condition;
+	}
 }
