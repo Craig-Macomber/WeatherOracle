@@ -4,10 +4,33 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     android:background="#FFFFFF">
-    <LinearLayout
-      android:id="@+id/notification_activity_linear_layout" 
+    
+    <LinearLayout 
       android:orientation="vertical"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent">
-    </LinearLayout>   
+      
+	      <RelativeLayout 
+	          android:id="@+id/filters_activity_title_bar"
+	          android:background="#800000"
+	          android:layout_width="fill_parent"
+	          android:layout_height="45dp"> 
+	          	          
+	          <TextView
+		              android:layout_width="wrap_content"
+		              android:layout_height="fill_parent"
+		              android:paddingTop="7dp"
+		              android:textColor="#FFFFFF"
+		              android:text="Notifications"
+		              android:layout_marginLeft="85dp"
+		              android:textAppearance="?android:attr/textAppearanceLarge" /> 
+	      </RelativeLayout>
+    
+	    <LinearLayout
+	      android:id="@+id/notification_activity_linear_layout" 
+	      android:orientation="vertical"
+	      android:layout_width="fill_parent"
+	      android:layout_height="fill_parent">
+	    </LinearLayout> 
+	 </LinearLayout>  
 </ScrollView>
