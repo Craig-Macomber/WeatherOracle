@@ -2,4 +2,5 @@
 <resources>
     <color name="black">#000000</color>
     <color name="grey">#474747</color>
+    <color name="maroon">#800000</color>
 </resources>
