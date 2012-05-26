@@ -16,8 +16,8 @@ public class ConditionRule implements Rule {
 	/**
 	 * All possible conditions for ConditionRules
 	 */
-	public static final String[] conditions = new String[]{"Temperature", "Dewpoint", "Heat Index", "Wind", "Cloud Cover",
-													"Precipitation Percent", "Humidity", "Thunder", "Rain"};
+	public static final String[] conditions = new String[]{"Temperature", "Dewpoint", "Gust Wind Speed", "Sustained Wind Speed", "Cloud Cover",
+													"Precipitation Percent", "Precipitation Amount", "Humidity", "Thunder", "Rain"};
 
 	/**
 	 * The units for the different weather conditions
@@ -28,14 +28,32 @@ public class ConditionRule implements Rule {
 		{
 		put("Temperature", "\u00b0F");
 		put("Dewpoint", "\u00b0F");
-		put("Heat Index", "\u00b0F");
-		put("Wind","mph");
+		put("Gust Wind Speed", "mph");
+		put("Sustained Wind Speed","mph");
 		put("Cloud Cover", "%");
 		put("Precipitation Percent", "%");
+		put("Precipitation Amount", "inches");
 		put("Humidity", "%");
 		}
 	};
 	
+	/**
+	 * The bounds for values for the different weather conditions
+	 */
+	public static final Map<String, Pair<Integer, Integer>> bounds = new HashMap<String, Pair<Integer, Integer>>() {
+		private static final long serialVersionUID = -2443552375204329459L;
+		{
+			put("Temperature", new Pair<Integer, Integer>(-100, 200));
+			put("Dewpoint", new Pair<Integer, Integer>(-100, 200));
+			put("Gust Wind Speed", new Pair<Integer, Integer>(0, 75));
+			put("Sustained Wind Speed", new Pair<Integer, Integer>(0, 75));
+			put("Cloud Cover", new Pair<Integer, Integer>(0, 100));
+			put("Precipitation Percent", new Pair<Integer, Integer>(0, 100));
+			put("Precipitation Amount", new Pair<Integer, Integer>(0, 50));
+			put("Humidity", new Pair<Integer, Integer>(0, 100));
+		}
+	};
+
 	/**
 	 * The condition of this ConditionRule
 	 */
@@ -98,14 +116,16 @@ public class ConditionRule implements Rule {
 			return temp >= min && temp <= max;
 		} else if (condition.equals(conditions[1])) {
 			// Dew point
-			double temp = data.getDewpoint();
-			return temp >= min && temp <= max;
+			double dew = data.getDewpoint();
+			return dew >= min && dew <= max;
 		} else if (condition.equals(conditions[2])) {
-			// Heat Index
-			// TODO
+			// Gust wind speed
+			double gust = data.getGustWindSpeed();
+			return gust >= min && gust <= max;
 		} else if (condition.equals(conditions[3])) {
-			// Wind
-			// TODO
+			// Sustained wind speed
+			double sustained = data.getSustainedWindSpeed();
+			return sustained >= min && sustained <= max;
 		} else if (condition.equals(conditions[4])) {
 			// Cloud Cover
 			double cover = data.getCloudCover();
@@ -115,13 +135,17 @@ public class ConditionRule implements Rule {
 			double percent = data.getProbPrecipitation();
 			return percent >= min && percent <= max;
 		} else if (condition.equals(conditions[6])) {
+			// QPF
+			double qpf = data.getQPF();
+			return qpf >= min && qpf <= max;
+		} else if (condition.equals(conditions[7])) {
 			// Humidity
 			double humidity = data.getHumidity();
 			return humidity >= min && humidity <= max;
-		} else if (condition.equals(conditions[7])) {
+		} else if (condition.equals(conditions[8])) {
 			// Thunder
 			// TODO
-		} else if (condition.equals(conditions[8])) {
+		} else if (condition.equals(conditions[9])) {
 			// Rain
 			// TODO
 		} 
@@ -129,11 +153,19 @@ public class ConditionRule implements Rule {
 	}
 	
 	/**
-	 * Checks if this ConditionRule is satisfied by the ForecastData
+	 * Gets the unit type for a weather condition
 	 * @return the unit type for the given weather condition
 	 */
 	public static String getUnits(String type) {
 		return units.get(type);
+	}
+	
+	/**
+	 * Gets the value bounds for a weather condition
+	 * @return the bounds for the given weather condition
+	 */
+	public static Pair<Integer, Integer> getBounds(String type) {
+		return bounds.get(type);
 	}
 	
 	// Generated hashcode method
