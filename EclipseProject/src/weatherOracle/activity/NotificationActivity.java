@@ -1,7 +1,9 @@
 package weatherOracle.activity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import weatherOracle.filter.ConditionRule;
 import weatherOracle.notification.Notification;
 import weatherOracle.notification.NotificationStore;
 
@@ -64,21 +66,63 @@ public class NotificationActivity extends Activity {
 	}
 
 	private void displayNotifications() {
-		final LinearLayout mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
 		for (int i = 0;i<notificationList.size();i++) {
-        	TextView textview =new TextView(getApplicationContext());
-        	final RelativeLayout rl = new RelativeLayout(this); 
-            textview.setText(notificationList.get(i).getName());
-            textview.setTextSize(2,30);
-            rl.setBackgroundResource(R.drawable.main_view_element);
+        	
+			
+        	LinearLayout ll = new LinearLayout(this); 
+        	ll.setOrientation(1);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
             	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(8, 4, 8, 4);
-            rl.addView(textview);
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.FILL_PARENT);
-            lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            mainView.addView(rl, layoutParams);
+        	
+            TextView name = new TextView(getApplicationContext());
+            name.setText(notificationList.get(i).getName());
+            name.setTextSize(2,25);
+            
+            ll.addView(name);
+            
+            if (notificationList.get(i).getWeatherData() != null) {
+            	TextView conditionTag = new TextView(getApplicationContext());
+            	conditionTag.setText("Will First Occur At:\n" + notificationList.get(i).getWeatherData().get(0).getTimeString());
+            	ll.addView(conditionTag);
+            }
+            
+            if (notificationList.get(i).getFilter() != null) {
+            	TextView conditionTag = new TextView(getApplicationContext());
+            	conditionTag.setText("With Condition(s):");
+            	ll.addView(conditionTag);
+            	List<ConditionRule> conditions = new ArrayList<ConditionRule>(notificationList.get(i).getFilter().getConditionRules());
+            	for(int j = 0 ;j < conditions.size(); j++) {
+                	TextView condition = new TextView(getApplicationContext());
+                	condition.setText("\t" +conditions.get(j).toString());
+                	ll.addView(condition);
+                }	
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            mainView.addView(ll, layoutParams);
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
         }
 	}
 	
@@ -101,7 +145,15 @@ public class NotificationActivity extends Activity {
 		
 		mNotificationManager.notify(HELLO_ID, notification);
 	}
-	
+
+
+	//PLEASE CHANGE THIS SHIT TO STATIC AND PLEASE CALL THE SHIT FOR ME THANKS 
+	public void redraw() {
+    	mainView.removeAllViews();
+    	populateNotificationList();
+        displayNotifications();
+	}
+
 	
 	private static class Updater implements Runnable {
 		public void run() {
