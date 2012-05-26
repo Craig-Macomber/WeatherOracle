@@ -102,17 +102,21 @@ public class FilterOptionsActivity extends Activity {
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
 	        	 		FilterMenuActivity.filter.removeConditionRules();
-	        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
+	        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);	        	 		
 	        	 		if(editingExistingFilter){
+	        	 			int index = 0;
 	        	 			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
 	       	   	  				Filter current = HomeMenuActivity.filterList.get(i);
 	       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)){
 	       	   	  					HomeMenuActivity.filterList.remove(i);
+	       	   	  					index = i;
 	       	   	  					i--;
 	       	   	  				}
 	       	   	  			}
+	        	 			HomeMenuActivity.filterList.add(index,FilterMenuActivity.filter);
+	        	 		} else {
+	        	 			HomeMenuActivity.filterList.add(FilterMenuActivity.filter);
 	        	 		}
-	        	 		HomeMenuActivity.filterList.add(FilterMenuActivity.filter);	
 	        	 		finish();
 	        	 	} else {
 	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
