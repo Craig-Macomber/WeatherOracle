@@ -31,8 +31,8 @@ public class FiltersActivity extends Activity {
  	@Override
  	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notification_activity);
-        mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
+        setContentView(R.layout.filters_activity);
+        mainView = (LinearLayout)findViewById(R.id.filters_activity_linear_layout);
         
         initializeAddFilterButton();
         populateFilterList();
@@ -205,7 +205,8 @@ public class FiltersActivity extends Activity {
  
  	
  	private void initializeAddFilterButton() {
- 		Button filter = new Button(this);
+ 	//	Button filter = new Button(this);
+ 		Button filter = (Button) findViewById(R.id.add_filter_button);
  		filter.setOnClickListener(new View.OnClickListener() {
            public void onClick(View view) 
            {
@@ -217,8 +218,8 @@ public class FiltersActivity extends Activity {
            } 
  		});
   
- 		mainView.addView(filter);
- 		filter.setText("Add Filter");
- 		filter.setWidth(40);
+ 	//	mainView.addView(filter);
+ 	//	filter.setText("Add");
+ 	//	filter.setWidth(40);
  	 }
 }
