@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -59,17 +60,36 @@ public class FiltersActivity extends Activity {
  		int filterListSize = HomeMenuActivity.filterList.size();
  		for (int i = 0; i < filterListSize; i++) {
  			final TextView textview = new TextView(getApplicationContext());
+ 			textview.setTextColor(R.color.black);
+ 			final LinearLayout ll = new LinearLayout(this);
+ 			ll.setOrientation(LinearLayout.VERTICAL);
  			final RelativeLayout rl = new RelativeLayout(this);
-
+ 			
+ 			
+ 			final View divider = new View(this);
+ 			divider.setBackgroundColor(R.color.grey);
+ 			LayoutParams dividerParams = new LayoutParams(LayoutParams.FILL_PARENT, 2);
+ 			//dividerParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+ 			ll.addView(divider, dividerParams);
+ 			
+ 			ll.addView(rl);
+ 			
+ 			final View divider2 = new View(this);
+ 			divider2.setBackgroundColor(R.color.grey);
+ 			LayoutParams dividerParams2 = new LayoutParams(LayoutParams.FILL_PARENT, 2);
+ 			//dividerParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+ 			ll.addView(divider2, dividerParams2);
+ 			
  			textview.setText(HomeMenuActivity.filterList.get(i).getName());
  			textview.setTextSize(2,30);
+ 			textview.setGravity(Gravity.CENTER_VERTICAL);
  			
  			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
  					LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
  			layoutParams.setMargins(8, 4, 8, 4); // top and bottom margins are 4 so that if two elements
  												 // appear in succession the total separation will be 8
  			
- 			rl.setBackgroundResource(R.drawable.main_view_element);
+ 		//	rl.setBackgroundResource(R.drawable.main_view_element);
  			rl.addView(textview);
     
  			final Filter currentFilter = HomeMenuActivity.filterList.get(i);
@@ -87,7 +107,9 @@ public class FiltersActivity extends Activity {
  			
  			final Button deleteButton = new Button(this);
  			deleteButton.setText("Delete");
-  	
+ 			
+ 			
+ 			deleteButton.setGravity(Gravity.CENTER_VERTICAL);
  			rl.addView(deleteButton);
  			LayoutParams params = (RelativeLayout.LayoutParams)deleteButton.getLayoutParams();
  			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -134,8 +156,9 @@ public class FiltersActivity extends Activity {
 				}
 				
 			});
- 			
- 			mainView.addView(rl, layoutParams);
+ 		//	mainView.addView(divider);
+ 			mainView.addView(ll, params);
+ 		//	mainView.addView(divider);
  		}
  	}
 
