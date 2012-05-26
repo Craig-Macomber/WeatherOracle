@@ -40,8 +40,9 @@ public class ConditionAdderActivity extends Activity {
 		setContentView(R.layout.condition_adder_activity);
 		mainLayout = (LinearLayout)findViewById(R.id.condition_adder_activity_linear_layout);
 		possibleCondition = ConditionRule.conditions.clone();
-		min = Integer.MIN_VALUE;
-		max = Integer.MAX_VALUE;
+		condition = possibleCondition[0];
+		min = ConditionRule.bounds.get(condition).first;
+		max = ConditionRule.bounds.get(condition).second;
 		setUpAddButton();
 		setUpConditionSpinner();
 		setUpMinEditText();
@@ -51,17 +52,23 @@ public class ConditionAdderActivity extends Activity {
 
 	private void setUpMinEditText() {
 		final EditText et = (EditText) findViewById(R.id.min_condition_edittext);
-		et.setHint("No minimum bound if not set");
+		et.setHint("If empty, the minimum will be " + ConditionRule.bounds.get(condition).first + ConditionRule.getUnits(condition));
 		et.addTextChangedListener(new TextWatcher(){
 			public void afterTextChanged(Editable s) {
 				String minNumber = et.getText().toString();
 				if (minNumber.equals("")) {
-					min = Integer.MIN_VALUE;
+					min = ConditionRule.bounds.get(condition).first;
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					try {
-						min = Integer.parseInt(minNumber);
-					} catch (Exception e) { //number too small to parse into int ob
-						min = Integer.MIN_VALUE;
+						if (Integer.parseInt(minNumber) < ConditionRule.bounds.get(condition).first) {
+							min = ConditionRule.bounds.get(condition).first;
+							et.setText((new Integer(min)).toString());
+						} else {
+							min = Integer.parseInt(minNumber);
+						}
+					} catch (Exception e) { //number too small to parse into int
+						min = ConditionRule.bounds.get(condition).first;
+						et.setText((new Integer(min)).toString());
 					}
 				}
 				
@@ -75,17 +82,23 @@ public class ConditionAdderActivity extends Activity {
 
 	private void setUpMaxEditText() {
 		final EditText et = (EditText) findViewById(R.id.max_condition_edittext);
-		et.setHint("No maximum bound if not set");
+		et.setHint("If empty, the maximum will be " + ConditionRule.bounds.get(condition).second + ConditionRule.getUnits(condition));
 		et.addTextChangedListener(new TextWatcher(){
 			public void afterTextChanged(Editable s) {
 				String minNumber = et.getText().toString();
 				if (minNumber.equals("")) {
-					max = Integer.MAX_VALUE;
+					max = ConditionRule.bounds.get(condition).second;
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					try {
-						max = Integer.parseInt(minNumber);	
+						if (Integer.parseInt(minNumber) > ConditionRule.bounds.get(condition).second) {
+							min = ConditionRule.bounds.get(condition).second;
+						} else {
+							min = Integer.parseInt(minNumber);
+							et.setText((new Integer(max)).toString());
+						}	
 					} catch (Exception e) {
-						max = Integer.MAX_VALUE;
+						max = ConditionRule.bounds.get(condition).second;
+						et.setText((new Integer(max)).toString());
 					}
 					
 					
@@ -137,11 +150,24 @@ public class ConditionAdderActivity extends Activity {
 				long id) {
 			condition = (String)parent.getItemAtPosition(pos);
 			
+			min = ConditionRule.bounds.get(condition).first;
+			max = ConditionRule.bounds.get(condition).second;
+			
+			final EditText maxtext = (EditText) findViewById(R.id.max_condition_edittext);
+			maxtext.setHint("If empty, the maximum will be " + ConditionRule.bounds.get(condition).second + ConditionRule.getUnits(condition));
+			maxtext.setText("");
+			
+			final EditText mintext = (EditText) findViewById(R.id.min_condition_edittext);
+			mintext.setHint("If empty, the minimum will be " + ConditionRule.bounds.get(condition).first + ConditionRule.getUnits(condition));
+			mintext.setText("");
+			
 			TextView tv = (TextView) findViewById(R.id.to_textview);
-			tv.setText("To (" + ConditionRule.getUnits(condition) + "):");
+			tv.setText("To (" + ConditionRule.getBounds(condition).second + ConditionRule.getUnits(condition) + "):");
 			
 			tv = (TextView) findViewById(R.id.from_textview);
-			tv.setText("From (" + ConditionRule.getUnits(condition) + "):");
+			tv.setText("From (" + ConditionRule.getBounds(condition).first + ConditionRule.getUnits(condition) + "):");
+			
+			
 		}
 
 		public void onNothingSelected(AdapterView<?> arg0) {
