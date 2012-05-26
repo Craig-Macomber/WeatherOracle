@@ -74,7 +74,7 @@ public class FiltersActivity extends Activity {
  			
  			final TextView textview = new TextView(this);
  			textview.setTextColor(Color.BLACK);
- 			textview.setPadding(15, 13, 0, 4);
+ 			textview.setPadding(15, 20, 0, 4);
  			
  			
  			final LinearLayout ll = new LinearLayout(this);
@@ -153,6 +153,7 @@ public class FiltersActivity extends Activity {
  			deleteButton.setGravity(Gravity.CENTER_VERTICAL);
  			rl.addView(deleteButton);
  			LayoutParams params = (RelativeLayout.LayoutParams)deleteButton.getLayoutParams();
+ 			params.setMargins(0, 10, 2, 4);
  			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
  			deleteButton.setLayoutParams(params); //causes layout update
 	  	
