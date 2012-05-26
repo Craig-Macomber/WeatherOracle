@@ -56,5 +56,13 @@ public abstract class MainControl {
 					fDelayBetweenRuns, TimeUnit.SECONDS);
 		}
 	}
+	
+	private static boolean lastUpdateWorkedFlag=true;
+	public synchronized static boolean lastUpdateWorked(){
+		return lastUpdateWorkedFlag;
+	}
+	public synchronized static void setLastUpdateWorked(boolean worked){
+		lastUpdateWorkedFlag=worked;
+	}
 
 }

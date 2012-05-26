@@ -3,6 +3,8 @@ package weatherOracle.notification;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import weatherOracle.activity.NotificationActivity;
 import android.util.Log;
 
 /**
@@ -23,6 +25,7 @@ public abstract class NotificationStore {
 	public static void initializeNotificationStore() {
 		notifications = new ArrayList<Notification>();
 		notifications.add(Notification.makeNoData());
+		filterVersionNumber = -1;
 	}
 
 	/**
@@ -38,7 +41,9 @@ public abstract class NotificationStore {
 	 */
 	public synchronized static void update(List<Notification> notifications,
 			int filterVersionNumber) {
+		
 		if (filterVersionNumber >= NotificationStore.filterVersionNumber) {
+			Log.d("NotificationStore", "*********new data*********");
 			NotificationStore.filterVersionNumber = filterVersionNumber;
 			// get ourself a copy of the passed list, and prevent it from being
 			// modified.
@@ -46,13 +51,22 @@ public abstract class NotificationStore {
 			List<Notification> newNotifications=new ArrayList<Notification>(notifications);
 			Collections.sort(newNotifications);
 			NotificationStore.notifications = Collections.unmodifiableList(newNotifications);
+			Log.d("NotificationStore", "*********saved data*********");
 			updated();
+			Log.d("NotificationStore", "*********updated*********");
+		} else {
+			Log.d("NotificationStore", "*********OLD data!*********");
 		}
 	}
+	
+	
 
+
+	
 	private static void updated() {
 		// TODO : send an event/update the UI/whatever
-		Log.d("NotificationStore", "updated");
+		Log.d("NotificationStore", "*********update*********");
+		NotificationActivity.asyncUpdate();
 	}
 
 	/**

@@ -28,7 +28,7 @@ class UpdateTask implements Runnable {
 	}
 
 	public void run() {
-		Log.d("UpdateTask", "run");
+		Log.d("UpdateTask", "***run***");
 
 		Pair<List<Filter>, Integer> pair = FilterStore.getFilters();
 		int filterVersionNumber = pair.second;
@@ -42,15 +42,21 @@ class UpdateTask implements Runnable {
 
 		for (Filter f : pair.first) {
 			List<ForecastData> passed = new ArrayList<ForecastData>();
-			for (ForecastData d : m.get(f.getLocation())) {
-				if (f.apply(d)) {
-					passed.add(d);
+			if (!m.containsKey(f.getLocation())) {
+				// location likley was invalid
+				notifications.add(Notification.makeNoLocationData(f));
+			} else {
+				for (ForecastData d : m.get(f.getLocation())) {
+					if (f.apply(d)) {
+						passed.add(d);
+					}
+				}
+				if (!passed.isEmpty()) {
+					notifications.add(Notification.make(passed, f));
 				}
 			}
-			if(!passed.isEmpty())
-				notifications.add(Notification.make(passed, f));
 		}
-
 		NotificationStore.update(notifications, filterVersionNumber);
+		Log.d("UpdateTask", "*********DONE*********");
 	}
 }

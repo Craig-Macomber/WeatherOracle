@@ -28,7 +28,8 @@ public class NotificationActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        instance=this;
+    	super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_activity);
         mainView = (LinearLayout)findViewById(R.id.notification_activity_linear_layout);
         populateNotificationList();
@@ -36,19 +37,21 @@ public class NotificationActivity extends Activity {
         
     }
 
-    public void onResume() {
-    	super.onResume();
+    private void updateDisplay(){
     	mainView.removeAllViews();
     	populateNotificationList();
         displayNotifications();	
     }
     
+    public void onResume() {
+    	super.onResume();
+    	updateDisplay();
+    }
+    
     public void onWindowFocusChanged(boolean hasFocus){
     	super.onWindowFocusChanged(hasFocus);
     	if(hasFocus) {
- 	    	mainView.removeAllViews();
- 	    	populateNotificationList();
- 	        displayNotifications();
+    		updateDisplay();
  		} else {
  			mainView.removeAllViews();
  		}
@@ -143,11 +146,26 @@ public class NotificationActivity extends Activity {
 		mNotificationManager.notify(HELLO_ID, notification);
 	}
 
+
 	//PLEASE CHANGE THIS SHIT TO STATIC AND PLEASE CALL THE SHIT FOR ME THANKS 
 	public void redraw() {
     	mainView.removeAllViews();
     	populateNotificationList();
         displayNotifications();
+	}
+
+	
+	private static class Updater implements Runnable {
+		public void run() {
+			instance.updateDisplay();
+		}
+	}
+	
+	private static NotificationActivity instance=null;
+	public static void asyncUpdate(){
+		synchronized(instance){
+			instance.runOnUiThread(new Updater());
+		}
 	}
 	
 }
