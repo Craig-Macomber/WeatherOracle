@@ -85,16 +85,16 @@ public class ConditionAdderActivity extends Activity {
 		et.setHint("If empty, the maximum will be " + ConditionRule.bounds.get(condition).second + ConditionRule.getUnits(condition));
 		et.addTextChangedListener(new TextWatcher(){
 			public void afterTextChanged(Editable s) {
-				String minNumber = et.getText().toString();
-				if (minNumber.equals("")) {
+				String maxNumber = et.getText().toString();
+				if (maxNumber.equals("")) {
 					max = ConditionRule.bounds.get(condition).second;
-				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
+				} else if ((maxNumber.startsWith("-") && maxNumber.length() > 1) || (!maxNumber.startsWith("-")) && maxNumber.length() > 0) {
 					try {
-						if (Integer.parseInt(minNumber) > ConditionRule.bounds.get(condition).second) {
-							min = ConditionRule.bounds.get(condition).second;
-						} else {
-							min = Integer.parseInt(minNumber);
+						if (Integer.parseInt(maxNumber) > ConditionRule.bounds.get(condition).second) {
+							max = ConditionRule.bounds.get(condition).second;
 							et.setText((new Integer(max)).toString());
+						} else {
+							max = Integer.parseInt(maxNumber);
 						}	
 					} catch (Exception e) {
 						max = ConditionRule.bounds.get(condition).second;
