@@ -84,5 +84,5 @@ public class Notification implements Comparable<Notification> {
 		return (int) (this.dataList.get(0).getMillisTime() - other.dataList
 				.get(0).getMillisTime());
 	}
-	
+
 }
