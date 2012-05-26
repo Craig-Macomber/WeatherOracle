@@ -28,8 +28,6 @@ import android.util.Log;
 
 import weatherOracle.forecastData.ForecastData;
 import weatherOracle.forecastData.ForecastRequirements;
-import weatherOracle.forecastData.ForecastData.Rain;
-import weatherOracle.forecastData.ForecastData.Thunder;
 import weatherOracle.app.Location;
 
 /**
@@ -192,8 +190,6 @@ public class NoaaReader implements Reader {
 			
 			for (int i=0;i<count;i++){
 				double[] d=doubles[i];
-				ForecastData.Rain rain=ForecastData.Rain.NONE; // TODO
-				ForecastData.Thunder thunder=ForecastData.Thunder.NONE; // TODO
 				ForecastData f=new ForecastData(
 						(Calendar) dateTime.clone(),
 						d[0],
@@ -204,9 +200,7 @@ public class NoaaReader implements Reader {
 						d[5],
 						d[6],
 						d[7],
-						d[8],
-						rain,
-						thunder
+						d[8]
 				);
 				dataList.add(f);
 				dateTime.add(Calendar.HOUR, 1);

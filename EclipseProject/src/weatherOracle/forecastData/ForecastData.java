@@ -19,18 +19,7 @@ public class ForecastData {
 	private double cloudAmount; // in percent
 	private double humidity_relative; // in percent
 	private double hourly_qpf; // inches 
-	
-	public enum Rain {
-		NONE, chance
-	}
-	
-	public enum Thunder {
-		NONE
-	}
-	
-	private Rain rain;
-	private Thunder thunder;
-	
+		
 	// Time
 	private Calendar dateTime;
 	
@@ -48,9 +37,7 @@ public class ForecastData {
 			double windSpeed_direction,
 			double cloudAmount,
 			double humidity_relative,
-			double hourly_qpf,
-			Rain rain,
-			Thunder thunder){
+			double hourly_qpf){
 		this.dateTime=dateTime;
 		this.temperature_hourly=temperature_hourly;
 		this.temperature_dewPoint=temperature_dewPoint;
@@ -61,8 +48,6 @@ public class ForecastData {
 		this.cloudAmount=cloudAmount;
 		this.humidity_relative=humidity_relative;
 		this.hourly_qpf=hourly_qpf;
-		this.rain=rain;
-		this.thunder=thunder;
 	}
 	
 	/**
