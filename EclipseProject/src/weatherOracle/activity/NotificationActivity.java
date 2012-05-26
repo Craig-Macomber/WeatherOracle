@@ -1,9 +1,12 @@
 package weatherOracle.activity;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import weatherOracle.filter.ConditionRule;
+import weatherOracle.filter.Filter;
 import weatherOracle.notification.Notification;
 import weatherOracle.notification.NotificationStore;
 
@@ -12,7 +15,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -70,7 +76,7 @@ public class NotificationActivity extends Activity {
         	
 			
         	LinearLayout ll = new LinearLayout(this); 
-        	ll.setOrientation(1);
+        	
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
             	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(8, 4, 8, 4);
@@ -78,8 +84,41 @@ public class NotificationActivity extends Activity {
             TextView name = new TextView(getApplicationContext());
             name.setText(notificationList.get(i).getName());
             name.setTextSize(2,25);
+            name.setTextColor(Color.BLACK);
             
+            
+            ll.setOrientation(0);
             ll.addView(name);
+            final int index = i;
+            Button internet = new Button(getApplicationContext());
+            internet.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					try {
+						double lat = 47.66076;
+						double lon = -122.29508;
+						URL url;
+						url = new URL("http://forecast.weather.gov/MapClick.php?lat="
+								+ lat + "&lon=" + lon);
+						Intent myIntent = new Intent(v.getContext(), InternetForecast.class);
+		                myIntent.putExtra("url", url);
+		                startActivity(myIntent);
+					} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+            internet.setText("See Forecast");
+            if(notificationList.get(i).getName().equals("no data yet") && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null) {
+            	//dont add the connect to internet button
+            } else {
+            	ll.addView(internet);
+            }
+            
+            
+            ll.setOrientation(1);
+            
             
             if (notificationList.get(i).getWeatherData() != null) {
             	TextView conditionTag = new TextView(getApplicationContext());
@@ -98,31 +137,7 @@ public class NotificationActivity extends Activity {
                 	ll.addView(condition);
                 }	
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             mainView.addView(ll, layoutParams);
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
         }
 	}
 	
@@ -144,14 +159,6 @@ public class NotificationActivity extends Activity {
 		final int HELLO_ID = 1;
 		
 		mNotificationManager.notify(HELLO_ID, notification);
-	}
-
-
-	//PLEASE CHANGE THIS SHIT TO STATIC AND PLEASE CALL THE SHIT FOR ME THANKS 
-	public void redraw() {
-    	mainView.removeAllViews();
-    	populateNotificationList();
-        displayNotifications();
 	}
 
 	
