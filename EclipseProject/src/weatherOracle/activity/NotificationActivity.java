@@ -17,11 +17,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
 
 public class NotificationActivity extends Activity {
 	
@@ -73,18 +75,62 @@ public class NotificationActivity extends Activity {
 
 	private void displayNotifications() {
 		for (int i = 0;i<notificationList.size();i++) {
-        	
+			boolean firstIteration = false;
+ 			boolean lastIteration = false;
+ 			if(i == 0){
+ 				firstIteration = true;
+ 			}
+ 			if(i == notificationList.size() - 1){
+ 				lastIteration = true;
+ 			}
 			
-        	LinearLayout ll = new LinearLayout(this); 
-        	
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-            	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(8, 4, 8, 4);
-        	
-            TextView name = new TextView(getApplicationContext());
+ 			// parentll represents an entire on screen notification element; it's first child is
+ 			// the top divider ... its next is all of the main content of the notification ... and
+ 			// its third and last child is the bottom divider
+ 			final LinearLayout parentll = new LinearLayout(this);
+ 			parentll.setOrientation(LinearLayout.VERTICAL);
+ 			
+ 			// set up top divider and add to parent
+ 			final View divider = new View(this);
+ 			divider.setBackgroundColor(R.color.grey);
+ 			LayoutParams dividerParams;
+ 			if(firstIteration){
+ 				dividerParams = new LayoutParams(LayoutParams.FILL_PARENT, 2);
+ 			} else {
+ 				dividerParams = new LayoutParams(LayoutParams.FILL_PARENT, 1);
+ 			}
+ 				//dividerParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+ 			parentll.addView(divider, dividerParams);
+ 			
+ 			// set up ll view that will hold main content of notification
+ 			LinearLayout ll = new LinearLayout(this);
+ 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+           	     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+ 				 layoutParams.setMargins(8, 4, 8, 4);
+ 			parentll.addView(ll,layoutParams);
+ 			
+ 			// set up bottom divider and add to parent
+ 			final View divider2 = new View(this);
+ 			divider2.setBackgroundColor(R.color.grey);
+ 			LayoutParams dividerParams2;
+ 			if(lastIteration){
+ 				dividerParams2 = new LayoutParams(LayoutParams.FILL_PARENT, 2);
+ 			} else {
+ 				dividerParams2 = new LayoutParams(LayoutParams.FILL_PARENT, 1);
+ 			}
+ 			//dividerParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+ 			parentll.addView(divider2, dividerParams2);
+ 			
+// 			LinearLayout nameAndDetails = new LinearLayout(this);
+// 			LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 50);
+// 			ll.addView(nameAndDetails, nameParams);
+           
+ 			TextView name = new TextView(getApplicationContext());
             name.setText(notificationList.get(i).getName());
             name.setTextSize(2,25);
             name.setTextColor(Color.BLACK);
+            
+    //        nameAndDetails.addView(name);
             
             
             ll.setOrientation(0);
@@ -109,11 +155,13 @@ public class NotificationActivity extends Activity {
 					}
 				}
 			});
-            internet.setText("See Forecast");
+            
+            internet.setText("Details");
             if(notificationList.get(i).getName().equals("no data yet") && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null) {
             	//dont add the connect to internet button
             } else {
             	ll.addView(internet);
+            	//nameAndDetails.setGravity(Gravity.RIGHT);
             }
             
             
@@ -137,7 +185,9 @@ public class NotificationActivity extends Activity {
                 	ll.addView(condition);
                 }	
             }
-            mainView.addView(ll, layoutParams);
+            
+            
+            mainView.addView(parentll);
         }
 	}
 	
