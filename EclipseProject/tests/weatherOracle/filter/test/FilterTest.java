@@ -71,7 +71,6 @@ public class FilterTest extends AndroidTestCase {
 		// Forecast data with 35 temperature and 37 cloud cover, zero for everything else
 		Calendar dateTime = new GregorianCalendar();
 		dateTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);		// Monday
-		System.out.println(dateTime.toString());
 		ForecastData data = new ForecastData(dateTime, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0);
 		
 		Filter shouldPass = new Filter("pass");
