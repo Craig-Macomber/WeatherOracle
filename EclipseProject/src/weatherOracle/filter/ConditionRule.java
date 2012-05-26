@@ -17,7 +17,7 @@ public class ConditionRule implements Rule {
 	 * All possible conditions for ConditionRules
 	 */
 	public static final String[] conditions = new String[]{"Temperature", "Dewpoint", "Gust Wind Speed", "Sustained Wind Speed", "Cloud Cover",
-													"Precipitation Percent", "Precipitation Amount", "Humidity", "Thunder", "Rain"};
+													"Precipitation Percent", "Precipitation Amount", "Humidity"};
 
 	/**
 	 * The units for the different weather conditions
@@ -142,13 +142,7 @@ public class ConditionRule implements Rule {
 			// Humidity
 			double humidity = data.getHumidity();
 			return humidity >= min && humidity <= max;
-		} else if (condition.equals(conditions[8])) {
-			// Thunder
-			// TODO
-		} else if (condition.equals(conditions[9])) {
-			// Rain
-			// TODO
-		} 
+		}  
 		return Boolean.FALSE;
 	}
 	
