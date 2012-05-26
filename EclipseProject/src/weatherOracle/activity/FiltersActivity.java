@@ -10,11 +10,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
@@ -59,8 +61,22 @@ public class FiltersActivity extends Activity {
  		FilterStore.setFilters(HomeMenuActivity.filterList);
  		int filterListSize = HomeMenuActivity.filterList.size();
  		for (int i = 0; i < filterListSize; i++) {
- 			final TextView textview = new TextView(getApplicationContext());
- 			textview.setTextColor(R.color.black);
+ 			// both of these are used to determine appropriate thickness for the dividers
+ 			// between the onscreen filter elements
+ 			boolean firstIteration = false;
+ 			boolean lastIteration = false;
+ 			if(i == 0){
+ 				firstIteration = true;
+ 			}
+ 			if(i == filterListSize - 1){
+ 				lastIteration = true;
+ 			}
+ 			
+ 			final TextView textview = new TextView(this);
+ 			textview.setTextColor(Color.BLACK);
+ 			textview.setPadding(15, 13, 0, 4);
+ 			
+ 			
  			final LinearLayout ll = new LinearLayout(this);
  			ll.setOrientation(LinearLayout.VERTICAL);
  			final RelativeLayout rl = new RelativeLayout(this);
@@ -68,20 +84,45 @@ public class FiltersActivity extends Activity {
  			
  			final View divider = new View(this);
  			divider.setBackgroundColor(R.color.grey);
- 			LayoutParams dividerParams = new LayoutParams(LayoutParams.FILL_PARENT, 2);
- 			//dividerParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+ 			LayoutParams dividerParams;
+ 			if(firstIteration){
+ 				dividerParams = new LayoutParams(LayoutParams.FILL_PARENT, 2);
+ 			} else {
+ 				dividerParams = new LayoutParams(LayoutParams.FILL_PARENT, 1);
+ 			}
+ 				//dividerParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
  			ll.addView(divider, dividerParams);
  			
  			ll.addView(rl);
  			
  			final View divider2 = new View(this);
  			divider2.setBackgroundColor(R.color.grey);
- 			LayoutParams dividerParams2 = new LayoutParams(LayoutParams.FILL_PARENT, 2);
+ 			LayoutParams dividerParams2;
+ 			if(lastIteration){
+ 				dividerParams2 = new LayoutParams(LayoutParams.FILL_PARENT, 2);
+ 			} else {
+ 				dividerParams2 = new LayoutParams(LayoutParams.FILL_PARENT, 1);
+ 			}
  			//dividerParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
  			ll.addView(divider2, dividerParams2);
  			
+ 			// create trash icon and add it to the relative layout ...
+ 			
+// 			ImageView trash = new ImageView(this);
+// 			LayoutParams ivParams = new LayoutParams(30,30);
+// 			trash.setLayoutParams(ivParams);
+// 			trash.setBackgroundResource(R.drawable.ic_tab_trash);
+// 			trash.setClickable(true);
+// 			
+// 			
+// 			ivParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+// 			rl.addView(trash);
+ 			
+ 			
+ 			
+ 			
  			textview.setText(HomeMenuActivity.filterList.get(i).getName());
- 			textview.setTextSize(2,30);
+ 			textview.setTextSize(2,22);
  			textview.setGravity(Gravity.CENTER_VERTICAL);
  			
  			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -89,7 +130,7 @@ public class FiltersActivity extends Activity {
  			layoutParams.setMargins(8, 4, 8, 4); // top and bottom margins are 4 so that if two elements
  												 // appear in succession the total separation will be 8
  			
- 		//	rl.setBackgroundResource(R.drawable.main_view_element);
+ 		
  			rl.addView(textview);
     
  			final Filter currentFilter = HomeMenuActivity.filterList.get(i);
@@ -156,9 +197,7 @@ public class FiltersActivity extends Activity {
 				}
 				
 			});
- 		//	mainView.addView(divider);
  			mainView.addView(ll, params);
- 		//	mainView.addView(divider);
  		}
  	}
 
