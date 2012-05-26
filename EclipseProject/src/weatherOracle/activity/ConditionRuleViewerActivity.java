@@ -1,3 +1,4 @@
+
 // tim is the best
 
 package weatherOracle.activity;
@@ -63,15 +64,8 @@ public class ConditionRuleViewerActivity extends Activity {
     		int min = conditionList.get(i).getMinMax().first;
     		int max = conditionList.get(i).getMinMax().second;
     		String range;
-    		if (min == Integer.MIN_VALUE && max == Integer.MAX_VALUE) {
-    			range = "Any Amount/Value";
-    		} else if (min == Integer.MIN_VALUE) {
-    			range = "Lower than " +  max + conditionList.get(i).getUnits(conditionList.get(i).getCondition());
-    		} else if (max == Integer.MAX_VALUE) {
-    			range = "Higher than " + min + conditionList.get(i).getUnits(conditionList.get(i).getCondition());
-    		} else {
-    			range = min + conditionList.get(i).getUnits(conditionList.get(i).getCondition()) + " - " + max + conditionList.get(i).getUnits(conditionList.get(i).getCondition());
-    		}
+    		range = min + ConditionRule.getUnits(conditionList.get(i).getCondition()) + " - " + max + ConditionRule.getUnits(conditionList.get(i).getCondition());
+    		
     		textview.setText(conditionList.get(i).getCondition() + ":\n " + range);
     		textview.setTextSize(2,15);
          	 

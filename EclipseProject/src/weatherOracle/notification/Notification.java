@@ -45,6 +45,14 @@ public class Notification implements Comparable<Notification> {
 	}
 
 	/**
+	 * 
+	 * @return The filter associated with this notification
+	 */
+	public Filter getFilter() {
+		return this.filter;
+	}
+	
+	/**
 	 * A constructor, but maybe we want to subclass, so use a static factory
 	 * 
 	 * @param dataList
@@ -56,7 +64,7 @@ public class Notification implements Comparable<Notification> {
 	 *         dataList through filter
 	 */
 	public static Notification make(List<ForecastData> dataList, Filter filter) {
-		String name = filter.getName() + ": " + dataList.get(0).getTimeString();
+		String name = filter.getName();
 		return new Notification(name, dataList, filter);
 	}
 
@@ -69,4 +77,5 @@ public class Notification implements Comparable<Notification> {
 		return (int) (this.dataList.get(0).getMillisTime() - other.dataList
 				.get(0).getMillisTime());
 	}
+	
 }
