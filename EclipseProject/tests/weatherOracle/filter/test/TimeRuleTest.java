@@ -6,8 +6,6 @@ import java.util.GregorianCalendar;
 import weatherOracle.filter.ConditionRule;
 import weatherOracle.filter.TimeRule;
 import weatherOracle.forecastData.ForecastData;
-import weatherOracle.forecastData.ForecastData.Rain;
-import weatherOracle.forecastData.ForecastData.Thunder;
 import android.test.AndroidTestCase;
 
 public class TimeRuleTest extends AndroidTestCase {
@@ -47,7 +45,7 @@ public class TimeRuleTest extends AndroidTestCase {
 		// Forecast data with Tuesday
 		Calendar dateTime = new GregorianCalendar();
 		dateTime.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-		ForecastData data = new ForecastData(dateTime, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
+		ForecastData data = new ForecastData(dateTime, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 		
 		TimeRule tR = new TimeRule(days[4]);		// Friday
 		TimeRule tR2 = new TimeRule(days[1]);		// Tuesday

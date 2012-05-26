@@ -2,8 +2,6 @@ package weatherOracle.filter.test;
 
 import weatherOracle.filter.*;
 import weatherOracle.forecastData.ForecastData;
-import weatherOracle.forecastData.ForecastData.Rain;
-import weatherOracle.forecastData.ForecastData.Thunder;
 import android.test.AndroidTestCase;
 
 import java.util.*;
@@ -74,7 +72,7 @@ public class FilterTest extends AndroidTestCase {
 		Calendar dateTime = new GregorianCalendar();
 		dateTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);		// Monday
 		System.out.println(dateTime.toString());
-		ForecastData data = new ForecastData(dateTime, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0, Rain.NONE, Thunder.NONE);
+		ForecastData data = new ForecastData(dateTime, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0);
 		
 		Filter shouldPass = new Filter("pass");
 		Filter shouldFail = new Filter("fail");
