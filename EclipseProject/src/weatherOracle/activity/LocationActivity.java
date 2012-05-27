@@ -5,6 +5,7 @@ import java.util.List;
 import weatherOracle.filter.Filter;
 import weatherOracle.filter.FilterStore;
 import android.app.Activity;
+import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.location.LocationProvider;
@@ -23,13 +24,33 @@ public class LocationActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
         setContentView(R.layout.location_activity);
-        setLocation();
+        displayLocation();
+
+        initializeSetLocationButton();
 	}
 
-	private void setLocation(){
+	public void onWindowFocusChanged(boolean hasFocus){
+ 		super.onWindowFocusChanged(hasFocus);
+ 		
+	 	if(hasFocus) {
+	 	    displayLocation();
+	 		
+ 		}
+ 	}
+	
+	private void displayLocation(){
+		double[] location = getLocation();
+		double latitude = location[0];
+		double longitude = location[1];
+		TextView latView = (TextView) findViewById(R.id.latitude);
+		TextView longView = (TextView) findViewById(R.id.longitude);
+		latView.setText(""+latitude);
+		longView.setText(""+longitude);
+	}
+	
+	
+	private void initializeSetLocationButton(){
 		final Button setLocationButton = new Button(this);
-			
-  	
 		
 		setLocationButton.setOnClickListener(new View.OnClickListener()
 		{
@@ -63,4 +84,23 @@ public class LocationActivity extends Activity {
 			
 	}
 	
+	private double[] getLocation() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);  
+        List<String> providers = lm.getProviders(true);
+
+        /* Loop over the array backwards, and if you get an accurate location, then break out the loop*/
+        Location l = null;
+        
+        for (int i=providers.size()-1; i>=0; i--) {
+                l = lm.getLastKnownLocation(providers.get(i));
+                if (l != null) break;
+        }
+        
+        double[] gps = new double[2];
+        if (l != null) {
+                gps[0] = l.getLatitude();
+                gps[1] = l.getLongitude();
+        }
+        return gps;
+	}
 }
