@@ -6,6 +6,8 @@ import java.util.TreeSet;
 import weatherOracle.filter.Filter;
 import weatherOracle.filter.TimeRule;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -120,6 +122,27 @@ public class FilterNameActivity extends Activity {
 	        	 		finish();
 	        	 	} else {
 	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
+	        	 		if(FilterMenuActivity.currentFilterName.trim().equals("")) {
+	        	 			 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+	                         builder.setMessage("Filter name must contain at least one alphanumeric letter.")
+	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+	                                public void onClick(DialogInterface dialog, int id) {
+	                                 dialog.dismiss();
+	                                }
+	                            });
+	                         AlertDialog alert = builder.create();
+	                         alert.show();
+		        	 	} else {
+		        	 		AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+	                         builder.setMessage("Filter names cannot be duplicate.")
+	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+	                                public void onClick(DialogInterface dialog, int id) {
+	                                 dialog.dismiss();
+	                                }
+	                            });
+	                         AlertDialog alert = builder.create();
+	                         alert.show();
+		        	 	}
 	        	 	}
 	            }
 	        });
