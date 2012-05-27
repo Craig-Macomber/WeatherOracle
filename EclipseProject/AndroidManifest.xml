@@ -39,7 +39,7 @@
         <activity android:name=".LocationActivity"></activity>
         <activity android:name=".NotificationActivity"></activity>
         <activity android:name=".FilterMenuActivity"></activity>
-        <activity android:name=".FilterOptionsActivity"></activity>
+        <activity android:name=".FilterNameActivity"></activity>
         <activity android:name=".TimeRuleViewerActivity"></activity>
         <activity android:name=".ConditionRuleViewerActivity"></activity>   
     </application>

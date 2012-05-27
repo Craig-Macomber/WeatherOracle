@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <LinearLayout 
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent">
+      
+	      <RelativeLayout 
+	          android:id="@+id/filters_activity_title_bar"
+	          android:background="#800000"
+	          android:layout_width="fill_parent"
+	          android:gravity="center_horizontal"
+	          android:layout_height="45dp"> 
+	          	          
+	          <TextView
+		              android:layout_width="wrap_content"
+		              android:layout_height="fill_parent"
+		              android:paddingTop="7dp"
+		              android:textColor="#FFFFFF"
+		              android:text="Location"
+		              
+		              android:textAppearance="?android:attr/textAppearanceLarge" /> 
+	      </RelativeLayout>
+    
+		<LinearLayout
+	        android:id="@+id/filter_name_linear_layout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:orientation="vertical"
+	        
+	        android:layout_margin="4dp" 
+	        android:background="@drawable/main_view_element">
+	
+	        <TextView
+	            android:id="@+id/textView1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_below="@+id/button4"
+	            android:text="Press the button below to set all filters to be valid for your current location:"
+	            android:textAppearance="?android:attr/textAppearanceLarge" />
+	        
+	        <Button
+	            android:id="@+id/save_filter_button_tools"
+	            android:layout_width="150px"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:layout_alignParentRight="true"
+	            android:layout_marginBottom="-4dp"
+	            android:layout_marginRight="5dp"
+	            android:layout_marginTop="5dp"
+	            android:layout_gravity="center_horizontal"
+	            android:text="Set Location" />
+	       
+	    </LinearLayout>
+	 </LinearLayout>
+</RelativeLayout> 
+
+
+

@@ -61,7 +61,7 @@ public class FilterMenuActivity extends TabActivity {
         }
         
         
-        intent = new Intent().setClass(this, FilterOptionsActivity.class);
+        intent = new Intent().setClass(this, FilterNameActivity.class);
         spec = tabHost.newTabSpec("tools").setIndicator("Name",
                           res.getDrawable(R.drawable.ic_tab_tools))
                       .setContent(intent);
@@ -74,7 +74,7 @@ public class FilterMenuActivity extends TabActivity {
         intent = new Intent().setClass(this, ConditionRuleViewerActivity.class);
 
         // Initialize a TabSpec for each tab and add it to the TabHost
-        spec = tabHost.newTabSpec("weather").setIndicator("Weather",
+        spec = tabHost.newTabSpec("weather").setIndicator("Conditions",
                           res.getDrawable(R.drawable.ic_tab_weather))
                       .setContent(intent);
         tabHost.addTab(spec);
@@ -101,7 +101,7 @@ public class FilterMenuActivity extends TabActivity {
         
         // Do the same for the other tabs
         intent = new Intent().setClass(this, TimeRuleViewerActivity.class);
-        spec = tabHost.newTabSpec("clock").setIndicator("Clock",
+        spec = tabHost.newTabSpec("clock").setIndicator("Times",
                           res.getDrawable(R.drawable.ic_tab_clock))
                       .setContent(intent);
         tabHost.addTab(spec);

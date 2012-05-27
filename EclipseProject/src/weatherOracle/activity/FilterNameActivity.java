@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class FilterOptionsActivity extends Activity {
+public class FilterNameActivity extends Activity {
 	
 	
 	boolean invalidName = false;
@@ -24,7 +24,7 @@ public class FilterOptionsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.filter_options_activity);
+	    setContentView(R.layout.filter_name_activity);
 	    
 	    final EditText editText = (EditText)findViewById(R.id.text_box);
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_tools);
