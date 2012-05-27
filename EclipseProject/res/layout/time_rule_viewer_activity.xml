@@ -68,14 +68,14 @@
 		        android:layout_alignParentRight="true"
 		        android:gravity="center_horizontal">
 	        
-		        <CheckBox
+		        <Button
 		            android:id="@+id/weekends"
 		            android:layout_width="wrap_content"
 		            android:layout_height="40dp"
 		            android:layout_marginLeft="5dp"
 		            android:text="Weekends" />
 		        
-		        <CheckBox
+		        <Button
 		            android:id="@+id/weekdays"
 		            android:layout_width="wrap_content"
 		            android:layout_height="40dp"
