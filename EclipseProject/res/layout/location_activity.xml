@@ -57,6 +57,46 @@
 	            android:text="Set Location" />
 	       
 	    </LinearLayout>
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_margin="4dp" >
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	        	android:layout_height="wrap_content"
+	        	android:orientation="horizontal"
+	        	android:layout_margin="4dp" >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Current Latitude:"
+		            android:textAppearance="?android:attr/textAppearanceLarge" />
+		        <TextView
+		            android:id="@+id/latitude"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="n/a"
+		            android:textAppearance="?android:attr/textAppearanceLarge" />
+		    </LinearLayout>
+		    <LinearLayout
+	            android:layout_width="fill_parent"
+	        	android:layout_height="wrap_content"
+	        	android:orientation="horizontal"
+	        	android:layout_margin="4dp" >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Current Longitude:"
+		            android:textAppearance="?android:attr/textAppearanceLarge" />
+		        <TextView
+		            android:id="@+id/longitude"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="n/a"
+		            android:textAppearance="?android:attr/textAppearanceLarge" />
+		    </LinearLayout>
+	    </LinearLayout>
 	 </LinearLayout>
 </RelativeLayout> 
 
