@@ -14,6 +14,7 @@
 	          android:id="@+id/filters_activity_title_bar"
 	          android:background="#800000"
 	          android:layout_width="fill_parent"
+	          android:gravity="center_horizontal"
 	          android:layout_height="45dp"> 
 	          	          
 	          <TextView
@@ -22,7 +23,7 @@
 		              android:paddingTop="7dp"
 		              android:textColor="#FFFFFF"
 		              android:text="Notifications"
-		              android:layout_marginLeft="85dp"
+		              
 		              android:textAppearance="?android:attr/textAppearanceLarge" /> 
 	      </RelativeLayout>
     
