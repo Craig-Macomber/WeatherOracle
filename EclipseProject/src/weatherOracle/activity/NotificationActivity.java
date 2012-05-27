@@ -121,22 +121,26 @@ public class NotificationActivity extends Activity {
  			//dividerParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
  			parentll.addView(divider2, dividerParams2);
  			
-// 			LinearLayout nameAndDetails = new LinearLayout(this);
-// 			LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 50);
-// 			ll.addView(nameAndDetails, nameParams);
+ 			LinearLayout nameAndDetails = new LinearLayout(this);
+ 			LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 50);
+ 			ll.addView(nameAndDetails, nameParams);
            
  			TextView name = new TextView(getApplicationContext());
             name.setText(notificationList.get(i).getName());
             name.setTextSize(2,25);
             name.setTextColor(Color.BLACK);
             
-    //        nameAndDetails.addView(name);
+            nameAndDetails.addView(name);
             
             
             ll.setOrientation(0);
-            ll.addView(name);
+      //      ll.addView(name);
             final int index = i;
             Button internet = new Button(getApplicationContext());
+            
+        //    internetParams.setGravity
+          
+            
             internet.setOnClickListener(new View.OnClickListener() {
 				
 				public void onClick(View v) {
@@ -160,7 +164,7 @@ public class NotificationActivity extends Activity {
             if(notificationList.get(i).getName().equals("no data yet") && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null) {
             	//dont add the connect to internet button
             } else {
-            	ll.addView(internet);
+            	nameAndDetails.addView(internet);
             	//nameAndDetails.setGravity(Gravity.RIGHT);
             }
             
