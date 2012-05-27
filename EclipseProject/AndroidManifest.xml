@@ -36,7 +36,7 @@
         <activity android:name=".InternetForecast"></activity>
         <activity android:name=".ConditionAdderActivity"></activity>
         <activity android:name=".FiltersActivity"></activity>
-        <activity android:name=".ToolsActivity"></activity>
+        <activity android:name=".LocationActivity"></activity>
         <activity android:name=".NotificationActivity"></activity>
         <activity android:name=".FilterMenuActivity"></activity>
         <activity android:name=".FilterOptionsActivity"></activity>
