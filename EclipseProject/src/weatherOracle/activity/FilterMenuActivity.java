@@ -46,11 +46,17 @@ public class FilterMenuActivity extends TabActivity {
         	filter = (Filter) extras.get("filter");
         	currentFilterName = filter.getName();
         	initialFilterName = filter.getName();
-        	if(filter.getTimeRules() == null){
-        		times = new TreeSet<TimeRule>();
+        	if((Boolean) extras.get("new")){
+        		times = new TreeSet<TimeRule>();        		
+        		times.add(new TimeRule("Monday"));
+        		times.add(new TimeRule("Tuesday"));
+        		times.add(new TimeRule("Wednesday"));
+        		times.add(new TimeRule("Thursday"));
+        		times.add(new TimeRule("Frinday"));
+        		times.add(new TimeRule("Saturday"));
+        		times.add(new TimeRule("Sunday"));
         	} else {
         		times = filter.getTimeRules();
-        		System.out.println(times.toString());
         	}
         	if(filter.getConditionRules() == null){
         		conditions = new TreeSet<ConditionRule>();
