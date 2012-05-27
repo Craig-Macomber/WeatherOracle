@@ -141,6 +141,7 @@ public class FiltersActivity extends Activity {
  				{
  					Intent myIntent = new Intent(v.getContext(), FilterMenuActivity.class);
  					myIntent.putExtra("filter", currentFilter);
+ 					myIntent.putExtra("new", false);
  					startActivity(myIntent);
  				}
  			});
@@ -214,6 +215,7 @@ public class FiltersActivity extends Activity {
         	   	Filter filter = new Filter("");
             	Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
                 myIntent.putExtra("filter", filter);
+                myIntent.putExtra("new", true);
                 startActivity(myIntent);     
            } 
  		});
