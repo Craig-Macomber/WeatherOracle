@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+      
+	      <RelativeLayout 
+	          android:id="@+id/filter_name_activity_title_bar"
+	          android:background="#800000"
+	          android:layout_width="fill_parent"
+	          android:gravity="center_horizontal"
+	          android:layout_height="45dp"> 
+	          
+	          <Button
+		            android:id="@+id/save_filter_button_tools"
+		            android:layout_width="70dp"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentBottom="true"
+		            android:layout_alignParentRight="true"
+		            android:layout_gravity="center_vertical"
+		            android:layout_margin="5dp"
+		            android:text="Save" />
+
+	          
+	          <TextView
+		              android:layout_width="wrap_content"
+		              android:layout_height="fill_parent"
+		              android:paddingTop="7dp"
+		              android:textColor="#FFFFFF"
+		              android:layout_marginLeft="115dp"
+		              android:text="Name"
+		              android:textAppearance="?android:attr/textAppearanceLarge" /> 
+	          
+	          
+	      </RelativeLayout> 
+    
+    
+	<LinearLayout
+        android:id="@+id/filter_name_linear_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/filter_name_activity_title_bar"
+        android:layout_margin="4dp" 
+        android:background="@drawable/main_view_element">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button4"
+            android:text="Name:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/text_box"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/linearLayout1"
+	        android:layout_centerHorizontal="true"
+	        android:hint="Filter Name"
+	        android:ems="10" >
+        </EditText>
+        
+    </LinearLayout>
+    
+    <TextView
+        	android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp" 
+            android:layout_below="@+id/filter_name_linear_layout"
+            android:text="Filter names cannot be duplicate and
+must contain at least one alphanumeric letter"
+            android:background="@drawable/main_view_element"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+</RelativeLayout> 
