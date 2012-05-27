@@ -7,24 +7,35 @@
     <RelativeLayout
         android:id="@+id/save_and_cancel_bar"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true" >
-
+        android:layout_height="45dp"
+        android:background="#800000" >
+        
         <Button
-            android:id="@+id/add_condition_filter_button"
-            android:layout_width="250px"
+            android:id="@+id/add_condition_button"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="Add Weather Condition" />
+            android:layout_margin="5dp"
+            android:text="Add" />
+        
+        <TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:paddingTop="7dp"
+		    android:textColor="#FFFFFF"
+		    android:text="Conditions"
+		    android:layout_marginLeft="90dp"
+		    android:textAppearance="?android:attr/textAppearanceLarge" /> 
 
         <Button
-            android:id="@+id/save_filter_button_conditions"
-            android:layout_width="150px"
+		    android:id="@+id/save_filter_button_conditions"
+	        android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="Save" />
+		    android:layout_alignParentBottom="true"
+		    android:layout_alignParentRight="true"
+		    android:layout_gravity="center_vertical"
+		    android:layout_margin="5dp"
+		    android:text="Save" />
         
 	</RelativeLayout>
         <LinearLayout

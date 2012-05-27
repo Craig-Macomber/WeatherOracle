@@ -116,7 +116,7 @@ public class ConditionRuleViewerActivity extends Activity {
     
 
 	private void CreateAddConditionButton() {
-    	Button b = (Button)findViewById(R.id.add_condition_filter_button);
+    	Button b = (Button)findViewById(R.id.add_condition_button);
     	 b.setOnClickListener(new View.OnClickListener() {
              public void onClick(View view) {
              	Intent myIntent = new Intent(view.getContext(), ConditionAdderActivity.class);
