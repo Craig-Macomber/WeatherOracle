@@ -156,6 +156,9 @@ public class TimeRuleViewerActivity extends Activity {
 		});	
 	}
 
+	/**
+	 * Initialize buttons
+	 */
 	private void initializeButtons() {
 		
 		final Button weekdays = (Button) findViewById(R.id.weekdays);
