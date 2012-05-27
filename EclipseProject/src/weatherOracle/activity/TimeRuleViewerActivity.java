@@ -30,15 +30,23 @@ public class TimeRuleViewerActivity extends Activity {
 	    setContentView(R.layout.time_rule_viewer_activity);
 	    initializeDays();
 	    initializeDaysCheckbox();
+	    initializeButtons();
 	    initializeSaveButton();
 	    displayTime();
-	
-	
 	}
 
+	/**
+	 * For all the days check box, check it if it is currently part of the time
+	 * Uncheck it the uncheck if that is not part of the time 
+	 */
 	private void displayTime() {
+		
+		for (CheckBox day : this.days) {
+			day.setChecked(false);
+		}
+		
 	    for (TimeRule r : FilterMenuActivity.times){
-	    	String day = r.getDay();
+	    	String day = r.getDay();	    	
 	    	if (day.equals("Monday")){
 	    		(days.get(0)).setChecked(true);
 	    	} else if(day.equals("Tuesday")){
@@ -54,12 +62,12 @@ public class TimeRuleViewerActivity extends Activity {
 	    	} else if (day.equals("Sunday")){
 	    		(days.get(6)).setChecked(true);
 	    	}
-		    weekdayCheck();
-		    weekendCheck();
 	    }
-		
 	}
 
+	/**
+	 * Initialize the save button
+	 */
 	private void initializeSaveButton() {
 		final Button saveButton = (Button) findViewById(R.id.save_filter_button_time);
 	    initializeSaveButtonListener(saveButton);
@@ -67,6 +75,7 @@ public class TimeRuleViewerActivity extends Activity {
 	}
 
 	private void initializeDaysCheckbox() {
+		
 		final Button monday = (CheckBox) findViewById(R.id.monday_checkbox);
 	    final Button tuesday = (CheckBox) findViewById(R.id.tuesday_checkbox);
 	    final Button wednesday = (CheckBox) findViewById(R.id.wednesday_checkbox);
@@ -74,42 +83,12 @@ public class TimeRuleViewerActivity extends Activity {
 	    final Button friday = (CheckBox) findViewById(R.id.friday_checkbox);
 	    final Button saturday = (CheckBox) findViewById(R.id.saturday_checkbox);
 	    final Button sunday = (CheckBox) findViewById(R.id.sunday_checkbox);
-	    final Button weekends = (Button) findViewById(R.id.weekends);
-	    final Button weekdays = (Button) findViewById(R.id.weekdays);
-	    
-	    if (FilterMenuActivity.initialFilterName.equals("")){
-	    	((CheckBox)monday).setChecked(true);
-	    	FilterMenuActivity.times.add(new TimeRule("Monday"));
-	    	
-	    	((CheckBox)tuesday).setChecked(true);
-	    	FilterMenuActivity.times.add(new TimeRule("Tuesday"));
-	    	
-	    	((CheckBox)wednesday).setChecked(true);
-	    	FilterMenuActivity.times.add(new TimeRule("Wednesday"));
-	    	
-	    	((CheckBox)thursday).setChecked(true);
-	    	FilterMenuActivity.times.add(new TimeRule("Thursday"));
-	    	
-	    	((CheckBox)friday).setChecked(true);
-	    	FilterMenuActivity.times.add(new TimeRule("Friday"));
-	    	
-	    	((CheckBox)saturday).setChecked(true);
-	    	FilterMenuActivity.times.add(new TimeRule("Saturday"));
-	    	
-	    	((CheckBox)sunday).setChecked(true);
-	    	FilterMenuActivity.times.add(new TimeRule("Sunday"));
-	    	
-	    	((CheckBox)weekdays).setChecked(true);
-	    	((CheckBox)weekends).setChecked(true);
-	    }
 	    
 	    monday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)monday).isChecked()) {
-					weekdayCheck();
 					FilterMenuActivity.times.add(new TimeRule("Monday"));
 				} else {		
-					((CheckBox) weekdays).setChecked(false);
 					FilterMenuActivity.times.remove(new TimeRule("Monday"));
 				}
 			}
@@ -118,10 +97,8 @@ public class TimeRuleViewerActivity extends Activity {
 	    tuesday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)tuesday).isChecked()) {
-					weekdayCheck();
 					FilterMenuActivity.times.add(new TimeRule("Tuesday"));
 				} else {		
-					((CheckBox) weekdays).setChecked(false);
 					FilterMenuActivity.times.remove(new TimeRule("Tuesday"));
 				}
 			}
@@ -130,10 +107,8 @@ public class TimeRuleViewerActivity extends Activity {
 	    wednesday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)wednesday).isChecked()) {
-					weekdayCheck();
 					FilterMenuActivity.times.add(new TimeRule("Wednesday"));
-				} else {		
-					((CheckBox) weekdays).setChecked(false);
+				} else {
 					FilterMenuActivity.times.remove(new TimeRule("Wednesday"));
 				}
 			}
@@ -142,10 +117,8 @@ public class TimeRuleViewerActivity extends Activity {
 	    thursday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)thursday).isChecked()) {
-					weekdayCheck();
 					FilterMenuActivity.times.add(new TimeRule("Thursday"));
 				} else {		
-					((CheckBox) weekdays).setChecked(false);
 					FilterMenuActivity.times.remove(new TimeRule("Thursday"));
 				}
 			}
@@ -154,10 +127,8 @@ public class TimeRuleViewerActivity extends Activity {
 	    friday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)friday).isChecked()) {
-					weekdayCheck();
 					FilterMenuActivity.times.add(new TimeRule("Friday"));
 				} else {		
-					((CheckBox) weekdays).setChecked(false);
 					FilterMenuActivity.times.remove(new TimeRule("Friday"));
 				}
 			}
@@ -166,10 +137,9 @@ public class TimeRuleViewerActivity extends Activity {
 	    saturday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)saturday).isChecked()) {
-					weekendCheck();
+
 					FilterMenuActivity.times.add(new TimeRule("Saturday"));
-				} else {		
-					((CheckBox) weekends).setChecked(false);
+				} else {
 					FilterMenuActivity.times.remove(new TimeRule("Saturday"));
 				}
 			}
@@ -178,55 +148,54 @@ public class TimeRuleViewerActivity extends Activity {
 	    sunday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (((CheckBox)sunday).isChecked()) {
-					weekendCheck();
 					FilterMenuActivity.times.add(new TimeRule("Sunday"));
 				} else {		
-					((CheckBox) weekends).setChecked(false);
 					FilterMenuActivity.times.remove(new TimeRule("Sunday"));
 				}
 			}
-		});
-	    weekends.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				if (((CheckBox)weekends).isChecked()) {
-					for (int i =5; i < days.size();i++) {
-						days.get(i).setChecked(true);
-						String day = (String)days.get(i).getText();
-						FilterMenuActivity.times.add(new TimeRule(day));
-					}
-				} else {
-					for (int i =5; i < days.size();i++) {
-						days.get(i).setChecked(false);
-						String day = (String)days.get(i).getText();
-						FilterMenuActivity.times.remove(new TimeRule(day));
-					}	
-				}
-				
-			}
-		});
-	    
-	    weekdays.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				if (((CheckBox)weekdays).isChecked()) {
-					for (int i =0; i < 5;i++) {
-						days.get(i).setChecked(true);
-						String day = (String)days.get(i).getText();
-						FilterMenuActivity.times.add(new TimeRule(day));
-					}
-				} else {
-					for (int i =0; i < 5;i++) {
-						days.get(i).setChecked(false);
-						String day = (String)days.get(i).getText();
-						FilterMenuActivity.times.remove(new TimeRule(day));
-					}	
-				}
-			}
-		});
-	    
+		});	
+	}
+
+	/**
+	 * Initialize buttons
+	 */
+	private void initializeButtons() {
+		
+		final Button weekdays = (Button) findViewById(R.id.weekdays);
+		final Button weekends = (Button) findViewById(R.id.weekends);
 	    final Button selectAll = (Button) findViewById(R.id.select_all);
 	    final Button deselectAll = (Button) findViewById(R.id.deselect_all);
 	    
-	        
+	    weekdays.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				for (int i =0; i < days.size();i++) {
+					days.get(i).setChecked(false);
+					String day = (String)days.get(i).getText();
+					FilterMenuActivity.times.remove(new TimeRule(day));
+				}
+				for (int i =0; i < 5;i++) {
+					days.get(i).setChecked(true);		
+					String day = (String)days.get(i).getText();
+					FilterMenuActivity.times.add(new TimeRule(day));
+				}
+			}
+		});
+	    
+	    weekends.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				for (int i =0; i < days.size();i++) {
+					days.get(i).setChecked(false);
+					String day = (String)days.get(i).getText();
+					FilterMenuActivity.times.remove(new TimeRule(day));
+				}
+				for (int i =5; i < days.size();i++) {
+					days.get(i).setChecked(true);		
+					String day = (String)days.get(i).getText();
+					FilterMenuActivity.times.add(new TimeRule(day));
+				}
+			}
+		});
+	    
 	    selectAll.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				for (int i =0; i < days.size();i++) {
@@ -234,8 +203,6 @@ public class TimeRuleViewerActivity extends Activity {
 					String day = (String)days.get(i).getText();
 					FilterMenuActivity.times.add(new TimeRule(day));
 				}
-				((CheckBox)weekends).setChecked(true);
-				((CheckBox)weekdays).setChecked(true);
 			}
 		});
 	
@@ -246,25 +213,16 @@ public class TimeRuleViewerActivity extends Activity {
 					String day = (String)days.get(i).getText();
 					FilterMenuActivity.times.remove(new TimeRule(day));
 				}
-				((CheckBox)weekends).setChecked(false);
-				((CheckBox)weekdays).setChecked(false);
-			}
-		});
-	    
-	    
-		
-	}
-
-	private void weekdayCheckBox(CheckBox c) {
-		c.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 	}
 	
+	
+	
+	
+	/**
+	 * Initialize the days field by adding days from mon - sun in index 0 to 6
+	 */
 	private void initializeDays() {
 		days.add((CheckBox) findViewById(R.id.monday_checkbox));
 	    days.add((CheckBox) findViewById(R.id.tuesday_checkbox));
@@ -274,31 +232,11 @@ public class TimeRuleViewerActivity extends Activity {
 	    days.add((CheckBox) findViewById(R.id.saturday_checkbox));
 	    days.add((CheckBox) findViewById(R.id.sunday_checkbox));
 	}
-
-	private void weekdayCheck() {
-		boolean check = true;
-		for (int i = 0; i < 5;i++) {
-			if (!days.get(i).isChecked()) {
-				check = false;
-			}
-		}
-		if (check) {
-		    ((CheckBox)findViewById(R.id.weekdays)).setChecked(true);
-		}
-	}
 	
-	private void weekendCheck() {
-		boolean check = true;
-		for (int i = 5; i < days.size();i++) {
-			if (!days.get(i).isChecked()) {
-				check = false;
-			}
-		}
-		if (check) {
-			((CheckBox)findViewById(R.id.weekends)).setChecked(true);
-		}
-	}
-	
+	/**
+	 * 
+	 * @param saveButton Button that will be used as a save button
+	 */
 	private void initializeSaveButtonListener(Button saveButton){
 		 saveButton.setOnClickListener(new View.OnClickListener()
 	        {
