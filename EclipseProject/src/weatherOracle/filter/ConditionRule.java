@@ -23,7 +23,6 @@ public class ConditionRule implements Rule {
 	 * The units for the different weather conditions
 	 */
 	public static final Map<String, String> units = new HashMap<String, String>() {
-		
 		private static final long serialVersionUID = -8447558203204357059L;
 		{
 		put("Temperature", "\u00b0F");
@@ -53,7 +52,25 @@ public class ConditionRule implements Rule {
 			put("Humidity", new Pair<Integer, Integer>(0, 100));
 		}
 	};
+	
+	/**
+	 * the portions of the urls for each weather condition when displaying tabular forecast
+	 */
+	public static final Map<String, String> urlSpecifiers = new HashMap<String, String>() {
+		private static final long serialVersionUID = -7067679511309105567L;
+		{
+			put("Temperature", "w0=t");
+			put("Dewpoint", "w1=td");
+			put("Gust Wind Speed", "w3=sfcwind");
+			put("Sustained Wind Speed", "w3=sfcwind");
+			put("Cloud Cover", "w4=sky");
+			put("Precipitation Percent", "w5=pop");
+			put("Precipitation Amount", "w8=rain");
+			put("Humidity", "w6=rh");
+		}
+	};
 
+	
 	/**
 	 * The condition of this ConditionRule
 	 */
@@ -160,6 +177,14 @@ public class ConditionRule implements Rule {
 	 */
 	public static Pair<Integer, Integer> getBounds(String type) {
 		return bounds.get(type);
+	}
+	
+	/**
+	 * Gets the url specifier for a weather condition
+	 * @return the url specifier for the given weather condition
+	 */
+	public static String geturlSpecifier(String type) {
+		return urlSpecifiers.get(type);
 	}
 	
 	// Generated hashcode method
