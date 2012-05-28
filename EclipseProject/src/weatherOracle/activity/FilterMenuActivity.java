@@ -52,7 +52,7 @@ public class FilterMenuActivity extends TabActivity {
         		times.add(new TimeRule("Tuesday"));
         		times.add(new TimeRule("Wednesday"));
         		times.add(new TimeRule("Thursday"));
-        		times.add(new TimeRule("Frinday"));
+        		times.add(new TimeRule("Friday"));
         		times.add(new TimeRule("Saturday"));
         		times.add(new TimeRule("Sunday"));
         	} else {
