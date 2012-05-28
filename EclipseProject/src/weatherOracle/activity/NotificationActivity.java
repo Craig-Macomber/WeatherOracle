@@ -146,13 +146,15 @@ public class NotificationActivity extends Activity {
 				
 				public void onClick(View v) {
 					try {
-						double lat = 47.66076;
-						double lon = -122.29508;
 						URL url;
 						/*url = new URL("http://forecast.weather.gov/MapClick.php?lat="
 								+ lat + "&lon=" + lon);*/
 						
 						Filter currentFilter = notificationList.get(index).getFilter();
+						
+						double lat = currentFilter.getLocation().lat;
+						double lon = currentFilter.getLocation().lon;
+						
 						String specifier = "";
 						
 						for(ConditionRule cr : currentFilter.getConditionRules()) {
