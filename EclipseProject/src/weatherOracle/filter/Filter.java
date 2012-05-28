@@ -34,6 +34,11 @@ public final class Filter implements Serializable {
 	 * The name of this Filter
 	 */
 	private String name;
+	
+	/**
+	 * The name of the location for which this Filter is active
+	 */
+	private String locationName;
 
 	/**
 	 * The Location of this FIlter
@@ -78,6 +83,22 @@ public final class Filter implements Serializable {
 	 */
 	public void setLocation(Location loc) {
 		this.loc=loc;
+	}
+	
+	/**
+	 * Returns the locationName of this Filter
+	 * @return the locationName associated with this filter
+	 */
+	public String getLocationName() {
+		return locationName;
+	}
+	
+	/**
+	 * Sets the locationName of this filter
+	 * @param locationName the new locationName
+	 */
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
 	}
 	
 	/**

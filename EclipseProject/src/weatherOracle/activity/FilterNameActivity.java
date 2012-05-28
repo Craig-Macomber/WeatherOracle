@@ -28,7 +28,7 @@ public class FilterNameActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.filter_name_activity);
 	    
-	    final EditText editText = (EditText)findViewById(R.id.text_box);
+	    final EditText editText = (EditText)findViewById(R.id.filter_name);
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_tools);
 	    editText.setText(FilterMenuActivity.filter.getName());
 	    FilterMenuActivity.currentFilterName = FilterMenuActivity.filter.getName();
