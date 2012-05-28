@@ -174,7 +174,8 @@ public class FiltersActivity extends Activity {
 								String filterName = (String) textview.getText();
 			   	   	  			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
 		   	   	  				Filter current = HomeMenuActivity.filterList.get(i);
-		   	   	  				if(current.getName().equals(filterName)){
+		   	   	  				if(current.getName().equals(filterName) 
+		   	   	  						&& current.getLocationName().equals(currentFilter.getLocationName())){
 		   	   	  					HomeMenuActivity.filterList.remove(i);
 		   	   	  					FilterStore.setFilters(HomeMenuActivity.filterList);
 		   	   	  					i--;
@@ -213,6 +214,7 @@ public class FiltersActivity extends Activity {
            {
         	    // create empty filter with empty string as name to pass into FilterMenuActivity
         	   	Filter filter = new Filter("");
+        	   	filter.setLocationName("");
             	Intent myIntent = new Intent(view.getContext(), FilterMenuActivity.class);
                 myIntent.putExtra("filter", filter);
                 myIntent.putExtra("new", true);

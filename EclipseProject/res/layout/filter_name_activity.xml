@@ -74,7 +74,7 @@
 		        android:layout_height="wrap_content"
 		        android:layout_centerHorizontal="true"
 		        android:hint="Enter Filter Name"
-		        android:layout_marginLeft="2dp"
+		        android:layout_marginLeft="26dp"
 		        
 		        android:ems="10" >
 	        </EditText>
@@ -97,7 +97,7 @@
 		        android:textAppearance="?android:attr/textAppearanceLarge" />
 		
 		    <EditText
-		        
+		        android:id="@+id/location_name"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_centerHorizontal="true"
@@ -134,7 +134,7 @@
 		   android:layout_margin="4dp" >
 	
 		   <TextView
-		        android:id="@+id/textView1"
+		        
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
@@ -142,12 +142,12 @@
 		        android:textAppearance="?android:attr/textAppearanceLarge" />
 		
 		    <EditText
-		        android:id="@+id/text_box"
+		        android:id="@+id/latitude"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_centerHorizontal="true"
 			    android:hint="+/- Decimal #"
-			    android:layout_marginLeft="2dp"
+			    android:layout_marginLeft="19dp"
 			    android:ems="10" >
 		    </EditText>
 		 </LinearLayout> 
@@ -160,7 +160,7 @@
 		   android:layout_margin="4dp" >
 	
 		   <TextView
-		        android:id="@+id/textView1"
+		        
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
@@ -168,7 +168,7 @@
 		        android:textAppearance="?android:attr/textAppearanceLarge" />
 		
 		    <EditText
-		        android:id="@+id/text_box"
+		        android:id="@+id/longitude"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_centerHorizontal="true"

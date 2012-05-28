@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import weatherOracle.app.Location;
 import weatherOracle.filter.ConditionRule;
 import weatherOracle.filter.Filter;
 import weatherOracle.filter.FilterStore;
@@ -25,6 +26,10 @@ public class FilterMenuActivity extends TabActivity {
     static Filter filter;
 	static String currentFilterName = "";
 	static String initialFilterName = "";
+	static String currentLocationName = "";
+	static String initialLocationName = "";
+	static double latitude;
+	static double longitude;
 	static Set<ConditionRule> conditions = new TreeSet<ConditionRule>();
 	static Set<TimeRule> times = new TreeSet<TimeRule>();
 	static TabHost tabHost;
@@ -46,6 +51,11 @@ public class FilterMenuActivity extends TabActivity {
         	filter = (Filter) extras.get("filter");
         	currentFilterName = filter.getName();
         	initialFilterName = filter.getName();
+        	currentLocationName = filter.getLocationName();
+        	initialLocationName = filter.getLocationName();
+        	Location loc = filter.getLocation();
+        	latitude = loc.lat;
+        	longitude = loc.lon;
         	if((Boolean) extras.get("new")){
         		times = new TreeSet<TimeRule>();        		
         		times.add(new TimeRule("Monday"));
@@ -73,9 +83,6 @@ public class FilterMenuActivity extends TabActivity {
                       .setContent(intent);
         tabHost.addTab(spec);
         
-        
-        
-        
         // Create an Intent to launch an Activity for the tab (to be reused)
         intent = new Intent().setClass(this, ConditionRuleViewerActivity.class);
 
@@ -84,26 +91,7 @@ public class FilterMenuActivity extends TabActivity {
                           res.getDrawable(R.drawable.ic_tab_weather))
                       .setContent(intent);
         tabHost.addTab(spec);
-        
-        // get extras passed to this activity by FiltersActivity
-        
-        
-
-   //     String test = "no";
-   //     if(newFilter){
-   //     	test = "new filter";
-   //     	Filter testFilter = new Filter("this is a test");
-   //     	HomeMenuActivity.testFilterList.add(testFilter);
-   
-   //     	Filter testFilter = new Filter("this is a test");
-   //     	List<Filter> filterList = new LinkedList<Filter>();
-   //     	filterList.add(testFilter);
-   //     	FilterStore.setFilters(filterList);
-   //         final List<Filter> filterList = filterListPair.first;
-   //         filterList.add(testFilter);
-   //         FilterStore.setFilters(filterList);
-   //     }
-//        
+                
         
         // Do the same for the other tabs
         intent = new Intent().setClass(this, TimeRuleViewerActivity.class);
