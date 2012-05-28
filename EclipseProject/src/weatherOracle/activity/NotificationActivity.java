@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -148,8 +149,34 @@ public class NotificationActivity extends Activity {
 						double lat = 47.66076;
 						double lon = -122.29508;
 						URL url;
-						url = new URL("http://forecast.weather.gov/MapClick.php?lat="
-								+ lat + "&lon=" + lon);
+						/*url = new URL("http://forecast.weather.gov/MapClick.php?lat="
+								+ lat + "&lon=" + lon);*/
+						
+						Filter currentFilter = notificationList.get(index).getFilter();
+						String specifier = "";
+						
+						for(ConditionRule cr : currentFilter.getConditionRules()) {
+							if (!specifier.contains(ConditionRule.geturlSpecifier(cr.getCondition()))) {
+								specifier += ConditionRule.geturlSpecifier(cr.getCondition()) + "&";	
+							}
+						}
+						
+						url = new URL("http://forecast.weather.gov/MapClick.php?"
+								+ specifier
+								+ "&w3u=1&AheadHour=0&Submit=Submit&FcstType=digital&textField1="
+								+ lat
+								+ "&textField2="
+								+ lon
+								+ "&site=all&unit=0&dd=0&bw=0");
+						
+						Log.d("NOTIFICATION ACTIVITY", "http://forecast.weather.gov/MapClick.php?"
+								+ specifier
+								+ "&w3u=1&AheadHour=0&Submit=Submit&FcstType=digital&textField1="
+								+ lat
+								+ "&textField2="
+								+ lon
+								+ "&site=all&unit=0&dd=0&bw=0");
+							
 						Intent myIntent = new Intent(v.getContext(), InternetForecast.class);
 		                myIntent.putExtra("url", url);
 		                startActivity(myIntent);
