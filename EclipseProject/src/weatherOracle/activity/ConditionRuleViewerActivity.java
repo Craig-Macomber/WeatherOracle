@@ -145,82 +145,109 @@ public class ConditionRuleViewerActivity extends Activity {
  	
  	
  	
-	private void initializeSaveButtonListener(Button saveButton){
-		saveButton.setOnClickListener(new View.OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				String currentName = FilterMenuActivity.currentFilterName;
-				boolean filterNameValid = true;
-				boolean editingExistingFilter = false;
-				// checks if filter name specified is already assigned to an existing
-				// filter
-				for (int i = 0; i < HomeMenuActivity.filterList.size(); i++){
-					Filter current = HomeMenuActivity.filterList.get(i);
-					if (FilterMenuActivity.initialFilterName.equals(current.getName())){
-						editingExistingFilter = true;
-					}
-					if(current.getName().equals(FilterMenuActivity.currentFilterName)
-					&& !(editingExistingFilter)){
-						filterNameValid = false;
-					}
-				}
-				
-				// filter name is unique at this point, but not necessarily valid
-				// because it could still be the empty string
-				if(FilterMenuActivity.currentFilterName.trim().equals("")) {
-					filterNameValid = false;
-				}
-				
-				// filter name is valid
-				if(filterNameValid){
-					FilterMenuActivity.filter.removeTimeRules();
-					FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
-					FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
-					FilterMenuActivity.filter.removeConditionRules();
-        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
-        	 		
-        	 		if(editingExistingFilter){
-        	 			int index = 0;
-        	 			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
-       	   	  				Filter current = HomeMenuActivity.filterList.get(i);
-       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)){
-       	   	  					HomeMenuActivity.filterList.remove(i);
-       	   	  					index = i;
-       	   	  					i--;
-       	   	  				}
-       	   	  			}
-        	 			HomeMenuActivity.filterList.add(index,FilterMenuActivity.filter);
-        	 		} else {
-        	 			HomeMenuActivity.filterList.add(FilterMenuActivity.filter);
-        	 		}
-        	 		finish();
-				} else {
-					FilterMenuActivity.tabHost.setCurrentTab(0);
-					if(FilterMenuActivity.currentFilterName.trim().equals("")) {
-       	 			 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                        builder.setMessage("Filter name must contain at least one alphanumeric letter.")
-                           .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                               public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                               }
-                           });
-                        AlertDialog alert = builder.create();
-                        alert.show();
-	        	 	} else {
-	        	 		AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                        builder.setMessage("Filter names cannot be duplicate.")
-                           .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                               public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                               }
-                           });
-                        AlertDialog alert = builder.create();
-                        alert.show();
+ 	private void initializeSaveButtonListener(Button saveButton){
+		 saveButton.setOnClickListener(new View.OnClickListener()
+	        {
+	         public void onClick(View v)
+	            {
+	        	 	// these four variables are gere for debuggin purposes
+	        	 	String currentFilterName = FilterMenuActivity.currentFilterName;
+	        	 	String initialFilterName = FilterMenuActivity.initialFilterName;
+	        	 	String currentLocationName = FilterMenuActivity.currentLocationName;
+	        	 	String initialLocationName = FilterMenuActivity.initialLocationName;
+	        	 	
+	        	 	boolean filterNameValid = true;
+	        	 	boolean editingExistingFilter = false; // set to true if the given filter
+	        	 										   // being edited is not a 'new' filter
+	        	 	
+	        	 	
+	        	 	// checks to see if filter and location names represent a valid combo ...
+	        	 	// meaning the pair is unique
+	        	 	for (int i = 0; i < HomeMenuActivity.filterList.size(); i++){
+	        	 		// this is set to true only if the 'current' filter at index i
+	        	 		// in filterList is the filter that is being edited. This is different
+	        	 		// from editingExistingFilter which will never revert back to false
+	        	 		// once set to true
+	        	 		boolean editingCurrentFilter = false; 
+	        	 		
+	        	 		Filter current = HomeMenuActivity.filterList.get(i);
+	        	 		String iterationFilterName = current.getName();
+	        	 		String iterationLocationName = current.getLocationName();
+	        	 		
+	        	 		if (initialFilterName.equals(current.getName())
+	        	 				&& initialLocationName.equals(current.getLocationName())){
+	        	 			editingExistingFilter = true;
+	        	 			editingCurrentFilter = true;
+	        	 		}
+	        	 		if(current.getName().equals(currentFilterName) 
+	        	 				&& current.getLocationName().equals(currentLocationName)	
+	        	 				&& !(editingCurrentFilter)){
+	        	 			filterNameValid = false;
+	        	 		}
+	        	 		
 	        	 	}
-				}
-			}
-		});
+	        	 	
+	        	 	
+	        	 	// filter name and location are a unique pair at this point, but not necessarily valid
+	        	 	// because it could still be the empty string
+	        	 	if(FilterMenuActivity.currentFilterName.trim().equals("") ||
+	        	 			FilterMenuActivity.currentLocationName.trim().equals("")) {
+	        	 		filterNameValid = false;
+	        	 	}
+	        	 	
+	        	 	// filter name is valid
+	        	 	if(filterNameValid){		
+	        	 		FilterMenuActivity.filter.removeTimeRules();
+	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
+	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
+	        	 		FilterMenuActivity.filter.setLocationName(FilterMenuActivity.currentLocationName);
+	        	 		FilterMenuActivity.filter.removeConditionRules();
+	        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
+	        	 		FilterMenuActivity.filter.getLocation().lat = FilterMenuActivity.latitude;
+	        	 		FilterMenuActivity.filter.getLocation().lon = FilterMenuActivity.longitude;
+	        	 		if(editingExistingFilter){
+	        	 			int index = 0;
+	        	 			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
+	       	   	  				Filter current = HomeMenuActivity.filterList.get(i);
+	       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)
+	       	   	  						&& current.getLocationName().equals(FilterMenuActivity.initialLocationName)){
+	       	   	  					HomeMenuActivity.filterList.remove(i);
+	       	   	  					index = i;
+	       	   	  					i--;
+	       	   	  				}
+	       	   	  			}
+	        	 			HomeMenuActivity.filterList.add(index, FilterMenuActivity.filter);
+	        	 		} else {
+	        	 			HomeMenuActivity.filterList.add(FilterMenuActivity.filter);
+	        	 		}
+	        	 		finish();
+	        	 	} else {
+	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
+	        	 		if(FilterMenuActivity.currentFilterName.trim().equals("")
+	        	 				|| FilterMenuActivity.currentLocationName.trim().equals("")) {
+	        	 			 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+	                         builder.setMessage("Filter and location names must contain at least one character.")
+	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+	                                public void onClick(DialogInterface dialog, int id) {
+	                                 dialog.dismiss();
+	                                }
+	                            });
+	                         AlertDialog alert = builder.create();
+	                         alert.show();
+		        	 	} else {
+		        	 		AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+	                         builder.setMessage("Filter name already in use for given location.")
+	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+	                                public void onClick(DialogInterface dialog, int id) {
+	                                 dialog.dismiss();
+	                                }
+	                            });
+	                         AlertDialog alert = builder.create();
+	                         alert.show();
+		        	 	}
+	        	 	}
+	            }
+	        });
 	}
 }
 
