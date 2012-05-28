@@ -242,25 +242,48 @@ public class TimeRuleViewerActivity extends Activity {
 	        {
 	         public void onClick(View v)
 	            {
-	        	 	String currentName = FilterMenuActivity.currentFilterName;
+	        	 	// these four variables are gere for debuggin purposes
+	        	 	String currentFilterName = FilterMenuActivity.currentFilterName;
+	        	 	String initialFilterName = FilterMenuActivity.initialFilterName;
+	        	 	String currentLocationName = FilterMenuActivity.currentLocationName;
+	        	 	String initialLocationName = FilterMenuActivity.initialLocationName;
+	        	 	
 	        	 	boolean filterNameValid = true;
-	        	 	boolean editingExistingFilter = false;
-	        	 	// checks if filter name specified is already assigned to an existing
-	        	 	// filter
+	        	 	boolean editingExistingFilter = false; // set to true if the given filter
+	        	 										   // being edited is not a 'new' filter
+	        	 	
+	        	 	
+	        	 	// checks to see if filter and location names represent a valid combo ...
+	        	 	// meaning the pair is unique
 	        	 	for (int i = 0; i < HomeMenuActivity.filterList.size(); i++){
+	        	 		// this is set to true only if the 'current' filter at index i
+	        	 		// in filterList is the filter that is being edited. This is different
+	        	 		// from editingExistingFilter which will never revert back to false
+	        	 		// once set to true
+	        	 		boolean editingCurrentFilter = false; 
+	        	 		
 	        	 		Filter current = HomeMenuActivity.filterList.get(i);
-	        	 		if (FilterMenuActivity.initialFilterName.equals(current.getName())){
+	        	 		String iterationFilterName = current.getName();
+	        	 		String iterationLocationName = current.getLocationName();
+	        	 		
+	        	 		if (initialFilterName.equals(current.getName())
+	        	 				&& initialLocationName.equals(current.getLocationName())){
 	        	 			editingExistingFilter = true;
+	        	 			editingCurrentFilter = true;
 	        	 		}
-	        	 		if(current.getName().equals(FilterMenuActivity.currentFilterName) 
-	        	 				&& !(editingExistingFilter)){
+	        	 		if(current.getName().equals(currentFilterName) 
+	        	 				&& current.getLocationName().equals(currentLocationName)	
+	        	 				&& !(editingCurrentFilter)){
 	        	 			filterNameValid = false;
 	        	 		}
+	        	 		
 	        	 	}
-	        	 	System.out.println(FilterMenuActivity.times.toString());
-	        	 	// filter name is unique at this point, but not necessarily valid
+	        	 	
+	        	 	
+	        	 	// filter name and location are a unique pair at this point, but not necessarily valid
 	        	 	// because it could still be the empty string
-	        	 	if(FilterMenuActivity.currentFilterName.trim().equals("")) {
+	        	 	if(FilterMenuActivity.currentFilterName.trim().equals("") ||
+	        	 			FilterMenuActivity.currentLocationName.trim().equals("")) {
 	        	 		filterNameValid = false;
 	        	 	}
 	        	 	
@@ -268,29 +291,34 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 	if(filterNameValid){		
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
+	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
+	        	 		FilterMenuActivity.filter.setLocationName(FilterMenuActivity.currentLocationName);
 	        	 		FilterMenuActivity.filter.removeConditionRules();
 	        	 		FilterMenuActivity.filter.addSetOfConditionRules(FilterMenuActivity.conditions);
-	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
+	        	 		FilterMenuActivity.filter.getLocation().lat = FilterMenuActivity.latitude;
+	        	 		FilterMenuActivity.filter.getLocation().lon = FilterMenuActivity.longitude;
 	        	 		if(editingExistingFilter){
 	        	 			int index = 0;
 	        	 			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
 	       	   	  				Filter current = HomeMenuActivity.filterList.get(i);
-	       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)){
+	       	   	  				if(current.getName().equals(FilterMenuActivity.initialFilterName)
+	       	   	  						&& current.getLocationName().equals(FilterMenuActivity.initialLocationName)){
 	       	   	  					HomeMenuActivity.filterList.remove(i);
 	       	   	  					index = i;
 	       	   	  					i--;
 	       	   	  				}
 	       	   	  			}
-	        	 			HomeMenuActivity.filterList.add(index,FilterMenuActivity.filter);
+	        	 			HomeMenuActivity.filterList.add(index, FilterMenuActivity.filter);
 	        	 		} else {
 	        	 			HomeMenuActivity.filterList.add(FilterMenuActivity.filter);
 	        	 		}
 	        	 		finish();
 	        	 	} else {
 	        	 		FilterMenuActivity.tabHost.setCurrentTab(0);
-	        	 		if(FilterMenuActivity.currentFilterName.trim().equals("")) {
+	        	 		if(FilterMenuActivity.currentFilterName.trim().equals("")
+	        	 				|| FilterMenuActivity.currentLocationName.trim().equals("")) {
 	        	 			 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-	                         builder.setMessage("Filter name must contain at least one alphanumeric letter.")
+	                         builder.setMessage("Filter and location names must contain at least one character.")
 	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
 	                                public void onClick(DialogInterface dialog, int id) {
 	                                 dialog.dismiss();
@@ -300,7 +328,7 @@ public class TimeRuleViewerActivity extends Activity {
 	                         alert.show();
 		        	 	} else {
 		        	 		AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-	                         builder.setMessage("Filter names cannot be duplicate.")
+	                         builder.setMessage("Filter name already in use for given location.")
 	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
 	                                public void onClick(DialogInterface dialog, int id) {
 	                                 dialog.dismiss();
