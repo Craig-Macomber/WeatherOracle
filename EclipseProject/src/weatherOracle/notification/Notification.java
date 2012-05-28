@@ -2,6 +2,7 @@ package weatherOracle.notification;
 
 import weatherOracle.filter.Filter;
 import weatherOracle.forecastData.ForecastData;
+
 import java.util.List;
 
 /**
@@ -75,7 +76,23 @@ public class Notification implements Comparable<Notification> {
 	public static Notification makeNoLocationData(Filter filter) {
 		return new Notification(filter.getName()+": No data at location", null, filter);
 	}
-
+	
+	public String getDays(){
+		boolean[] days=new boolean[7];
+		if (dataList!=null) {
+			for (ForecastData d:dataList){
+				days[d.getDayOfWeek()-1]=true;
+			}
+		}
+		String s="";
+		String[] names={"Su","M","Tu","W","Th","F","Sa"};
+		for (int i=0;i<7;i++){
+			if (days[i]) s+=names[i];
+		}
+		if (s.equals("")) return "None";
+		return s;
+	}
+	
 	// sort by time of first passing dataList entry
 	public int compareTo(Notification other) {
 		if (this.dataList==null) return 1;
