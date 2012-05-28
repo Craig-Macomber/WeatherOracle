@@ -42,8 +42,8 @@ public class LocationActivity extends Activity {
 		double[] location = getLocation();
 		double latitude = location[0];
 		double longitude = location[1];
-		TextView latView = (TextView) findViewById(R.id.latitude);
-		TextView longView = (TextView) findViewById(R.id.longitude);
+		TextView latView = (TextView) findViewById(R.id.current_latitude);
+		TextView longView = (TextView) findViewById(R.id.current_longitude);
 		latView.setText(""+latitude);
 		longView.setText(""+longitude);
 	}
@@ -62,11 +62,11 @@ public class LocationActivity extends Activity {
 //
 //				Location lastKnownLocation = HomeMenuActivity.lm.getLastKnownLocation(locationProvider);
 //				
-//				Pair filterListPair = FilterStore.getFilters();
-//				final List<Filter> filterList = (List<Filter>) filterListPair.first;
-//				for (Filter f : filterList){
-//					
-//				}
+				Pair filterListPair = FilterStore.getFilters();
+				final List<Filter> filterList = (List<Filter>) filterListPair.first;
+				for (Filter f : filterList){
+					
+				}
 //				
 //				   //     	Filter testFilter = new Filter("this is a test");
 //				   //     	List<Filter> filterList = new LinkedList<Filter>();
