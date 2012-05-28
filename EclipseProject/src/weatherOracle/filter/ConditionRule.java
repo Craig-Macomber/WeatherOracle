@@ -31,7 +31,7 @@ public class ConditionRule implements Rule {
 		put("Sustained Wind Speed","mph");
 		put("Cloud Cover", "%");
 		put("Precipitation Percent", "%");
-		put("Precipitation Amount", "inches");
+		put("Precipitation Amount", " tenths (in)");
 		put("Humidity", "%");
 		}
 	};
@@ -153,7 +153,7 @@ public class ConditionRule implements Rule {
 			return percent >= min && percent <= max;
 		} else if (condition.equals(conditions[6])) {
 			// QPF
-			double qpf = data.getQPF();
+			double qpf = 10.0 * data.getQPF();			// Tenths of an inch
 			return qpf >= min && qpf <= max;
 		} else if (condition.equals(conditions[7])) {
 			// Humidity
