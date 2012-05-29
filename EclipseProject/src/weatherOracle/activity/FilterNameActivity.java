@@ -87,7 +87,7 @@ public class FilterNameActivity extends Activity {
 	        	try {
 	        		FilterMenuActivity.longitude = Double.parseDouble(editText.getText().toString());	
 	        	} catch (Exception e) {
-	        		editText.setText(temp);
+	        	//	editText.setText(temp);
 	        	}	        	
 	        }
 	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
@@ -102,7 +102,7 @@ public class FilterNameActivity extends Activity {
 	        	try {
 	        		FilterMenuActivity.latitude = Double.parseDouble(editText.getText().toString());	
 	        	} catch (Exception e) {
-	        		editText.setText(temp);
+	        	//	editText.setText(temp);
 	        	}
 	        	
 	        }
