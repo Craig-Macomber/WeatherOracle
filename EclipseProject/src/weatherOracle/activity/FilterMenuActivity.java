@@ -78,7 +78,7 @@ public class FilterMenuActivity extends TabActivity {
         
         
         intent = new Intent().setClass(this, FilterNameActivity.class);
-        spec = tabHost.newTabSpec("tools").setIndicator("Name",
+        spec = tabHost.newTabSpec("tools").setIndicator("Tools",
                           res.getDrawable(R.drawable.ic_tab_tools))
                       .setContent(intent);
         tabHost.addTab(spec);
@@ -102,5 +102,5 @@ public class FilterMenuActivity extends TabActivity {
 
 
         tabHost.setCurrentTab(0);
-    }
+    	}
 }

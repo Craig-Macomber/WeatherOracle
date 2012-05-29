@@ -131,7 +131,7 @@ public class ForecastData {
 	 * @return the gust wind speed
 	 */
 	public double getGustWindSpeed() {
-		return this.windSpeed_gust;
+		return Math.max(this.windSpeed_gust,this.windSpeed_sustained);
 	}
 	
 	/**

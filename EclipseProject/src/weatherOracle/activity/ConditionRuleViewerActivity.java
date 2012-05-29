@@ -64,7 +64,7 @@ public class ConditionRuleViewerActivity extends Activity {
     		int min = conditionList.get(i).getMinMax().first;
     		int max = conditionList.get(i).getMinMax().second;
     		String range;
-    		range = min + ConditionRule.getUnits(conditionList.get(i).getCondition()) + " - " + max + ConditionRule.getUnits(conditionList.get(i).getCondition());
+    		range = min + ConditionRule.getUnits(conditionList.get(i).getCondition()) + " to " + max + ConditionRule.getUnits(conditionList.get(i).getCondition());
     		
     		textview.setText(conditionList.get(i).getCondition() + ":\n " + range);
     		textview.setTextSize(2,15);
@@ -174,8 +174,8 @@ public class ConditionRuleViewerActivity extends Activity {
 	        	 		String iterationFilterName = current.getName();
 	        	 		String iterationLocationName = current.getLocationName();
 	        	 		
-	        	 		if (initialFilterName.equals(current.getName())
-	        	 				&& initialLocationName.equals(current.getLocationName())){
+	        	 		if (iterationFilterName.equals(initialFilterName)
+	        	 				&& iterationLocationName.equals(initialLocationName)){
 	        	 			editingExistingFilter = true;
 	        	 			editingCurrentFilter = true;
 	        	 		}
@@ -195,8 +195,23 @@ public class ConditionRuleViewerActivity extends Activity {
 	        	 		filterNameValid = false;
 	        	 	}
 	        	 	
+	        	 	boolean longitudeValid = true;
+	        	 	boolean latitudeValid = true;
+	        	 	
+	        	 	try {
+		        		FilterMenuActivity.latitude = Double.parseDouble(FilterNameActivity.latitude.getText().toString());	
+		        	} catch (Exception e) {
+		        		latitudeValid = false;
+		        	}
+		        	
+		        	try {
+		        		FilterMenuActivity.longitude = Double.parseDouble(FilterNameActivity.longitude.getText().toString());	
+		        	} catch (Exception e) {
+		        		longitudeValid = false;
+		        	}
+	        	 	
 	        	 	// filter name is valid
-	        	 	if(filterNameValid){		
+	        	 	if(filterNameValid && latitudeValid && longitudeValid){		
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
@@ -234,7 +249,17 @@ public class ConditionRuleViewerActivity extends Activity {
 	                            });
 	                         AlertDialog alert = builder.create();
 	                         alert.show();
-		        	 	} else {
+	        	 		} else if (!longitudeValid || !latitudeValid){
+	        	 			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+	                         builder.setMessage("Latitude and longitude must be positive or negative decimal number.")
+	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+	                                public void onClick(DialogInterface dialog, int id) {
+	                                 dialog.dismiss();
+	                                }
+	                            });
+	                         AlertDialog alert = builder.create();
+	                         alert.show();
+	        	 		} else {
 		        	 		AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 	                         builder.setMessage("Filter name already in use for given location.")
 	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {

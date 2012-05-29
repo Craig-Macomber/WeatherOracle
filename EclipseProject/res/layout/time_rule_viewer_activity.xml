@@ -17,7 +17,8 @@
 		            android:layout_alignParentBottom="true"
 		            android:layout_alignParentRight="true"
 		            android:layout_gravity="center_vertical"
-		            android:layout_margin="5dp"
+		            android:layout_marginTop="5dp"
+		            android:layout_marginRight="2dp"
 		            android:text="Save" />
 
 	          

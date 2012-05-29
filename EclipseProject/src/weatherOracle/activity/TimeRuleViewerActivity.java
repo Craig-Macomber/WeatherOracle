@@ -266,8 +266,8 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 		String iterationFilterName = current.getName();
 	        	 		String iterationLocationName = current.getLocationName();
 	        	 		
-	        	 		if (initialFilterName.equals(current.getName())
-	        	 				&& initialLocationName.equals(current.getLocationName())){
+	        	 		if (iterationFilterName.equals(initialFilterName)
+	        	 				&& iterationLocationName.equals(initialLocationName)){
 	        	 			editingExistingFilter = true;
 	        	 			editingCurrentFilter = true;
 	        	 		}
@@ -287,8 +287,23 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 		filterNameValid = false;
 	        	 	}
 	        	 	
+	        	 	boolean longitudeValid = true;
+	        	 	boolean latitudeValid = true;
+	        	 	
+	        	 	try {
+		        		FilterMenuActivity.latitude = Double.parseDouble(FilterNameActivity.latitude.getText().toString());	
+		        	} catch (Exception e) {
+		        		latitudeValid = false;
+		        	}
+		        	
+		        	try {
+		        		FilterMenuActivity.longitude = Double.parseDouble(FilterNameActivity.longitude.getText().toString());	
+		        	} catch (Exception e) {
+		        		longitudeValid = false;
+		        	}
+	        	 	
 	        	 	// filter name is valid
-	        	 	if(filterNameValid){		
+	        	 	if(filterNameValid && latitudeValid && longitudeValid){		
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
@@ -326,7 +341,17 @@ public class TimeRuleViewerActivity extends Activity {
 	                            });
 	                         AlertDialog alert = builder.create();
 	                         alert.show();
-		        	 	} else {
+	        	 		} else if (!longitudeValid || !latitudeValid){
+	        	 			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+	                         builder.setMessage("Latitude and longitude must be positive or negative decimal number.")
+	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+	                                public void onClick(DialogInterface dialog, int id) {
+	                                 dialog.dismiss();
+	                                }
+	                            });
+	                         AlertDialog alert = builder.create();
+	                         alert.show();
+	        	 		} else {
 		        	 		AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 	                         builder.setMessage("Filter name already in use for given location.")
 	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -340,5 +365,5 @@ public class TimeRuleViewerActivity extends Activity {
 	        	 	}
 	            }
 	        });
-	} 
+	}
 }

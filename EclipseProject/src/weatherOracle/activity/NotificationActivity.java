@@ -77,6 +77,17 @@ public class NotificationActivity extends Activity {
 
 	private void displayNotifications() {
 		for (int i = 0;i<notificationList.size();i++) {
+			try {
+				statusBarNotification(R.drawable.clouds,notificationList.get(i).getName(),"WeatherOracle",notificationList.get(i).getName() + ". Location:" + notificationList.get(i).getFilter().getLocationName() + ". First Occur at" + notificationList.get(i).getWeatherData().get(0).getTimeString());
+			} catch (Exception e) {
+				
+			}
+			
+			
+			
+			
+			
+			
 			boolean firstIteration = false;
  			boolean lastIteration = false;
  			if(i == 0){
@@ -123,9 +134,10 @@ public class NotificationActivity extends Activity {
  			//dividerParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
  			parentll.addView(divider2, dividerParams2);
  			
- 			LinearLayout nameAndDetails = new LinearLayout(this);
- 			LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 50);
- 			ll.addView(nameAndDetails, nameParams);
+ 			RelativeLayout nameAndDetails = new RelativeLayout(this);
+ 			ll.addView(nameAndDetails);
+ 		//	LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 50);
+ 		//	ll.addView(nameAndDetails, nameParams);
            
  			TextView name = new TextView(getApplicationContext());
             name.setText(notificationList.get(i).getName());
@@ -139,8 +151,9 @@ public class NotificationActivity extends Activity {
       //      ll.addView(name);
             final int index = i;
             Button internet = new Button(getApplicationContext());
-            
-        //    internetParams.setGravity
+ 			internet.setGravity(Gravity.CENTER_VERTICAL);
+ 			
+ 			
           
             
             internet.setOnClickListener(new View.OnClickListener() {
@@ -191,11 +204,14 @@ public class NotificationActivity extends Activity {
 			});
             
             internet.setText("Details");
-            if(notificationList.get(i).getName().equals("no data yet") && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null) {
+            if((notificationList.get(i).getName().equals("No Internet Connection") || notificationList.get(i).getName().equals("No Notification Yet")) && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null || notificationList.get(i).getName().contains("No data at location")) {
             	//dont add the connect to internet button
             } else {
             	nameAndDetails.addView(internet);
-            	//nameAndDetails.setGravity(Gravity.RIGHT);
+            	LayoutParams params = (RelativeLayout.LayoutParams)internet.getLayoutParams();
+     			params.setMargins(0, 6, -2, 4);
+     			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+     			internet.setLayoutParams(params); //causes layout update
             }
             
             
@@ -204,16 +220,20 @@ public class NotificationActivity extends Activity {
             
             if (notificationList.get(i).getWeatherData() != null) {
             	TextView conditionTag = new TextView(getApplicationContext());
-            	conditionTag.setText("Will First Occur At:\n\t" + notificationList.get(i).getWeatherData().get(0).getTimeString());
+            	//conditionTag.setText();
+            	conditionTag.setText("Will First Occur on:\n\t" + notificationList.get(i).getWeatherData().get(0).getTimeString() + 
+            			"\nWill Occur during:\n\t" + notificationList.get(i).getDays());
             	ll.addView(conditionTag);
             }
+            
+            
             
             if (notificationList.get(i).getFilter() != null) {
             	TextView locationTag = new TextView(getApplicationContext());
             	String location = "";
             	if (notificationList.get(i).getFilter().getLocationName() != null) {
             		location = notificationList.get(i).getFilter().getLocationName();
-            		locationTag.setText("At Location:\n\t " + location);
+            		locationTag.setText("Location:\n\t " + location);
             		ll.addView(locationTag);
             	}
             	

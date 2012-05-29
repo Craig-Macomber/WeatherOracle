@@ -18,7 +18,8 @@
 		            android:layout_alignParentBottom="true"
 		            android:layout_alignParentRight="true"
 		            android:layout_gravity="center_vertical"
-		            android:layout_margin="5dp"
+		            android:layout_marginTop="5dp"
+		            android:layout_marginRight="2dp"
 		            android:text="Save" />
 
 	          
@@ -28,8 +29,8 @@
 		              android:layout_height="fill_parent"
 		              android:paddingTop="7dp"
 		              android:textColor="#FFFFFF"
-		              android:layout_marginLeft="115dp"
-		              android:text="Name"
+		              android:layout_marginLeft="120dp"
+		              android:text="Tools"
 		              android:textAppearance="?android:attr/textAppearanceLarge" /> 
 	          
 	          
@@ -41,6 +42,7 @@
 	         android:layout_height="1dip"
 	         android:background="#474747" 
 	         android:layout_marginTop="4dip"
+	         android:layout_marginBottom="8dp"
 	         android:layout_below="@+id/filter_name_activity_title_bar">
 	</View>
 	      
@@ -75,6 +77,7 @@
 		        android:layout_centerHorizontal="true"
 		        android:hint="Enter Filter Name"
 		        android:layout_marginLeft="26dp"
+		        android:maxLength="15"
 		        
 		        android:ems="10" >
 	        </EditText>
@@ -103,7 +106,7 @@
 			    android:layout_centerHorizontal="true"
 			    android:hint="Enter Location Name"
 			    android:layout_marginLeft="2dp"
-			    
+			    android:maxLength="18"
 			    android:ems="10" >
 		    </EditText>
 		 </LinearLayout> 
@@ -111,6 +114,7 @@
 	     <View 
 	         android:layout_width="fill_parent"
 	         android:layout_height="1dip"
+	         android:layout_marginTop="8dp"
 	         android:background="#474747" >
 	     </View>
 	     
@@ -120,7 +124,8 @@
         	android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp" 
+            android:layout_marginTop="8dp"
+             android:layout_marginBottom="8dp"
             android:layout_below="@+id/filter_name_linear_layout"
             android:text="Please enter coordinates into the boxes below, or press 'current location'. Note that the coordinates specified must be within the U.S. to trigger notifications."
             

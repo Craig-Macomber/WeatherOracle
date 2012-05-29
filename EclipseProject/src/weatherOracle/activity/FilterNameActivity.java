@@ -24,9 +24,11 @@ import android.widget.TextView;
 
 
 public class FilterNameActivity extends Activity {
-	
-	
+	static EditText latitude;
+	static EditText longitude;
 	boolean invalidName = false;
+//	boolean latitudeValid = true;
+//	boolean longitudeValid = true;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -38,8 +40,8 @@ public class FilterNameActivity extends Activity {
 	    final EditText locationNameEditText = (EditText)findViewById(R.id.location_name);
 	    final Button saveButton = (Button) findViewById(R.id.save_filter_button_tools);
 	    final Button currentLocationButton = (Button) findViewById(R.id.current_location_button);
-	    final EditText latitude = (EditText)findViewById(R.id.latitude);
-	    final EditText longitude = (EditText)findViewById(R.id.longitude);
+	    latitude = (EditText)findViewById(R.id.latitude);
+	    longitude = (EditText)findViewById(R.id.longitude);
 	    
 	    
 	    filterNameEditText.setText(FilterMenuActivity.filter.getName());
@@ -86,8 +88,9 @@ public class FilterNameActivity extends Activity {
 	        	String temp = Double.toString(FilterMenuActivity.longitude);
 	        	try {
 	        		FilterMenuActivity.longitude = Double.parseDouble(editText.getText().toString());	
+	        	//	longitudeValid = true;
 	        	} catch (Exception e) {
-	        		editText.setText(temp);
+	        	//	longitudeValid = false;
 	        	}	        	
 	        }
 	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
@@ -101,8 +104,9 @@ public class FilterNameActivity extends Activity {
 	        	String temp = Double.toString(FilterMenuActivity.latitude);
 	        	try {
 	        		FilterMenuActivity.latitude = Double.parseDouble(editText.getText().toString());	
+	        	//	latitudeValid = true;
 	        	} catch (Exception e) {
-	        		editText.setText(temp);
+	        	//	latitudeValid = false;
 	        	}
 	        	
 	        }
@@ -181,8 +185,23 @@ public class FilterNameActivity extends Activity {
 	        	 		filterNameValid = false;
 	        	 	}
 	        	 	
+	        	 	boolean longitudeValid = true;
+	        	 	boolean latitudeValid = true;
+	        	 	
+	        	 	try {
+		        		FilterMenuActivity.latitude = Double.parseDouble(FilterNameActivity.latitude.getText().toString());	
+		        	} catch (Exception e) {
+		        		latitudeValid = false;
+		        	}
+		        	
+		        	try {
+		        		FilterMenuActivity.longitude = Double.parseDouble(FilterNameActivity.longitude.getText().toString());	
+		        	} catch (Exception e) {
+		        		longitudeValid = false;
+		        	}
+	        	 	
 	        	 	// filter name is valid
-	        	 	if(filterNameValid){		
+	        	 	if(filterNameValid && latitudeValid && longitudeValid){		
 	        	 		FilterMenuActivity.filter.removeTimeRules();
 	        	 		FilterMenuActivity.filter.addSetOfTimeRules(FilterMenuActivity.times);
 	        	 		FilterMenuActivity.filter.setName(FilterMenuActivity.currentFilterName);
@@ -220,7 +239,17 @@ public class FilterNameActivity extends Activity {
 	                            });
 	                         AlertDialog alert = builder.create();
 	                         alert.show();
-		        	 	} else {
+	        	 		} else if (!longitudeValid || !latitudeValid){
+	        	 			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+	                         builder.setMessage("Latitude and longitude must be positive or negative decimal number.")
+	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+	                                public void onClick(DialogInterface dialog, int id) {
+	                                 dialog.dismiss();
+	                                }
+	                            });
+	                         AlertDialog alert = builder.create();
+	                         alert.show();
+	        	 		} else {
 		        	 		AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 	                         builder.setMessage("Filter name already in use for given location.")
 	                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
