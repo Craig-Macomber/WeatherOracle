@@ -31,7 +31,7 @@ public class ConditionRule implements Rule {
 		put("Sustained Wind Speed","mph");
 		put("Cloud Cover", "%");
 		put("Precipitation Percent", "%");
-		put("Precipitation Amount", " tenths (in)");
+		put("Precipitation Amount", " 100ths (in)");
 		put("Humidity", "%");
 		}
 	};
@@ -138,27 +138,27 @@ public class ConditionRule implements Rule {
 		} else if (condition.equals(conditions[2])) {
 			// Gust wind speed
 			double gust = data.getGustWindSpeed();
-			return gust >= min && gust <= max;
+			return gust > min && gust <= max;
 		} else if (condition.equals(conditions[3])) {
 			// Sustained wind speed
 			double sustained = data.getSustainedWindSpeed();
-			return sustained >= min && sustained <= max;
+			return sustained > min && sustained <= max;
 		} else if (condition.equals(conditions[4])) {
 			// Cloud Cover
 			double cover = data.getCloudCover();
-			return cover >= min && cover <= max;
+			return cover > min && cover <= max;
 		} else if (condition.equals(conditions[5])) {
 			// Precipitation Percent
 			double percent = data.getProbPrecipitation();
-			return percent >= min && percent <= max;
+			return percent > min && percent <= max;
 		} else if (condition.equals(conditions[6])) {
 			// QPF
-			double qpf = 10.0 * data.getQPF();			// Tenths of an inch
-			return qpf >= min && qpf <= max;
+			double qpf = 100.0 * data.getQPF();			// Tenths of an inch
+			return qpf > min && qpf <= max;
 		} else if (condition.equals(conditions[7])) {
 			// Humidity
 			double humidity = data.getHumidity();
-			return humidity >= min && humidity <= max;
+			return humidity > min && humidity <= max;
 		}  
 		return Boolean.FALSE;
 	}
