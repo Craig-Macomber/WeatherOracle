@@ -5,6 +5,10 @@ import weatherOracle.forecastData.ForecastData;
 
 import java.util.List;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 /**
  * A Notification for the user, produced by running a filter on a list of
  * ForecastData
@@ -70,7 +74,11 @@ public class Notification implements Comparable<Notification> {
 	}
 
 	public static Notification makeNoData() {
-		return new Notification("no data yet", null, null);
+		return new Notification("No Notification Yet", null, null);
+	}
+	
+	public static Notification makeNoConnection() {
+		return new Notification("No Internet Connection",null,null);
 	}
 	
 	public static Notification makeNoLocationData(Filter filter) {
