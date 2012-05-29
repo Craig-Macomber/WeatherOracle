@@ -13,6 +13,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -146,9 +148,11 @@ public class NoaaReader implements Reader {
 				int month = Integer.parseInt(timeParts[1]);
 				int day = Integer.parseInt(timeParts[2]);
 				int hourOfDay = Integer.parseInt(timeParts[3]);
+				int timeZone = -Integer.parseInt(timeParts[6]);
 				dateTime.clear();
 				dateTime.set(year, month - 1, day, hourOfDay, 0);
-
+				TimeZone zone=new SimpleTimeZone(timeZone*1000*60*60,"");
+				dateTime.setTimeZone(zone);
 				List<ForecastData> dataList = new ArrayList<ForecastData>(count);
 
 				NodeList params = dom.getElementsByTagName("parameters")
