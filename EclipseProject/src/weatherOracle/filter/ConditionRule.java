@@ -244,7 +244,7 @@ public class ConditionRule implements Rule {
 	public String toString() {
 		String condition = this.condition;
 		String units = ConditionRule.getUnits(condition);
-		condition += " " + this.min + units + " - " + this.max + units ;
+		condition += " " + this.min + units + " to " + this.max + units ;
 		return condition;
 	}
 }
