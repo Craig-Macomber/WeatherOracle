@@ -193,7 +193,7 @@ public class NotificationActivity extends Activity {
 			});
             
             internet.setText("Details");
-            if((notificationList.get(i).getName().equals("No Internet Connection") || notificationList.get(i).getName().equals("No Notification Yet")) && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null) {
+            if((notificationList.get(i).getName().equals("No Internet Connection") || notificationList.get(i).getName().equals("No Notification Yet")) && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null || notificationList.get(i).getName().contains("No data at location")) {
             	//dont add the connect to internet button
             } else {
             	nameAndDetails.addView(internet);
