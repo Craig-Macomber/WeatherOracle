@@ -75,6 +75,7 @@
 		        android:layout_centerHorizontal="true"
 		        android:hint="Enter Filter Name"
 		        android:layout_marginLeft="26dp"
+		        android:maxLength="15"
 		        
 		        android:ems="10" >
 	        </EditText>
@@ -103,7 +104,7 @@
 			    android:layout_centerHorizontal="true"
 			    android:hint="Enter Location Name"
 			    android:layout_marginLeft="2dp"
-			    
+			    android:maxLength="18"
 			    android:ems="10" >
 		    </EditText>
 		 </LinearLayout> 

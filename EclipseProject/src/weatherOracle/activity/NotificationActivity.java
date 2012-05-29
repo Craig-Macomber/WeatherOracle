@@ -216,7 +216,7 @@ public class NotificationActivity extends Activity {
             	String location = "";
             	if (notificationList.get(i).getFilter().getLocationName() != null) {
             		location = notificationList.get(i).getFilter().getLocationName();
-            		locationTag.setText("At Location:\n\t " + location);
+            		locationTag.setText("Location:\n\t " + location);
             		ll.addView(locationTag);
             	}
             	
