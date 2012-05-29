@@ -83,7 +83,12 @@ public class FilterNameActivity extends Activity {
 	private void initializeLongitudeEditTextListener(final EditText editText){
 		editText.addTextChangedListener(new TextWatcher(){
 	        public void afterTextChanged(Editable s) {
-	        	FilterMenuActivity.longitude = Double.parseDouble(editText.getText().toString());
+	        	String temp = Double.toString(FilterMenuActivity.longitude);
+	        	try {
+	        		FilterMenuActivity.longitude = Double.parseDouble(editText.getText().toString());	
+	        	} catch (Exception e) {
+	        		editText.setText(temp);
+	        	}	        	
 	        }
 	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
 	        public void onTextChanged(CharSequence s, int start, int before, int count){}
@@ -93,7 +98,13 @@ public class FilterNameActivity extends Activity {
 	private void initializeLatitudeEditTextListener(final EditText editText){
 		editText.addTextChangedListener(new TextWatcher(){
 	        public void afterTextChanged(Editable s) {
-	        	FilterMenuActivity.latitude = Double.parseDouble(editText.getText().toString());
+	        	String temp = Double.toString(FilterMenuActivity.latitude);
+	        	try {
+	        		FilterMenuActivity.latitude = Double.parseDouble(editText.getText().toString());	
+	        	} catch (Exception e) {
+	        		editText.setText(temp);
+	        	}
+	        	
 	        }
 	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
 	        public void onTextChanged(CharSequence s, int start, int before, int count){}
