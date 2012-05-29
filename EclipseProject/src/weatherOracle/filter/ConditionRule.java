@@ -42,13 +42,13 @@ public class ConditionRule implements Rule {
 	public static final Map<String, Pair<Integer, Integer>> bounds = new HashMap<String, Pair<Integer, Integer>>() {
 		private static final long serialVersionUID = -2443552375204329459L;
 		{
-			put("Temperature", new Pair<Integer, Integer>(-100, 200));
-			put("Dewpoint", new Pair<Integer, Integer>(-100, 200));
-			put("Gust Wind Speed", new Pair<Integer, Integer>(0, 75));
-			put("Sustained Wind Speed", new Pair<Integer, Integer>(0, 75));
+			put("Temperature", new Pair<Integer, Integer>(-150, 200));
+			put("Dewpoint", new Pair<Integer, Integer>(-150, 200));
+			put("Gust Wind Speed", new Pair<Integer, Integer>(0, 300));
+			put("Sustained Wind Speed", new Pair<Integer, Integer>(0, 300));
 			put("Cloud Cover", new Pair<Integer, Integer>(0, 100));
 			put("Precipitation Percent", new Pair<Integer, Integer>(0, 100));
-			put("Precipitation Amount", new Pair<Integer, Integer>(0, 50));
+			put("Precipitation Amount", new Pair<Integer, Integer>(0, 1500));
 			put("Humidity", new Pair<Integer, Integer>(0, 100));
 		}
 	};
