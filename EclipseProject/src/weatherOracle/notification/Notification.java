@@ -95,10 +95,10 @@ public class Notification implements Comparable<Notification> {
 		String s="";
 		String[] names={"Su","M","Tu","W","Th","F","Sa"};
 		for (int i=0;i<7;i++){
-			if (days[i]) s+=names[i];
-		}
+			if (days[i]) s += " - " + names[i];
+		}		
 		if (s.equals("")) return "None";
-		return s;
+		return s.substring(3);
 	}
 	
 	// sort by time of first passing dataList entry
