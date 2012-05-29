@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -34,7 +36,11 @@ public class HomeMenuActivity extends TabActivity {
         
         mainContext = this.getApplicationContext();
         
-        NotificationStore.initializeNotificationStore();
+        NotificationStore.initializeNotificationStore(isOnline());
+        
+        
+        
+        
         filterList = new LinkedList<Filter>(FilterStore.getFilters().first);
         MainControl.start();
         
@@ -71,6 +77,18 @@ public class HomeMenuActivity extends TabActivity {
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, ll);
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 9, ll);
     }
+    
+    public boolean isOnline() {
+        ConnectivityManager cm =
+            (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
+    
+    
     
     private class mylocationlistener implements LocationListener {
         

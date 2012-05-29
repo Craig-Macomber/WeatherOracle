@@ -29,6 +29,16 @@ public abstract class NotificationStore {
 	}
 
 	/**
+	 * initializes the NotificationStore to have one element in it with the name
+	 * "no data yet"
+	 */
+	public static void initializeNotificationStore(boolean isOnline) {
+		notifications = new ArrayList<Notification>();
+		notifications.add(Notification.makeNoConnection());
+		filterVersionNumber = -1;
+	}
+	
+	/**
 	 * update the notifications, if the filterVersionNumber is the newest we
 	 * have seen. If the filterVersionNumber is lower than the highest seen, the
 	 * passed notifications will be discarded.
