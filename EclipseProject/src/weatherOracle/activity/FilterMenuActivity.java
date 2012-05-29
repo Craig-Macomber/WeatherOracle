@@ -102,5 +102,5 @@ public class FilterMenuActivity extends TabActivity {
 
 
         tabHost.setCurrentTab(0);
-    }
+    	}
 }

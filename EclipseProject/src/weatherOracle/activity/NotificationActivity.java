@@ -77,6 +77,17 @@ public class NotificationActivity extends Activity {
 
 	private void displayNotifications() {
 		for (int i = 0;i<notificationList.size();i++) {
+			try {
+				statusBarNotification(R.drawable.clouds,notificationList.get(i).getName(),"WeatherOracle",notificationList.get(i).getName() + ". Location:" + notificationList.get(i).getFilter().getLocationName() + ". First Occur at" + notificationList.get(i).getWeatherData().get(0).getTimeString());
+			} catch (Exception e) {
+				
+			}
+			
+			
+			
+			
+			
+			
 			boolean firstIteration = false;
  			boolean lastIteration = false;
  			if(i == 0){

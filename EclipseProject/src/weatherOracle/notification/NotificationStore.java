@@ -36,7 +36,11 @@ public abstract class NotificationStore {
 	 */
 	public static void initializeNotificationStore(boolean isOnline) {
 		notifications = new ArrayList<Notification>();
-		notifications.add(Notification.makeNoConnection());
+		if (!isOnline) {
+			notifications.add(Notification.makeNoConnection());
+		} else {
+			notifications.add(Notification.makeNoData());
+		}
 		filterVersionNumber = -1;
 	}
 	
