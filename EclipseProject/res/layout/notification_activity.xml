@@ -13,6 +13,7 @@
 	      <RelativeLayout 
 	          android:id="@+id/filters_activity_title_bar"
 	          android:background="#800000"
+	          android:layout_marginBottom="4dip"
 	          android:layout_width="fill_parent"
 	          android:gravity="center_horizontal"
 	          android:layout_height="45dp"> 
