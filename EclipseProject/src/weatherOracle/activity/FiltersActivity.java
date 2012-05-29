@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,11 +71,10 @@ public class FiltersActivity extends Activity {
  			}
  			if(i == filterListSize - 1){
  				lastIteration = true;
- 			}
- 			
- 			final TextView textview = new TextView(this);
- 			textview.setTextColor(Color.BLACK);
- 			textview.setPadding(15, 20, 0, 4);
+ 			}		
+ 			final TextView filterName = new TextView(this);
+ 			filterName.setTextColor(Color.BLACK);
+ 			filterName.setPadding(15, 20, 0, 4);
  			
  			
  			final LinearLayout ll = new LinearLayout(this);
@@ -117,21 +117,37 @@ public class FiltersActivity extends Activity {
 // 			
 // 			ivParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 // 			rl.addView(trash);
+
  			
- 			
- 			
- 			
- 			textview.setText(HomeMenuActivity.filterList.get(i).getName());
- 			textview.setTextSize(2,22);
- 			textview.setGravity(Gravity.CENTER_VERTICAL);
- 			
- 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
- 					LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
- 			layoutParams.setMargins(8, 4, 8, 4); // top and bottom margins are 4 so that if two elements
- 												 // appear in succession the total separation will be 8
- 			
+ 			//filterName.setGravity(Gravity.CENTER_VERTICAL);
+// 			
+// 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+// 					LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+// 			layoutParams.setMargins(8, 4, 8, 4); // top and bottom margins are 4 so that if two elements
+// 												 // appear in succession the total separation will be 8
  		
- 			rl.addView(textview);
+ 			
+ 			RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+ 	                ViewGroup.LayoutParams.WRAP_CONTENT);
+ 			TextView locationName = new TextView(this);
+ 			
+ 			filterName.setText(HomeMenuActivity.filterList.get(i).getName());
+ 			filterName.setTextSize(2,22);
+ 			
+ 			locationName.setText("At Location: " + HomeMenuActivity.filterList.get(i).getLocationName());
+ 			
+ 			filterName.setId(69 * i + 69);
+ 			locationName.setLayoutParams(p);
+ 			
+ 			p.addRule(RelativeLayout.BELOW,69*i+69);
+
+ 			
+ 			rl.addView(locationName);
+ 			rl.addView(filterName);
+ 			
+ 			
+ 			
+ 			
     
  			final Filter currentFilter = HomeMenuActivity.filterList.get(i);
  			// when a given view element gets clicked on, launch FilterMenuActivity and pass it
@@ -171,10 +187,10 @@ public class FiltersActivity extends Activity {
 						.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 							
 							public void onClick(DialogInterface dialog, int which) {
-								String filterName = (String) textview.getText();
+								String name = (String) filterName.getText();
 			   	   	  			for(int i = 0; i < HomeMenuActivity.filterList.size(); i++){  
 		   	   	  				Filter current = HomeMenuActivity.filterList.get(i);
-		   	   	  				if(current.getName().equals(filterName) 
+		   	   	  				if(current.getName().equals(name) 
 		   	   	  						&& current.getLocationName().equals(currentFilter.getLocationName())){
 		   	   	  					HomeMenuActivity.filterList.remove(i);
 		   	   	  					FilterStore.setFilters(HomeMenuActivity.filterList);
