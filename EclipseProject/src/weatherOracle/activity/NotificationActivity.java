@@ -204,8 +204,9 @@ public class NotificationActivity extends Activity {
             
             if (notificationList.get(i).getWeatherData() != null) {
             	TextView conditionTag = new TextView(getApplicationContext());
-            	//conditionTag.setText("Will Occur on:\n\t" + notificationList.get(i).getWeatherData().get(0).getTimeString());
-            	conditionTag.setText("Will Occur during:\n\t" + notificationList.get(i).getDays());
+            	//conditionTag.setText();
+            	conditionTag.setText("Will First Occur on:\n\t" + notificationList.get(i).getWeatherData().get(0).getTimeString() + 
+            			"\nWill Occur during:\n\t" + notificationList.get(i).getDays());
             	ll.addView(conditionTag);
             }
             
