@@ -1,5 +1,6 @@
 package weatherOracle.activity;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class HomeMenuActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        
         mainContext = this.getApplicationContext();
         
         filterList = new LinkedList<Filter>(FilterStore.getFilters().first);

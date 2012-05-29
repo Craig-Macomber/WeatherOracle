@@ -73,4 +73,5 @@ public class Location implements Serializable{
 	{
 		myCurrentLocation=loc;
 	}
+	
 }

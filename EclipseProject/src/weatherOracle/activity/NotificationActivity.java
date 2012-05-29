@@ -204,11 +204,22 @@ public class NotificationActivity extends Activity {
             
             if (notificationList.get(i).getWeatherData() != null) {
             	TextView conditionTag = new TextView(getApplicationContext());
-            	conditionTag.setText("Will First Occur At:\n" + notificationList.get(i).getWeatherData().get(0).getTimeString());
+            	conditionTag.setText("Will First Occur At:\n\t" + notificationList.get(i).getWeatherData().get(0).getTimeString());
             	ll.addView(conditionTag);
             }
             
             if (notificationList.get(i).getFilter() != null) {
+            	TextView locationTag = new TextView(getApplicationContext());
+            	String location = "";
+            	if (notificationList.get(i).getFilter().getLocationName() != null) {
+            		location = notificationList.get(i).getFilter().getLocationName();
+            		locationTag.setText("At Location:\n\t " + location);
+            		ll.addView(locationTag);
+            	}
+            	
+            	
+            	
+            	
             	TextView conditionTag = new TextView(getApplicationContext());
             	conditionTag.setText("With Condition(s):");
             	ll.addView(conditionTag);
