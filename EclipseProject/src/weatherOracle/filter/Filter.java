@@ -271,7 +271,7 @@ public final class Filter implements Serializable {
 		Filter other = (Filter) obj;
 		if (!this.name.equals(other.name))
 			return false;
-		if (!this.locationName.equals(other.locationName))
+		if (!this.getLocationName().equals(other.getLocationName()))
 			return false;
 		Set<Rule> otherRules = other.getRules();
 		if(otherRules.size() != this.rules.size()){
