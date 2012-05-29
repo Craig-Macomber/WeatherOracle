@@ -54,6 +54,8 @@ public abstract class MainControl {
 			Runnable task = new UpdateTask(reader);
 			updateFuture = fScheduler.scheduleWithFixedDelay(task, 0,
 					fDelayBetweenRuns, TimeUnit.SECONDS);
+		} else {
+			startUpdate();
 		}
 	}
 	

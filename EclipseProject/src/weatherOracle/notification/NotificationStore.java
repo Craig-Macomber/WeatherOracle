@@ -22,10 +22,12 @@ public abstract class NotificationStore {
 	 * initializes the NotificationStore to have one element in it with the name
 	 * "no data yet"
 	 */
-	public static void initializeNotificationStore() {
-		notifications = new ArrayList<Notification>();
-		notifications.add(Notification.makeNoData());
-		filterVersionNumber = -1;
+	private synchronized static void lazyInit() {
+		if (notifications==null) {
+			notifications = new ArrayList<Notification>();
+			notifications.add(Notification.makeNoData());
+			filterVersionNumber = -1;
+		}
 	}
 
 	/**
@@ -41,7 +43,7 @@ public abstract class NotificationStore {
 	 */
 	public synchronized static void update(List<Notification> notifications,
 			int filterVersionNumber) {
-		
+		lazyInit();
 		if (filterVersionNumber >= NotificationStore.filterVersionNumber) {
 			Log.d("NotificationStore", "*********new data*********");
 			NotificationStore.filterVersionNumber = filterVersionNumber;
@@ -75,6 +77,7 @@ public abstract class NotificationStore {
 	 *         Notifications available
 	 */
 	public synchronized static List<Notification> getNotifications() {
+		lazyInit();
 		return notifications;
 	}
 

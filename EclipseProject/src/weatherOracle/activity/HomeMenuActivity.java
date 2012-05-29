@@ -33,7 +33,6 @@ public class HomeMenuActivity extends TabActivity {
 
         mainContext = this.getApplicationContext();
         
-        NotificationStore.initializeNotificationStore();
         filterList = new LinkedList<Filter>(FilterStore.getFilters().first);
         MainControl.start();
         
