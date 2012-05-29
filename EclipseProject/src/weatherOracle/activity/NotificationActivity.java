@@ -80,7 +80,11 @@ public class NotificationActivity extends Activity {
 	private void displayNotifications() {
 		for (int i = 0;i<notificationList.size();i++) {
 			try {
-				statusBarNotification(R.drawable.clouds,notificationList.get(i).getName(),"WeatherOracle",notificationList.get(i).getName() + ". Location:" + notificationList.get(i).getFilter().getLocationName() + ". First Occur at" + notificationList.get(i).getWeatherData().get(0).getTimeString());
+				statusBarNotification(R.drawable.clouds,
+						notificationList.get(i).getName(),
+						"WeatherOracle",
+						notificationList.get(i).getName() + ". Location:" + notificationList.get(i).getFilter().getLocationName()
+							+ ". First Occur at" + notificationList.get(i).getWeatherData().get(0).getTimeString());
 			} catch (Exception e) {
 				
 			}
@@ -286,7 +290,7 @@ public class NotificationActivity extends Activity {
 		android.app.Notification notification = new android.app.Notification(icon, tickerText, when);
 		
 		Context context = getApplicationContext();
-		Intent notificationIntent = new Intent(this, NotificationActivity.class);
+		Intent notificationIntent = new Intent(this, HomeMenuActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 		
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
