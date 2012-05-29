@@ -123,9 +123,10 @@ public class NotificationActivity extends Activity {
  			//dividerParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
  			parentll.addView(divider2, dividerParams2);
  			
- 			LinearLayout nameAndDetails = new LinearLayout(this);
- 			LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 50);
- 			ll.addView(nameAndDetails, nameParams);
+ 			RelativeLayout nameAndDetails = new RelativeLayout(this);
+ 			ll.addView(nameAndDetails);
+ 		//	LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 50);
+ 		//	ll.addView(nameAndDetails, nameParams);
            
  			TextView name = new TextView(getApplicationContext());
             name.setText(notificationList.get(i).getName());
@@ -139,8 +140,9 @@ public class NotificationActivity extends Activity {
       //      ll.addView(name);
             final int index = i;
             Button internet = new Button(getApplicationContext());
-            
-        //    internetParams.setGravity
+ 			internet.setGravity(Gravity.CENTER_VERTICAL);
+ 			
+ 			
           
             
             internet.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +197,10 @@ public class NotificationActivity extends Activity {
             	//dont add the connect to internet button
             } else {
             	nameAndDetails.addView(internet);
-            	//nameAndDetails.setGravity(Gravity.RIGHT);
+            	LayoutParams params = (RelativeLayout.LayoutParams)internet.getLayoutParams();
+     			params.setMargins(0, 6, -2, 4);
+     			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+     			internet.setLayoutParams(params); //causes layout update
             }
             
             
