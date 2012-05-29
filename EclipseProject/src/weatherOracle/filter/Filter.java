@@ -15,16 +15,13 @@ import weatherOracle.forecastData.ForecastRequirements;
  */
 public final class Filter implements Serializable {
 	private static final long serialVersionUID = -1153920572465553775L;
-
-	private enum Op {
-		ALL, ANY
-	}
-
-	/**
-	 * If all or any of the Rules must pass to make a notification
-	 */
+	
+	
+	// Unused, but removing breaks serialization in a very odd way. What nonsense.
+	private enum Op {ALL, ANY}
 	private Op op;
-
+	
+	
 	/**
 	 * The Set of all Rules in this Filter
 	 */
@@ -50,9 +47,9 @@ public final class Filter implements Serializable {
 	 * @param name
 	 */
 	public Filter(String name) {
-		this.name = name;
 		this.rules = new TreeSet<Rule>();
-		this.op = Op.ALL;
+		this.name = name;
+		this.locationName=null;
 	}
 	
 	/**
@@ -90,6 +87,7 @@ public final class Filter implements Serializable {
 	 * @return the locationName associated with this filter
 	 */
 	public String getLocationName() {
+		if (locationName==null) return "Unnamed";
 		return locationName;
 	}
 	
@@ -272,6 +270,8 @@ public final class Filter implements Serializable {
 			return false;
 		Filter other = (Filter) obj;
 		if (!this.name.equals(other.name))
+			return false;
+		if (!this.getLocationName().equals(other.getLocationName()))
 			return false;
 		Set<Rule> otherRules = other.getRules();
 		if(otherRules.size() != this.rules.size()){

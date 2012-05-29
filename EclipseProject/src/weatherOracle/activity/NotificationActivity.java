@@ -53,6 +53,7 @@ public class NotificationActivity extends Activity {
     }
     
     public void onResume() {
+    	instance=this;
     	super.onResume();
     	updateDisplay();
     }

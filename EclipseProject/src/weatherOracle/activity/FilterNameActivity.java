@@ -160,8 +160,8 @@ public class FilterNameActivity extends Activity {
 	        	 		String iterationFilterName = current.getName();
 	        	 		String iterationLocationName = current.getLocationName();
 	        	 		
-	        	 		if (initialFilterName.equals(current.getName())
-	        	 				&& initialLocationName.equals(current.getLocationName())){
+	        	 		if (iterationFilterName.equals(initialFilterName)
+	        	 				&& iterationLocationName.equals(initialLocationName)){
 	        	 			editingExistingFilter = true;
 	        	 			editingCurrentFilter = true;
 	        	 		}
