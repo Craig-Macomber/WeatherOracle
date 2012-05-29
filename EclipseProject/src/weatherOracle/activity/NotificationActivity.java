@@ -191,7 +191,7 @@ public class NotificationActivity extends Activity {
 			});
             
             internet.setText("Details");
-            if(notificationList.get(i).getName().equals("no data yet") && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null) {
+            if((notificationList.get(i).getName().equals("No Internet Connection") || notificationList.get(i).getName().equals("No Notification Yet")) && notificationList.get(i).getFilter() == null && notificationList.get(i).getWeatherData() == null) {
             	//dont add the connect to internet button
             } else {
             	nameAndDetails.addView(internet);
