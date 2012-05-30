@@ -29,8 +29,8 @@ public class ConditionAdderActivity extends Activity {
 
     private LinearLayout mainLayout;
     private String condition;
-    private int min;
-    private int max;
+    private double min;
+    private double max;
     private String[] possibleCondition;
     
     
@@ -60,26 +60,26 @@ public class ConditionAdderActivity extends Activity {
 					if (ConditionRule.getUnits(condition).equals("%")) {
 						min = 0;
 					} else {
-						min = Integer.MIN_VALUE;	
+						min = Double.MIN_VALUE;	
 					}
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					try {
 						if (ConditionRule.getUnits(condition).equals("%")) {
-							if (Integer.parseInt(minNumber) >= 100) {
+							if (Double.parseDouble(minNumber) >= 100) {
 								min = 99;
-								et.setText((new Integer(min)).toString());
-							} else  if (Integer.parseInt(minNumber) < 0) {
+								et.setText((new Double(min)).toString());
+							} else  if (Double.parseDouble(minNumber) < 0) {
 								min = 0;
-								et.setText((new Integer(min)).toString());
+								et.setText((new Double(min)).toString());
 							} else {
-								min = Integer.parseInt(minNumber);
+								min = Double.parseDouble(minNumber);
 							}
 						} else {
-							min = Integer.parseInt(minNumber);
+							min = Double.parseDouble(minNumber);
 						}
 					} catch (Exception e) { //number too small to parse into int
 						min = ConditionRule.bounds.get(condition).first;
-						et.setText((new Integer(min)).toString());
+						et.setText((new Double(min)).toString());
 					}
 				}
 				
@@ -101,26 +101,26 @@ public class ConditionAdderActivity extends Activity {
 					if (ConditionRule.getUnits(condition).equals("%")) {
 						max = 100;
 					} else {
-						max = Integer.MAX_VALUE;	
+						max = Double.MAX_VALUE;	
 					}
 				} else if ((maxNumber.startsWith("-") && maxNumber.length() > 1) || (!maxNumber.startsWith("-")) && maxNumber.length() > 0) {
 					try {
 						if (ConditionRule.getUnits(condition).equals("%")) {
-							if (Integer.parseInt(maxNumber) > 100) {
+							if (Double.parseDouble(maxNumber) > 100) {
 								max = 100;
-								et.setText((new Integer(max)).toString());
-							} else if (Integer.parseInt(maxNumber) < 0) {
+								et.setText((new Double(max)).toString());
+							} else if (Double.parseDouble(maxNumber) < 0) {
 								max = 1;
-								et.setText((new Integer(max)).toString());
+								et.setText((new Double(max)).toString());
 							} else {
-								max = Integer.parseInt(maxNumber);
+								max = Double.parseDouble(maxNumber);
 							}
 						}else {
-							max = Integer.parseInt(maxNumber);
+							max = Double.parseDouble(maxNumber);
 						}	
 					} catch (Exception e) {
 						max = ConditionRule.bounds.get(condition).second;
-						et.setText((new Integer(max)).toString());
+						et.setText((new Double(max)).toString());
 					}
 					
 					

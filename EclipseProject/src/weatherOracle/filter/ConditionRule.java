@@ -31,7 +31,7 @@ public class ConditionRule implements Rule {
 		put("Sustained Wind Speed","mph");
 		put("Cloud Cover", "%");
 		put("Precipitation Percent", "%");
-		put("Precipitation Amount", " 100ths (in)");
+		put("Precipitation Amount", "in");
 		put("Humidity", "%");
 		}
 	};
@@ -39,17 +39,17 @@ public class ConditionRule implements Rule {
 	/**
 	 * The bounds for values for the different weather conditions
 	 */
-	public static final Map<String, Pair<Integer, Integer>> bounds = new HashMap<String, Pair<Integer, Integer>>() {
+	public static final Map<String, Pair<Double, Double>> bounds = new HashMap<String, Pair<Double, Double>>() {
 		private static final long serialVersionUID = -2443552375204329459L;
 		{
-			put("Temperature", new Pair<Integer, Integer>(-150, 200));
-			put("Dewpoint", new Pair<Integer, Integer>(-150, 200));
-			put("Gust Wind Speed", new Pair<Integer, Integer>(0, 300));
-			put("Sustained Wind Speed", new Pair<Integer, Integer>(0, 300));
-			put("Cloud Cover", new Pair<Integer, Integer>(0, 100));
-			put("Precipitation Percent", new Pair<Integer, Integer>(0, 100));
-			put("Precipitation Amount", new Pair<Integer, Integer>(0, 1500));
-			put("Humidity", new Pair<Integer, Integer>(0, 100));
+			put("Temperature", new Pair<Double, Double>(-150.0, 200.0));
+			put("Dewpoint", new Pair<Double, Double>(-150.0, 200.0));
+			put("Gust Wind Speed", new Pair<Double, Double>(0.0, 300.0));
+			put("Sustained Wind Speed", new Pair<Double, Double>(0.0, 300.0));
+			put("Cloud Cover", new Pair<Double, Double>(0.0, 100.0));
+			put("Precipitation Percent", new Pair<Double, Double>(0.0, 100.0));
+			put("Precipitation Amount", new Pair<Double, Double>(0.0, 1500.0));
+			put("Humidity", new Pair<Double, Double>(0.0, 100.0));
 		}
 	};
 	
@@ -79,12 +79,12 @@ public class ConditionRule implements Rule {
 	/**
 	 * The minimum value for this ConditionRule
 	 */
-	private int min;
+	private double min;
 	
 	/**
 	 * the maximum value for this ConditionRule
 	 */
-	private int max;
+	private double max;
 	
 	/**
 	 * Default Constructor
@@ -94,7 +94,7 @@ public class ConditionRule implements Rule {
 	 * @throws IllegalArgumentException if the condition is null or
 	 * 			the min is greater than the max
 	 */
-	public ConditionRule(String condition, int min, int max) {
+	public ConditionRule(String condition, double min, double max) {
 		if (condition == null || min > max) {
 			throw new IllegalArgumentException("Illegal parameters for ConditionRule!");
 		} else {
@@ -118,8 +118,8 @@ public class ConditionRule implements Rule {
 	 * 
 	 * @return a Pair with the min and max
 	 */
-	public Pair<Integer, Integer> getMinMax() {
-		return new Pair<Integer, Integer>(min, max);
+	public Pair<Double, Double> getMinMax() {
+		return new Pair<Double, Double>(min, max);
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class ConditionRule implements Rule {
 			return percent > min && percent <= max;
 		} else if (condition.equals(conditions[6])) {
 			// QPF
-			double qpf = 100.0 * data.getQPF();			// Tenths of an inch
+			double qpf = data.getQPF(); //100.0 * data.getQPF();			// Tenths of an inch
 			return qpf > min && qpf <= max;
 		} else if (condition.equals(conditions[7])) {
 			// Humidity
@@ -175,7 +175,7 @@ public class ConditionRule implements Rule {
 	 * Gets the value bounds for a weather condition
 	 * @return the bounds for the given weather condition
 	 */
-	public static Pair<Integer, Integer> getBounds(String type) {
+	public static Pair<Double, Double> getBounds(String type) {
 		return bounds.get(type);
 	}
 	
@@ -193,8 +193,8 @@ public class ConditionRule implements Rule {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + condition.hashCode();
-		result = prime * result + max;
-		result = prime * result + min;
+		result = prime * result + new Double(max).hashCode();
+		result = prime * result + new Double(min).hashCode();
 		return result;
 	}
 
@@ -227,11 +227,11 @@ public class ConditionRule implements Rule {
 			if (!condition.equals(other.getCondition())) {
 				return condition.compareTo(other.getCondition());
 			} else {
-				Pair<Integer, Integer> otherP = other.getMinMax();
+				Pair<Double, Double> otherP = other.getMinMax();
 				if (min != otherP.first) {
-					return ((Integer)min).compareTo(otherP.first);
+					return ((Double)min).compareTo(otherP.first);
 				} else if (max != otherP.second) {
-					return ((Integer)max).compareTo(otherP.second);
+					return ((Double)max).compareTo(otherP.second);
 				}
 				return 0;
 			}

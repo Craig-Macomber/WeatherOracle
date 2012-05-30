@@ -61,18 +61,18 @@ public class ConditionRuleViewerActivity extends Activity {
     		final RelativeLayout rl = new RelativeLayout(this);
     		//final Button deleteButton = new Button(this);
     		final TextView textview = new TextView(this);
-    		int min = conditionList.get(i).getMinMax().first;
-    		int max = conditionList.get(i).getMinMax().second;
+    		double min = conditionList.get(i).getMinMax().first;
+    		double max = conditionList.get(i).getMinMax().second;
     		String range;
     		
-    		if (min == Integer.MIN_VALUE && max == Integer.MAX_VALUE) {
+    		if (min == Double.MIN_VALUE && max == Double.MAX_VALUE) {
     			range = "Any Value/Amount";
-    		} else if (min == Integer.MIN_VALUE) {
+    		} else if (min == Double.MIN_VALUE) {
     			range = "Up To " + max + ConditionRule.getUnits(conditionList.get(i).getCondition());
-    		} else if (max == Integer.MAX_VALUE) {
+    		} else if (max == Double.MAX_VALUE) {
     			range = "From " + min + ConditionRule.getUnits(conditionList.get(i).getCondition()) + " and higher.";
     		} else {
-    			range = min + ConditionRule.getUnits(conditionList.get(i).getCondition()) + " to " + max + ConditionRule.getUnits(conditionList.get(i).getCondition()) + ".";	
+    			range = min + ConditionRule.getUnits(conditionList.get(i).getCondition()) + " to " + max + ConditionRule.getUnits(conditionList.get(i).getCondition()) + ".";
     		}
     		
     		
