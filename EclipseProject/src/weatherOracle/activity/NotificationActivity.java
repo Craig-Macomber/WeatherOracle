@@ -3,7 +3,9 @@ package weatherOracle.activity;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import weatherOracle.filter.ConditionRule;
 import weatherOracle.filter.Filter;
@@ -173,25 +175,41 @@ public class NotificationActivity extends Activity {
 						double lat = currentFilter.getLocation().lat;
 						double lon = currentFilter.getLocation().lon;
 						
-						String specifier = "";
+						String conditionSpecifier = "";
+						int timeSpecifier = 0;
+						long timeDiff = 0;
+						TimeZone filterTimeZone = notificationList.get(index).getWeatherData().get(0).getTimeZone();
 						
 						for(ConditionRule cr : currentFilter.getConditionRules()) {
-							if (!specifier.contains(ConditionRule.geturlSpecifier(cr.getCondition()))) {
-								specifier += ConditionRule.geturlSpecifier(cr.getCondition()) + "&";	
+							if (!conditionSpecifier.contains(ConditionRule.geturlSpecifier(cr.getCondition()))) {
+								conditionSpecifier += ConditionRule.geturlSpecifier(cr.getCondition()) + "&";	
 							}
 						}
 						
+						if (notificationList.get(index).getWeatherData() != null) {
+							timeDiff = (notificationList.get(index).getWeatherData().get(0).getMillisTime() 
+									  	- Calendar.getInstance(filterTimeZone).getTimeInMillis())/(1000*3600);
+			            	timeSpecifier = (int) timeDiff;
+			            	if (timeSpecifier < 0) {
+			            		timeSpecifier = 0;
+			            	}
+			            }
+						
 						url = new URL("http://forecast.weather.gov/MapClick.php?"
-								+ specifier
-								+ "&w3u=1&AheadHour=0&Submit=Submit&FcstType=digital&textField1="
+								+ conditionSpecifier
+								+ "&w3u=1&AheadHour="
+								+ timeSpecifier
+								+ "&Submit=Submit&FcstType=digital&textField1="
 								+ lat
 								+ "&textField2="
 								+ lon
 								+ "&site=all&unit=0&dd=0&bw=0");
 						
 						Log.d("NOTIFICATION ACTIVITY", "http://forecast.weather.gov/MapClick.php?"
-								+ specifier
-								+ "&w3u=1&AheadHour=0&Submit=Submit&FcstType=digital&textField1="
+								+ conditionSpecifier
+								+ "&w3u=1&AheadHour="
+								+ timeSpecifier
+								+ "&Submit=Submit&FcstType=digital&textField1="
 								+ lat
 								+ "&textField2="
 								+ lon
