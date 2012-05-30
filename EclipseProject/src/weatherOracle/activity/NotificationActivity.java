@@ -80,9 +80,11 @@ public class NotificationActivity extends Activity {
 	private void displayNotifications() {
 		
 		try {
-			String tickerText = "";
 			if(notificationList.size()==1) {
-				tickerText = notificationList.size()+" new notification";
+				statusBarNotification(R.drawable.icon, 
+						notificationList.size() + " new notification", 
+						"WeatherOracle", 
+						notificationList.size() + " new notification");
 				
 				/* Show information about a single notification
 				statusBarNotification(R.drawable.icon,
@@ -92,9 +94,12 @@ public class NotificationActivity extends Activity {
 						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
 				*/
 			} else if(notificationList.size()>1) {
-				tickerText = notificationList.size() + " new notifications";
+				statusBarNotification(R.drawable.icon, 
+						notificationList.size() + " new notifications", 
+						"WeatherOracle", 
+						notificationList.size() + " new notifications");
 			}
-			statusBarNotification(R.drawable.icon, tickerText, "WeatherOracle", tickerText);
+			
 		} catch (Exception e) {
 			
 		}
