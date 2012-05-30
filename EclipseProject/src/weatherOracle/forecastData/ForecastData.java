@@ -124,7 +124,11 @@ public class ForecastData {
 	public String getTimeString(){
 		long standardOffset = dateTime.getTimeZone().getRawOffset();
 		String zone = "";
-		if (standardOffset == -25200000) {
+		if (standardOffset == -36000000) {
+			zone = "HA";
+		} else if (standardOffset == -28800000) {
+			zone = "AK";
+		} else if (standardOffset == -25200000) {
 			zone = "PT";
 		} else if (standardOffset == -21600000) {
 			zone = "MT";
