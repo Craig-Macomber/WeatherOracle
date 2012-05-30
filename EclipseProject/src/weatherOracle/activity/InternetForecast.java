@@ -17,6 +17,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,6 +44,7 @@ public class InternetForecast extends Activity {
 		WebView webview;
 		webview = (WebView) findViewById(R.id.webview);
 		webview.getSettings().setJavaScriptEnabled(true);
+		webview.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 		//webview.loadUrl("http://www.google.com");
 		webview.loadUrl(url.toString());
     }
