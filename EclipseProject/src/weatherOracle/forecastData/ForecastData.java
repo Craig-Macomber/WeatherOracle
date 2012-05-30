@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import android.util.Log;
+
 /**
  * A single data-point of forecast data for the forecast at a given time and location
  * 
@@ -120,12 +122,24 @@ public class ForecastData {
 	 * @return a String representation of the Time
 	 */
 	public String getTimeString(){
+		long standardOffset = dateTime.getTimeZone().getRawOffset();
+		String zone = "";
+		if (standardOffset == -25200000) {
+			zone = "PT";
+		} else if (standardOffset == -21600000) {
+			zone = "MT";
+		} else if (standardOffset == -18000000) {
+			zone = "CT";
+		} else if (standardOffset == -14400000) {
+			zone = "ET";
+		}
+		
 		SimpleDateFormat f=new SimpleDateFormat("EEE MM/dd hh a");
 		f.setTimeZone(dateTime.getTimeZone());
 		Date d=dateTime.getTime();
 		String s=d.toLocaleString();;
 		s=f.format(d);
-		return s;
+		return s + " " + zone;
 	}
 	
 	/**
