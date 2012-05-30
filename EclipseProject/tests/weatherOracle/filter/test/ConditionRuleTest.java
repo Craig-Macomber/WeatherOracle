@@ -13,13 +13,13 @@ public class ConditionRuleTest extends AndroidTestCase {
 		ConditionRule cR = new ConditionRule(conditions[0], 0, 5); 
 		
 		assertEquals(conditions[0], cR.getCondition());
-		assertEquals(new Pair<Integer, Integer>(0, 5), cR.getMinMax());
+		assertEquals(new Pair<Double, Double>(0.0, 5.0), cR.getMinMax());
 	}
 	
 	public void testEqualsAndCompareTo() {
-		ConditionRule cR = new ConditionRule(conditions[0], 0, 5);		// Temperature 0 -> 5
-		ConditionRule cR2 = new ConditionRule(conditions[4], 0, 5);		// Cloud Cover 0 -> 5 (different than first)
-		ConditionRule cR3 = new ConditionRule(conditions[0], 0, 5);		// Same as first
+		ConditionRule cR = new ConditionRule(conditions[0], 0.0, 5.0);		// Temperature 0 -> 5
+		ConditionRule cR2 = new ConditionRule(conditions[4], 0.0, 5.0);		// Cloud Cover 0 -> 5 (different than first)
+		ConditionRule cR3 = new ConditionRule(conditions[0], 0.0, 5.0);		// Same as first
 		TimeRule tR = new TimeRule(TimeRule.days[0]);					// Different class of Rule
 		
 		// Testing equals between objects
@@ -45,8 +45,8 @@ public class ConditionRuleTest extends AndroidTestCase {
 		// Forecast data with 35 temperature and 37 cloud cover, zero for everything else
 		ForecastData data = new ForecastData(null, 35.0, 0.0, 0.0, 0.0, 0.0, 0.0, 37.0, 0.0, 0.0);
 		
-		ConditionRule cR = new ConditionRule(conditions[0], 0, 5);		// Temperature between 0 and 5
-		ConditionRule cR2 = new ConditionRule(conditions[4], 35, 45);	// Cloud Cover between 35 and 45  
+		ConditionRule cR = new ConditionRule(conditions[0], 0.0, 5.0);		// Temperature between 0 and 5
+		ConditionRule cR2 = new ConditionRule(conditions[4], 35.0, 45.0);	// Cloud Cover between 35 and 45  
 		
 		assertFalse(cR.apply(data));
 		assertTrue(cR2.apply(data));
