@@ -81,13 +81,13 @@ public class NotificationActivity extends Activity {
 		
 		try {
 			if(notificationList.size()==1)
-				statusBarNotification(R.drawable.clouds,
+				statusBarNotification(R.drawable.icon,
 					notificationList.get(0).getName(),
 					"WeatherOracle",
 					notificationList.get(0).getName() + ". Location:" + notificationList.get(0).getFilter().getLocationName()
 						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
 			else if(notificationList.size()>1)
-				statusBarNotification(R.drawable.clouds,
+				statusBarNotification(R.drawable.icon,
 						notificationList.size()+" new notifications",
 						"WeatherOracle",
 						notificationList.size()+" new notifications");
@@ -246,8 +246,8 @@ public class NotificationActivity extends Activity {
             if (notificationList.get(i).getWeatherData() != null) {
             	TextView conditionTag = new TextView(getApplicationContext());
             	//conditionTag.setText();
-            	conditionTag.setText("Will First Occur on:\n\t" + notificationList.get(i).getWeatherData().get(0).getTimeString() + 
-            			"\nWill Occur during:\n\t" + notificationList.get(i).getDays());
+            	conditionTag.setText("Will First Occur on: " + notificationList.get(i).getWeatherData().get(0).getTimeString() + 
+            			"\nWill Occur during: " + notificationList.get(i).getDays());
             	ll.addView(conditionTag);
             }
             
@@ -258,7 +258,7 @@ public class NotificationActivity extends Activity {
             	String location = "";
             	if (notificationList.get(i).getFilter().getLocationName() != null) {
             		location = notificationList.get(i).getFilter().getLocationName();
-            		locationTag.setText("Location:\n\t " + location);
+            		locationTag.setText("Location: " + location);
             		ll.addView(locationTag);
             	}
             	

@@ -105,8 +105,11 @@ public class NoaaReader implements Reader {
 			// http://forecast.weather.gov/MapClick.php?lat=47.66076&lon=-122.29508&FcstType=digitalDWML
 			for (Location loc : r.getData()) {
 				URL url;
-				url = new URL("http://forecast.weather.gov/MapClick.php?lat="
-						+ loc.lat + "&lon=" + loc.lon + "&FcstType=digitalDWML");
+
+				url = new URL(
+						String.format(
+								"http://forecast.weather.gov/MapClick.php?lat=%.10f&lon=%.10f&FcstType=digitalDWML",
+								loc.lat, loc.lon));
 
 				InputStream s;
 				s = url.openConnection().getInputStream();
@@ -115,7 +118,7 @@ public class NoaaReader implements Reader {
 						.newInstance();
 
 				// Using factory get an instance of document builder
-				DocumentBuilder db=null;
+				DocumentBuilder db = null;
 
 				try {
 					db = dbf.newDocumentBuilder();
@@ -125,7 +128,7 @@ public class NoaaReader implements Reader {
 				}
 
 				// parse using builder to get DOM representation of the XML file
-				Document dom=null;
+				Document dom = null;
 				try {
 					dom = db.parse(s);
 				} catch (SAXException e) {
@@ -151,7 +154,8 @@ public class NoaaReader implements Reader {
 				int timeZone = -Integer.parseInt(timeParts[6]);
 				dateTime.clear();
 				dateTime.set(year, month - 1, day, hourOfDay, 0);
-				TimeZone zone=new SimpleTimeZone(timeZone*1000*60*60,"");
+				TimeZone zone = new SimpleTimeZone(timeZone * 1000 * 60 * 60,
+						"");
 				dateTime.setTimeZone(zone);
 				List<ForecastData> dataList = new ArrayList<ForecastData>(count);
 
@@ -174,12 +178,20 @@ public class NoaaReader implements Reader {
 					}
 				}
 
+				GregorianCalendar now = new GregorianCalendar();
+
 				for (int i = 0; i < count; i++) {
 					double[] d = doubles[i];
-					ForecastData f = new ForecastData(
-							(Calendar) dateTime.clone(), d[0], d[1], d[2],
-							d[3], d[4], d[5], d[6], d[7], d[8]);
-					dataList.add(f);
+					long diff = now.getTimeInMillis()
+							- dateTime.getTimeInMillis();
+					diff /= 1000 * 60;
+					if (now.before(dateTime)) {
+
+						ForecastData f = new ForecastData(
+								(Calendar) dateTime.clone(), d[0], d[1], d[2],
+								d[3], d[4], d[5], d[6], d[7], d[8]);
+						dataList.add(f);
+					}
 					dateTime.add(Calendar.HOUR, 1);
 				}
 
@@ -191,10 +203,9 @@ public class NoaaReader implements Reader {
 			MainControl.setLastUpdateWorked(true);
 			return m;
 
-		} catch (IOException e){
+		} catch (IOException e) {
 			MainControl.setLastUpdateWorked(false);
 			return null;
 		}
 	}
-
 }

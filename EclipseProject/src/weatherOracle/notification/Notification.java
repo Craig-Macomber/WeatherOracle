@@ -87,15 +87,14 @@ public class Notification implements Comparable<Notification> {
 	
 	public String getDays(){
 		boolean[] days=new boolean[7];
-		if (dataList!=null) {
-			for (ForecastData d:dataList){
-				days[d.getDayOfWeek()-1]=true;
-			}
-		}
 		String s="";
 		String[] names={"Su","M","Tu","W","Th","F","Sa"};
-		for (int i=0;i<7;i++){
-			if (days[i]) s += " - " + names[i];
+		if (dataList!=null) {
+			for (ForecastData d:dataList){
+				int i=d.getDayOfWeek()-1;
+				if (!days[i]) s += " - " + names[i];
+				days[i]=true;
+			}
 		}		
 		if (s.equals("")) return "None";
 		return s.substring(3);
