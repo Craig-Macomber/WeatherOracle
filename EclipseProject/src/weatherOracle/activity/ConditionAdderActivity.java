@@ -177,19 +177,19 @@ public class ConditionAdderActivity extends Activity {
 			
 			final EditText maxtext = (EditText) findViewById(R.id.max_condition_edittext);
 			//maxtext.setHint("If empty, the maximum will be " + ConditionRule.bounds.get(condition).second + ConditionRule.getUnits(condition));
-			maxtext.setHint("If empty, the maximum will not be set");
+			maxtext.setHint("If empty, maximum will not be set");
 			maxtext.setText("");
 			
 			final EditText mintext = (EditText) findViewById(R.id.min_condition_edittext);
 			//mintext.setHint("If empty, the minimum will be " + ConditionRule.bounds.get(condition).first + ConditionRule.getUnits(condition));
-			mintext.setHint("If empty, the minimum will not be set");
+			mintext.setHint("If empty, minimum will not be set");
 			mintext.setText("");
 			
 			TextView tv = (TextView) findViewById(R.id.to_textview);
-			tv.setText("To (" + ConditionRule.getBounds(condition).second + ConditionRule.getUnits(condition) + "):");
+			tv.setText("To (" + ConditionRule.getUnits(condition) + "):");
 			
 			tv = (TextView) findViewById(R.id.from_textview);
-			tv.setText("From (" + ConditionRule.getBounds(condition).first + ConditionRule.getUnits(condition) + "):");
+			tv.setText("From (" + ConditionRule.getUnits(condition) + "):");
 			
 			
 		}

@@ -45,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLength="4"
                 android:inputType="numberSigned" >
 
                 <requestFocus />
@@ -55,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="To:"
-                android:textColor="#000000"
+                android:textColor="#000000"                
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -63,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+				android:maxLength="4"
                 android:inputType="numberSigned" />
 
 
