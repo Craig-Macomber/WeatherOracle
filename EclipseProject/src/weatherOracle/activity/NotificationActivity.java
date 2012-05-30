@@ -80,17 +80,21 @@ public class NotificationActivity extends Activity {
 	private void displayNotifications() {
 		
 		try {
-			if(notificationList.size()==1)
+			String tickerText = "";
+			if(notificationList.size()==1) {
+				tickerText = notificationList.size()+" new notification";
+				
+				/* Show information about a single notification
 				statusBarNotification(R.drawable.icon,
 					notificationList.get(0).getName(),
 					"WeatherOracle",
 					notificationList.get(0).getName() + ". Location:" + notificationList.get(0).getFilter().getLocationName()
 						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
-			else if(notificationList.size()>1)
-				statusBarNotification(R.drawable.icon,
-						notificationList.size()+" new notifications",
-						"WeatherOracle",
-						notificationList.size()+" new notifications");
+				*/
+			} else if(notificationList.size()>1) {
+				tickerText = notificationList.size() + " new notifications";
+			}
+			statusBarNotification(R.drawable.icon, tickerText, "WeatherOracle", tickerText);
 		} catch (Exception e) {
 			
 		}
@@ -272,13 +276,13 @@ public class NotificationActivity extends Activity {
             	for(int j = 0 ;j < conditions.size(); j++) {
                 	TextView condition = new TextView(getApplicationContext());
                 	String range;
-                	int min = conditions.get(j).getMinMax().first;
-                	int max = conditions.get(j).getMinMax().second;
-            		if (min == Integer.MIN_VALUE && max == Integer.MAX_VALUE) {
+                	double min = conditions.get(j).getMinMax().first;
+                	double max = conditions.get(j).getMinMax().second;
+            		if (min == Double.MIN_VALUE && max == Double.MAX_VALUE) {
             			range = "Any Value/Amount";
-            		} else if (min == Integer.MIN_VALUE) {
+            		} else if (min == Double.MIN_VALUE) {
             			range = "Up To " + max + ConditionRule.getUnits(conditions.get(j).getCondition());
-            		} else if (max == Integer.MAX_VALUE) {
+            		} else if (max == Double.MAX_VALUE) {
             			range = "From " + min + ConditionRule.getUnits(conditions.get(j).getCondition()) + " and higher.";
             		} else {
             			range = min + ConditionRule.getUnits(conditions.get(j).getCondition()) + " to " + max + ConditionRule.getUnits(conditions.get(j).getCondition()) + ".";	
