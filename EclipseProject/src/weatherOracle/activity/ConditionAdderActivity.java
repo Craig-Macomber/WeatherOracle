@@ -57,12 +57,23 @@ public class ConditionAdderActivity extends Activity {
 			public void afterTextChanged(Editable s) {
 				String minNumber = et.getText().toString();
 				if (minNumber.equals("")) {
-					min = ConditionRule.bounds.get(condition).first;
+					if (ConditionRule.getUnits(condition).equals("%")) {
+						min = 0;
+					} else {
+						min = Integer.MIN_VALUE;	
+					}
 				} else if ((minNumber.startsWith("-") && minNumber.length() > 1) || (!minNumber.startsWith("-")) && minNumber.length() > 0) {
 					try {
-						if (Integer.parseInt(minNumber) < ConditionRule.bounds.get(condition).first) {
-							min = ConditionRule.bounds.get(condition).first;
-							et.setText((new Integer(min)).toString());
+						if (ConditionRule.getUnits(condition).equals("%")) {
+							if (Integer.parseInt(minNumber) >= 100) {
+								min = 99;
+								et.setText((new Integer(min)).toString());
+							} else  if (Integer.parseInt(minNumber) < 0) {
+								min = 0;
+								et.setText((new Integer(min)).toString());
+							} else {
+								min = Integer.parseInt(minNumber);
+							}
 						} else {
 							min = Integer.parseInt(minNumber);
 						}
@@ -87,13 +98,24 @@ public class ConditionAdderActivity extends Activity {
 			public void afterTextChanged(Editable s) {
 				String maxNumber = et.getText().toString();
 				if (maxNumber.equals("")) {
-					max = ConditionRule.bounds.get(condition).second;
+					if (ConditionRule.getUnits(condition).equals("%")) {
+						max = 100;
+					} else {
+						max = Integer.MAX_VALUE;	
+					}
 				} else if ((maxNumber.startsWith("-") && maxNumber.length() > 1) || (!maxNumber.startsWith("-")) && maxNumber.length() > 0) {
 					try {
-						if (Integer.parseInt(maxNumber) > ConditionRule.bounds.get(condition).second) {
-							max = ConditionRule.bounds.get(condition).second;
-							et.setText((new Integer(max)).toString());
-						} else {
+						if (ConditionRule.getUnits(condition).equals("%")) {
+							if (Integer.parseInt(maxNumber) > 100) {
+								max = 100;
+								et.setText((new Integer(max)).toString());
+							} else if (Integer.parseInt(maxNumber) < 0) {
+								max = 1;
+								et.setText((new Integer(max)).toString());
+							} else {
+								max = Integer.parseInt(maxNumber);
+							}
+						}else {
 							max = Integer.parseInt(maxNumber);
 						}	
 					} catch (Exception e) {
@@ -154,18 +176,20 @@ public class ConditionAdderActivity extends Activity {
 			max = ConditionRule.bounds.get(condition).second;
 			
 			final EditText maxtext = (EditText) findViewById(R.id.max_condition_edittext);
-			maxtext.setHint("If empty, the maximum will be " + ConditionRule.bounds.get(condition).second + ConditionRule.getUnits(condition));
+			//maxtext.setHint("If empty, the maximum will be " + ConditionRule.bounds.get(condition).second + ConditionRule.getUnits(condition));
+			maxtext.setHint("If empty, maximum will not be set");
 			maxtext.setText("");
 			
 			final EditText mintext = (EditText) findViewById(R.id.min_condition_edittext);
-			mintext.setHint("If empty, the minimum will be " + ConditionRule.bounds.get(condition).first + ConditionRule.getUnits(condition));
+			//mintext.setHint("If empty, the minimum will be " + ConditionRule.bounds.get(condition).first + ConditionRule.getUnits(condition));
+			mintext.setHint("If empty, minimum will not be set");
 			mintext.setText("");
 			
 			TextView tv = (TextView) findViewById(R.id.to_textview);
-			tv.setText("To (" + ConditionRule.getBounds(condition).second + ConditionRule.getUnits(condition) + "):");
+			tv.setText("To (" + ConditionRule.getUnits(condition) + "):");
 			
 			tv = (TextView) findViewById(R.id.from_textview);
-			tv.setText("From (" + ConditionRule.getBounds(condition).first + ConditionRule.getUnits(condition) + "):");
+			tv.setText("From (" + ConditionRule.getUnits(condition) + "):");
 			
 			
 		}

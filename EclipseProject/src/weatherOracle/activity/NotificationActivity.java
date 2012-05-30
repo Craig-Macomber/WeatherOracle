@@ -263,7 +263,7 @@ public class NotificationActivity extends Activity {
             	}
             	
             	
-            	
+
             	
             	TextView conditionTag = new TextView(getApplicationContext());
             	conditionTag.setText("With Condition(s):");
@@ -271,7 +271,19 @@ public class NotificationActivity extends Activity {
             	List<ConditionRule> conditions = new ArrayList<ConditionRule>(notificationList.get(i).getFilter().getConditionRules());
             	for(int j = 0 ;j < conditions.size(); j++) {
                 	TextView condition = new TextView(getApplicationContext());
-                	condition.setText("\t" +conditions.get(j).toString());
+                	String range;
+                	int min = conditions.get(j).getMinMax().first;
+                	int max = conditions.get(j).getMinMax().second;
+            		if (min == Integer.MIN_VALUE && max == Integer.MAX_VALUE) {
+            			range = "Any Value/Amount";
+            		} else if (min == Integer.MIN_VALUE) {
+            			range = "Up To " + max + ConditionRule.getUnits(conditions.get(j).getCondition());
+            		} else if (max == Integer.MAX_VALUE) {
+            			range = "From " + min + ConditionRule.getUnits(conditions.get(j).getCondition()) + " and higher.";
+            		} else {
+            			range = min + ConditionRule.getUnits(conditions.get(j).getCondition()) + " to " + max + ConditionRule.getUnits(conditions.get(j).getCondition()) + ".";	
+            		}	
+                	condition.setText("\t" + conditions.get(j).getCondition() + ": " + range);
                 	ll.addView(condition);
                 }	
             }

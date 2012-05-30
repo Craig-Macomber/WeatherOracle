@@ -38,10 +38,10 @@
          <object idref="Point2D$Double0">
           <void method="setLocation">
            <double>14.000000000000057</double>
-           <double>935.0000000000001</double>
+           <double>1515.0</double>
           </void>
          </object>
-         <double>935.0000000000001</double>
+         <double>1515.0</double>
         </void>
        </void>
       </object>
@@ -86,10 +86,10 @@
          <object idref="Point2D$Double1">
           <void method="setLocation">
            <double>1120.0</double>
-           <double>826.0000000000001</double>
+           <double>1406.0</double>
           </void>
          </object>
-         <double>826.0000000000001</double>
+         <double>1406.0</double>
         </void>
        </void>
       </object>
@@ -131,10 +131,10 @@
          <object idref="Point2D$Double2">
           <void method="setLocation">
            <double>67.00000000000003</double>
-           <double>772.0</double>
+           <double>1352.0</double>
           </void>
          </object>
-         <double>772.0</double>
+         <double>1352.0</double>
         </void>
        </void>
       </object>
@@ -173,10 +173,10 @@
          <object idref="Point2D$Double3">
           <void method="setLocation">
            <double>242.0</double>
-           <double>1174.0</double>
+           <double>1754.0</double>
           </void>
          </object>
-         <double>1174.0</double>
+         <double>1754.0</double>
         </void>
        </void>
       </object>
@@ -218,10 +218,10 @@
          <object idref="Point2D$Double4">
           <void method="setLocation">
            <double>35.99999999999997</double>
-           <double>614.0000000000001</double>
+           <double>1194.0</double>
           </void>
          </object>
-         <double>614.0000000000001</double>
+         <double>1194.0</double>
         </void>
        </void>
       </object>
@@ -267,10 +267,10 @@
          <object idref="Point2D$Double5">
           <void method="setLocation">
            <double>924.6790041863245</double>
-           <double>617.6817928305076</double>
+           <double>1197.6817928305077</double>
           </void>
          </object>
-         <double>617.6817928305076</double>
+         <double>1197.6817928305077</double>
         </void>
        </void>
       </object>
@@ -317,10 +317,10 @@
          <object idref="Point2D$Double6">
           <void method="setLocation">
            <double>584.9523905931314</double>
-           <double>625.3641433898516</double>
+           <double>1205.3641433898515</double>
           </void>
          </object>
-         <double>625.3641433898516</double>
+         <double>1205.3641433898515</double>
         </void>
        </void>
       </object>
@@ -363,10 +363,10 @@
          <object idref="Point2D$Double7">
           <void method="setLocation">
            <double>771.5456573559406</double>
-           <double>856.0907569830447</double>
+           <double>1436.0907569830447</double>
           </void>
          </object>
-         <double>856.0907569830447</double>
+         <double>1436.0907569830447</double>
         </void>
        </void>
       </object>
@@ -408,10 +408,10 @@
          <object idref="Point2D$Double8">
           <void method="setLocation">
            <double>649.54900372896</double>
-           <double>1116.9535060508047</double>
+           <double>1696.9535060508047</double>
           </void>
          </object>
-         <double>1116.9535060508047</double>
+         <double>1696.9535060508047</double>
         </void>
        </void>
       </object>
@@ -555,7 +555,7 @@
 +addSetOfConditionRules(rules:Set&lt;ConditionRule&gt;)
 +addSetOfTimeRules(rules:Set&lt;TimeRule&gt;)
 +apply(data:ForecastData):boolean
-+equal(Object obj):boolean</string>
++equals(Object obj):boolean</string>
        </void>
       </void>
       <void property="name">
@@ -1313,15 +1313,15 @@
         <void method="set">
          <object idref="Point2D$Double28">
           <void method="setLocation">
-           <double>1650.0</double>
-           <double>30.0</double>
+           <double>1680.0</double>
+           <double>40.0</double>
           </void>
          </object>
-         <double>30.0</double>
+         <double>40.0</double>
         </void>
        </void>
       </object>
-      <double>1650.0</double>
+      <double>1680.0</double>
      </void>
     </void>
    </object>
@@ -1338,15 +1338,15 @@
         <void method="set">
          <object idref="Point2D$Double29">
           <void method="setLocation">
-           <double>1656.565938049817</double>
-           <double>63.90812755928232</double>
+           <double>1692.565938049817</double>
+           <double>70.90812755928232</double>
           </void>
          </object>
-         <double>63.90812755928232</double>
+         <double>70.90812755928232</double>
         </void>
        </void>
       </object>
-      <double>1656.565938049817</double>
+      <double>1692.565938049817</double>
      </void>
     </void>
    </object>
@@ -1363,15 +1363,15 @@
         <void method="set">
          <object idref="Point2D$Double30">
           <void method="setLocation">
-           <double>1683.4746233379362</double>
-           <double>292.63195250829244</double>
+           <double>1719.4746233379362</double>
+           <double>299.63195250829244</double>
           </void>
          </object>
-         <double>292.63195250829244</double>
+         <double>299.63195250829244</double>
         </void>
        </void>
       </object>
-      <double>1683.4746233379362</double>
+      <double>1719.4746233379362</double>
      </void>
     </void>
    </object>
@@ -1388,15 +1388,15 @@
         <void method="set">
          <object idref="Point2D$Double31">
           <void method="setLocation">
-           <double>1664.9749022023543</double>
-           <double>153.04314757617593</double>
+           <double>1700.9749022023543</double>
+           <double>160.04314757617593</double>
           </void>
          </object>
-         <double>153.04314757617593</double>
+         <double>160.04314757617593</double>
         </void>
        </void>
       </object>
-      <double>1664.9749022023543</double>
+      <double>1700.9749022023543</double>
      </void>
     </void>
    </object>
@@ -1441,10 +1441,10 @@
       <object idref="Point2D$Double32">
        <void method="setLocation">
         <double>0.0</double>
-        <double>580.0</double>
+        <double>1160.0</double>
        </void>
       </object>
-      <double>580.0</double>
+      <double>1160.0</double>
      </void>
     </void>
    </object>
