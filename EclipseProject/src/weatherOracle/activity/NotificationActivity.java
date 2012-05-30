@@ -195,8 +195,6 @@ public class NotificationActivity extends Activity {
 			            	}
 			            }
 						
-						Log.d("TIMEZONE", filterTimeZone.getDisplayName());
-						
 						url = new URL("http://forecast.weather.gov/MapClick.php?"
 								+ conditionSpecifier
 								+ "&w3u=1&AheadHour="
