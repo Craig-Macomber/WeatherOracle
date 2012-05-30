@@ -81,13 +81,13 @@ public class NotificationActivity extends Activity {
 		
 		try {
 			if(notificationList.size()==1)
-				statusBarNotification(R.drawable.clouds,
+				statusBarNotification(R.drawable.icon,
 					notificationList.get(0).getName(),
 					"WeatherOracle",
 					notificationList.get(0).getName() + ". Location:" + notificationList.get(0).getFilter().getLocationName()
 						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
 			else if(notificationList.size()>1)
-				statusBarNotification(R.drawable.clouds,
+				statusBarNotification(R.drawable.icon,
 						notificationList.size()+" new notifications",
 						"WeatherOracle",
 						notificationList.size()+" new notifications");
