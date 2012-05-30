@@ -32,7 +32,7 @@
 		              android:textColor="#FFFFFF"
 		              android:layout_toRightOf="@id/add_filter_button"
 		              android:text="Filters"
-		              android:layout_marginLeft="55dp"
+		              android:layout_marginLeft="69dp"
 		              android:textAppearance="?android:attr/textAppearanceLarge" /> 
 	          
 	          
