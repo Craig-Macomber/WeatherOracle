@@ -78,21 +78,24 @@ public class NotificationActivity extends Activity {
 	}
 
 	private void displayNotifications() {
-		for (int i = 0;i<notificationList.size();i++) {
-			try {
+		
+		try {
+			if(notificationList.size()==1)
 				statusBarNotification(R.drawable.clouds,
-						notificationList.get(i).getName(),
+					notificationList.get(0).getName(),
+					"WeatherOracle",
+					notificationList.get(0).getName() + ". Location:" + notificationList.get(0).getFilter().getLocationName()
+						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
+			else if(notificationList.size()>1)
+				statusBarNotification(R.drawable.clouds,
+						notificationList.size()+" new notifications",
 						"WeatherOracle",
-						notificationList.get(i).getName() + ". Location:" + notificationList.get(i).getFilter().getLocationName()
-							+ ". First Occur at" + notificationList.get(i).getWeatherData().get(0).getTimeString());
-			} catch (Exception e) {
-				
-			}
+						notificationList.size()+" new notifications");
+		} catch (Exception e) {
 			
-			
-			
-			
-			
+		}
+		
+		for (int i = 0;i<notificationList.size();i++) {
 			
 			boolean firstIteration = false;
  			boolean lastIteration = false;
