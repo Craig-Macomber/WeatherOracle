@@ -3,6 +3,7 @@ package weatherOracle.forecastData;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * A single data-point of forecast data for the forecast at a given time and location
@@ -97,7 +98,7 @@ public class ForecastData {
 	public int getDayOfWeek() {
 		return dateTime.get(Calendar.DAY_OF_WEEK);
 	}
-	
+
 	/**
 	 * 
 	 * @return the time in milliseconds
@@ -108,10 +109,19 @@ public class ForecastData {
 	
 	/**
 	 * 
+	 * @return the time zone
+	 */
+	public TimeZone getTimeZone() {
+		return dateTime.getTimeZone();
+	}
+	
+	/**
+	 * 
 	 * @return a String representation of the Time
 	 */
 	public String getTimeString(){
 		SimpleDateFormat f=new SimpleDateFormat("EEE MM/dd hh a");
+		f.setTimeZone(dateTime.getTimeZone());
 		Date d=dateTime.getTime();
 		String s=d.toLocaleString();;
 		s=f.format(d);

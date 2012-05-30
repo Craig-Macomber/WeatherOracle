@@ -3,7 +3,9 @@ package weatherOracle.activity;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import weatherOracle.filter.ConditionRule;
 import weatherOracle.filter.Filter;
@@ -76,17 +78,24 @@ public class NotificationActivity extends Activity {
 	}
 
 	private void displayNotifications() {
+		
+		try {
+			if(notificationList.size()==1)
+				statusBarNotification(R.drawable.clouds,
+					notificationList.get(0).getName(),
+					"WeatherOracle",
+					notificationList.get(0).getName() + ". Location:" + notificationList.get(0).getFilter().getLocationName()
+						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
+			else if(notificationList.size()>1)
+				statusBarNotification(R.drawable.clouds,
+						notificationList.size()+" new notifications",
+						"WeatherOracle",
+						notificationList.size()+" new notifications");
+		} catch (Exception e) {
+			
+		}
+		
 		for (int i = 0;i<notificationList.size();i++) {
-			try {
-				statusBarNotification(R.drawable.clouds,notificationList.get(i).getName(),"WeatherOracle",notificationList.get(i).getName() + ". Location:" + notificationList.get(i).getFilter().getLocationName() + ". First Occur at" + notificationList.get(i).getWeatherData().get(0).getTimeString());
-			} catch (Exception e) {
-				
-			}
-			
-			
-			
-			
-			
 			
 			boolean firstIteration = false;
  			boolean lastIteration = false;
@@ -169,25 +178,41 @@ public class NotificationActivity extends Activity {
 						double lat = currentFilter.getLocation().lat;
 						double lon = currentFilter.getLocation().lon;
 						
-						String specifier = "";
+						String conditionSpecifier = "";
+						int timeSpecifier = 0;
+						long timeDiff = 0;
+						TimeZone filterTimeZone = notificationList.get(index).getWeatherData().get(0).getTimeZone();
 						
 						for(ConditionRule cr : currentFilter.getConditionRules()) {
-							if (!specifier.contains(ConditionRule.geturlSpecifier(cr.getCondition()))) {
-								specifier += ConditionRule.geturlSpecifier(cr.getCondition()) + "&";	
+							if (!conditionSpecifier.contains(ConditionRule.geturlSpecifier(cr.getCondition()))) {
+								conditionSpecifier += ConditionRule.geturlSpecifier(cr.getCondition()) + "&";	
 							}
 						}
 						
+						if (notificationList.get(index).getWeatherData() != null) {
+							timeDiff = (notificationList.get(index).getWeatherData().get(0).getMillisTime() 
+									  	- Calendar.getInstance(filterTimeZone).getTimeInMillis())/(1000*3600);
+			            	timeSpecifier = (int) timeDiff;
+			            	if (timeSpecifier < 0) {
+			            		timeSpecifier = 0;
+			            	}
+			            }
+						
 						url = new URL("http://forecast.weather.gov/MapClick.php?"
-								+ specifier
-								+ "&w3u=1&AheadHour=0&Submit=Submit&FcstType=digital&textField1="
+								+ conditionSpecifier
+								+ "&w3u=1&AheadHour="
+								+ timeSpecifier
+								+ "&Submit=Submit&FcstType=digital&textField1="
 								+ lat
 								+ "&textField2="
 								+ lon
 								+ "&site=all&unit=0&dd=0&bw=0");
 						
 						Log.d("NOTIFICATION ACTIVITY", "http://forecast.weather.gov/MapClick.php?"
-								+ specifier
-								+ "&w3u=1&AheadHour=0&Submit=Submit&FcstType=digital&textField1="
+								+ conditionSpecifier
+								+ "&w3u=1&AheadHour="
+								+ timeSpecifier
+								+ "&Submit=Submit&FcstType=digital&textField1="
 								+ lat
 								+ "&textField2="
 								+ lon
@@ -266,7 +291,7 @@ public class NotificationActivity extends Activity {
 		android.app.Notification notification = new android.app.Notification(icon, tickerText, when);
 		
 		Context context = getApplicationContext();
-		Intent notificationIntent = new Intent(this, NotificationActivity.class);
+		Intent notificationIntent = new Intent(this, HomeMenuActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 		
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);

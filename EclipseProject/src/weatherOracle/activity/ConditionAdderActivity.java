@@ -27,11 +27,11 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 public class ConditionAdderActivity extends Activity {
 
-    LinearLayout mainLayout;
-    String condition;
-    int min;
-    int max;
-    String[] possibleCondition;
+    private LinearLayout mainLayout;
+    private String condition;
+    private int min;
+    private int max;
+    private String[] possibleCondition;
     
     
     @Override
