@@ -156,8 +156,8 @@ public class NotificationActivity extends Activity {
             name.setText(notificationList.get(i).getName());
             name.setTextSize(2,25);
             name.setTextColor(Color.BLACK);
-            
-            nameAndDetails.addView(name);
+            RelativeLayout.LayoutParams nameParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 50);
+            nameAndDetails.addView(name, nameParams);
             
             
             ll.setOrientation(0);
