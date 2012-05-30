@@ -146,7 +146,7 @@ public class ConditionAdderActivity extends Activity {
 	                finish();
             	} else {
             		 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                     builder.setMessage("Please give a minimum number(From) that is lower than the maximum(To).")
+                     builder.setMessage("Please give a minimum number('From') that is less than or equal to the maximum('To').")
                         .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                              dialog.dismiss();

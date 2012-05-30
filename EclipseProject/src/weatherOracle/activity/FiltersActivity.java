@@ -134,7 +134,7 @@ public class FiltersActivity extends Activity {
  			filterName.setText(HomeMenuActivity.filterList.get(i).getName());
  			filterName.setTextSize(2,22);
  			
- 			locationName.setText("At Location: " + HomeMenuActivity.filterList.get(i).getLocationName());
+ 			locationName.setText("Location: " + HomeMenuActivity.filterList.get(i).getLocationName());
  			
  			filterName.setId(69 * i + 69);
  			locationName.setLayoutParams(p);
