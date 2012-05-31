@@ -81,32 +81,22 @@ public class NotificationActivity extends Activity {
 	private void displayNotifications() {
 		
 		try {
-			if(notificationList.size()>=1) {
-				if (!notificationList.get(0).getName().equalsIgnoreCase("No Notification Yet"))
-				{
-				statusBarNotification(R.drawable.icon, 
-						notificationList.size() + " new notification", 
-						"WeatherOracle", 
-						notificationList.size() + " new notification");
-				
-				/* Show information about a single notification
+			if (notificationList.isEmpty() || notificationList.get(0).getName().equalsIgnoreCase("No Notification Yet")) {
+				// Empty or the special notification -> remove background notification
+				NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+				mNotificationManager.cancel(STATUS_NOTIFICATION_ID);
+			} else {
+				String tickerText = notificationList.size() + " new notification";
+				if (notificationList.size() > 1) {
+					tickerText += "s";
+				}
 				statusBarNotification(R.drawable.icon,
-					notificationList.get(0).getName(),
-					"WeatherOracle",
-					notificationList.get(0).getName() + ". Location:" + notificationList.get(0).getFilter().getLocationName()
-						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
-				*/
-				}
-				else
-				{
-					NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-					mNotificationManager.cancel(STATUS_NOTIFICATION_ID);
-				}
+						tickerText,
+						"WeatherOracle",
+						tickerText);
+				
 			}
-			
-		} catch (Exception e) {
-			
-		}
+		} catch (Exception e) { }
 		
 		for (int i = 0;i<notificationList.size();i++) {
 			
