@@ -35,7 +35,8 @@ public class NotificationActivity extends Activity {
 	 */
 	List<Notification> notificationList;
 	LinearLayout mainView;
-	
+
+	private static final int STATUS_NOTIFICATION_ID = 1;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,9 @@ public class NotificationActivity extends Activity {
 	private void displayNotifications() {
 		
 		try {
-			if(notificationList.size()==1) {
+			if(notificationList.size()>=1) {
+				if (!notificationList.get(0).getName().equalsIgnoreCase("No Notification Yet"))
+				{
 				statusBarNotification(R.drawable.icon, 
 						notificationList.size() + " new notification", 
 						"WeatherOracle", 
@@ -93,11 +96,12 @@ public class NotificationActivity extends Activity {
 					notificationList.get(0).getName() + ". Location:" + notificationList.get(0).getFilter().getLocationName()
 						+ ". First Occur at" + notificationList.get(0).getWeatherData().get(0).getTimeString());
 				*/
-			} else if(notificationList.size()>1) {
-				statusBarNotification(R.drawable.icon, 
-						notificationList.size() + " new notifications", 
-						"WeatherOracle", 
-						notificationList.size() + " new notifications");
+				}
+				else
+				{
+					NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+					mNotificationManager.cancel(STATUS_NOTIFICATION_ID);
+				}
 			}
 			
 		} catch (Exception e) {
@@ -317,9 +321,8 @@ public class NotificationActivity extends Activity {
 		
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 		
-		final int HELLO_ID = 1;
 		
-		mNotificationManager.notify(HELLO_ID, notification);
+		mNotificationManager.notify(STATUS_NOTIFICATION_ID, notification);
 	}
 
 	
